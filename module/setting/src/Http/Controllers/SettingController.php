@@ -27,6 +27,12 @@ class SettingController extends BaseController
         return view('wadmin-setting::index',['setting'=>$setting,'language'=>$langcode]);
     }
 
+    public function getFact(){
+        $setting = $this->model;
+        $langcode = $this->langcode;
+        return view('wadmin-setting::fact',['setting'=>$setting,'language'=>$langcode]);
+    }
+
     public function saveSetting($data){
         foreach($data as $key=>$val){
             Setting::updateOrCreate(['setting_key'=>$key],['setting_value'=>$val]);

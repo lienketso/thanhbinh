@@ -7,9 +7,8 @@
 @section('js-init')
     <script type="text/javascript">
         CKEDITOR.replace( 'editor1', {
-            filebrowserBrowseUrl: '{{asset('admin/libs/ckfinder/ckfinder.html')}}',
-            filebrowserImageBrowseUrl: '{{asset('admin/libs/ckfinder/ckfinder.html?Type=Images')}}',
-            filebrowserUploadUrl: '/uploader/upload.php'
+            filebrowserUploadUrl: '{{route('ckeditor.upload',['_token' => csrf_token() ])}}', //route dashboard/upload
+            filebrowserUploadMethod: 'form'
         });
     </script>
 
@@ -19,8 +18,8 @@
 
     <ol class="breadcrumb breadcrumb-quirk">
         <li><a href="{{route('wadmin::dashboard.index.get')}}"><i class="fa fa-home mr5"></i> Dashboard</a></li>
-        <li><a href="{{route('wadmin::page.index.get')}}">Trang tĩnh</a></li>
-        <li class="active">Thêm trang tĩnh</li>
+        <li><a href="{{route('wadmin::project.index.get',['post_type'=>'project'])}}">Dự án</a></li>
+        <li class="active">Thêm dự án</li>
     </ol>
 
     <div class="row">
@@ -38,8 +37,8 @@
             <div class="col-sm-8">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Thêm trang tĩnh</h4>
-                        <p>Bạn cần nhập đầy đủ các thông tin để thêm trang tĩnh mới</p>
+                        <h4 class="panel-title">Thêm dự án</h4>
+                        <p>Bạn cần nhập đầy đủ các thông tin để thêm dự án mới</p>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -93,13 +92,23 @@
                         <p>Thông tin các tùy chọn thêm </p>
                     </div>
                     <div class="panel-body">
-
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input class="form-control" name="address" type="text" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Giá trị thầu</label>
+                            <input class="form-control" name="price_value" type="text" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Ngày hoàn thành</label>
+                            <input class="form-control" name="end_date" type="text" placeholder="">
+                        </div>
                         <div class="form-group">
                             <label>Vị trí hiển thị</label>
                             <select id="" name="display" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
                                 <option value="0" {{ (old('display') ==0 ) ? 'selected' : ''}}>Không chọn</option>
                                 <option value="1" {{ (old('display') ==1 ) ? 'selected' : ''}}>Trang chủ</option>
-                                <option value="2" {{ (old('display') ==2 ) ? 'selected' : ''}}>Nổi bật</option>
                             </select>
                         </div>
                         <div class="form-group">

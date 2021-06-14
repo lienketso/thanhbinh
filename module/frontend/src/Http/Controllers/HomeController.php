@@ -5,17 +5,16 @@ namespace Frontend\Http\Controllers;
 
 
 use Barryvdh\Debugbar\Controllers\BaseController;
-use Barryvdh\Debugbar\LaravelDebugbar;
 use Company\Repositories\CompanyRepository;
 use Contact\Http\Requests\ContactCreateRequest;
 use Contact\Repositories\ContactRepository;
+use Gallery\Repositories\GalleryRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Newsletter\Repositories\NewsletterRepository;
 use Post\Repositories\PostRepository;
 use Product\Repositories\CatproductRepository;
+use Product\Repositories\ProductRepository;
 use Transaction\Http\Requests\TransactionCreateRequest;
-use Transaction\Models\Transaction;
 use Transaction\Repositories\TransactionRepository;
 
 class HomeController extends BaseController
@@ -23,11 +22,16 @@ class HomeController extends BaseController
     protected $com;
     protected $lang;
     protected $cat;
-    public function __construct(CompanyRepository $companyRepository,CatproductRepository $catproductRepository)
+    protected $ga;
+    protected $po;
+    public function __construct(CompanyRepository $companyRepository,CatproductRepository $catproductRepository,
+                                GalleryRepository $galleryRepository, ProductRepository $productRepository)
     {
         $this->lang = session('lang');
         $this->com = $companyRepository;
         $this->cat = $catproductRepository;
+        $this->ga = $galleryRepository;
+        $this->po = $productRepository;
     }
 
     private $langActive = ['vn','en'];
@@ -38,35 +42,51 @@ class HomeController extends BaseController
         }
     }
     function getIndex(PostRepository $postRepository){
-        //dd(config('app.locale'));
-        $topHotCompany = $this->com->scopeQuery(function ($e){
-            return $e->orderBy('created_at','desc')
-                ->where('status','active')->where('display',1)->where('lang_code',$this->lang);
-        })->limit(8);
-        $latestCompany = $this->com->scopeQuery(function ($e){
-            return $e->orderBy('created_at','desc')
-                ->where('status','active')->where('lang_code',$this->lang)->where('display',2);
-        })->limit(8);
+
+        $gallery = $this->ga->scopeQuery(function ($e){
+            return $e->orderBy('sort_order','asc')
+                ->where('status','active')
+                ->where('lang_code',$this->lang);
+        })->limit(20);
 
         $popularCat = $this->cat->scopeQuery(function($e){
-           return $e->orderBy('sort_order','asc')->where('status',1)->where('lang_code',$this->lang)->get(['name','slug']);
+           return $e->orderBy('sort_order','asc')->where('status',1)->where('lang_code',$this->lang)->get();
         })->limit(4);
 
-        $allCat = $this->cat->orderBy('sort_order','asc')->findWhere(['status'=>1,'lang_code'=>$this->lang])->all();
+        $pageAbout = $postRepository->findWhere(['lang_code'=>$this->lang,'status'=>'active','display'=>1,'post_type'=>'page'])->first();
 
-        $catHome = $this->cat->scopeQuery(function($e){
-            return $e->orderBy('sort_order','asc')->where('status',1)->where('lang_code',$this->lang)->get(['name','slug']);
-        })->limit(8);
+        $linhVuc = $postRepository->scopeQuery(function($e){
+            return $e->orderBy('created_at','desc')
+                ->where('lang_code',$this->lang)
+                ->where('status','active')
+                ->where('post_type','page')
+                ->where('display',2)->get();
+        })->limit(4);
 
-        $pageAbout = $postRepository->findWhere(['lang_code'=>$this->lang,'status'=>'active','display'=>1])->first();
+        //sản phẩm nổi bật
+        $productHot = $this->po->scopeQuery(function ($e){
+            return $e->orderBy('created_at','desc')
+                ->where('status','active')
+                ->where('lang_code',$this->lang)
+                ->where('display',2)->get();
+        })->limit(20);
+        //dự án nổi bật
+        $projectHot = $postRepository->scopeQuery(function($e){
+            return $e->orderBy('created_at','desc')
+                ->where('status','active')
+                ->where('lang_code',$this->lang)
+                ->where('display',1)
+                ->where('post_type','project')
+                ->get();
+        })->limit(6);
 
         return view('frontend::home.index',[
-            'topHotCompany'=>$topHotCompany,
-            'latestCompany'=>$latestCompany,
+            'gallery'=>$gallery,
+            'productHot'=>$productHot,
             'popularCat'=>$popularCat,
-            'allCat'=>$allCat,
-            'catHome'=>$catHome,
-            'pageAbout'=>$pageAbout
+            'linhVuc'=>$linhVuc,
+            'pageAbout'=>$pageAbout,
+            'projectHot'=>$projectHot
         ]);
     }
 

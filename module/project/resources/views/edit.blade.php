@@ -18,8 +18,8 @@
 
     <ol class="breadcrumb breadcrumb-quirk">
         <li><a href="{{route('wadmin::dashboard.index.get')}}"><i class="fa fa-home mr5"></i> Dashboard</a></li>
-        <li><a href="{{route('wadmin::page.index.get',['post_type'=>'page'])}}">Trang tĩnh</a></li>
-        <li class="active">Sửa Trang tĩnh</li>
+        <li><a href="{{route('wadmin::project.index.get',['post_type'=>'project'])}}">Dự án</a></li>
+        <li class="active">Sửa Dự án</li>
     </ol>
 
     <div class="row">
@@ -37,8 +37,8 @@
             <div class="col-sm-8">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Sửa Bài viết</h4>
-                        <p>Bạn cần nhập đầy đủ các thông tin để sửa Bài viết</p>
+                        <h4 class="panel-title">Sửa Dự án</h4>
+                        <p>Bạn cần nhập đầy đủ các thông tin để sửa Dự án</p>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-primary">Lưu lại</button>
+                            <button class="btn btn-primary" type="submit">Lưu lại</button>
                         </div>
                     </div>
                 </div><!-- panel -->
@@ -91,13 +91,23 @@
                         <p>Thông tin các tùy chọn thêm </p>
                     </div>
                     <div class="panel-body">
-
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input class="form-control" name="address" value="{{$data->address}}" type="text" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Giá trị thầu</label>
+                            <input class="form-control" name="price_value" value="{{$data->price_value}}" type="text" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Ngày hoàn thành</label>
+                            <input class="form-control" name="end_date" value="{{$data->end_date}}" type="text" placeholder="">
+                        </div>
                         <div class="form-group">
                             <label>Vị trí hiển thị</label>
                             <select id="" name="display" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
                                 <option value="0" {{ ($data->display==0) ? 'selected' : ''}}>Không chọn</option>
-                                <option value="1" {{ ($data->display==1) ? 'selected' : ''}}>Giới thiệu</option>
-                                <option value="2" {{ ($data->display==2) ? 'selected' : ''}}>Lĩnh vực hoạt động</option>
+                                <option value="1" {{ ($data->display==1) ? 'selected' : ''}}>Trang chủ</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -119,7 +129,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-primary">Lưu lại</button>
+                            <button class="btn btn-primary" type="submit">Lưu lại</button>
                             <button class="btn btn-success" name="continue_post" value="1">Lưu và tiếp tục thêm</button>
                         </div>
 

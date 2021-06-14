@@ -76,6 +76,7 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(\Newsletter\Providers\ModuleProvider::class);
         $this->app->register(\Transaction\Providers\ModuleProvider::class);
         $this->app->register(\Gallery\Providers\ModuleProvider::class);
+        $this->app->register(\Project\Providers\ModuleProvider::class);
         $this->app->register(\Frontend\Providers\ModuleProvider::class);
     }
 

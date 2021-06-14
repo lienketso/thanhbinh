@@ -56,6 +56,7 @@
             "Newsletter\\": "module/newsletter/src",
             "Transaction\\": "module/transaction/src",
             "Gallery\\": "module/gallery/src",
+            "Project\\": "module/project/src",
             "Frontend\\": "module/frontend/src"
         },
         "classmap": [

@@ -35,7 +35,7 @@ Route::group(['prefix'=>'product'],function(Router $router){
 
 Route::group(['prefix'=>'page'],function(Router $router){
     $router->get('{slug}','BlogController@index')
-        ->name('frontend::blog.index.get');
+        ->name('frontend::page.index.get');
 });
 
 

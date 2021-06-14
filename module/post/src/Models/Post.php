@@ -12,7 +12,7 @@ use Users\Models\Users;
 class Post extends Model
 {
     protected $table = 'post';
-    protected $fillable = ['name','slug','category','description','content','thumbnail','meta_desc','meta_title','meta_keyword','display','count_view','tags','user_post'
+    protected $fillable = ['name','slug','address','price_value','end_date','category','description','content','thumbnail','meta_desc','meta_title','meta_keyword','display','count_view','tags','user_post'
     ,'user_edit','status','post_type','lang_code'];
 
 

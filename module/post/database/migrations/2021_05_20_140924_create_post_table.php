@@ -18,6 +18,9 @@ class CreatePostTable extends Migration
             $table->string('name')->nullable();
             $table->integer('category')->default(0);
             $table->string('slug')->nullable();
+            $table->string('address')->nullable();
+            $table->string('price_value')->nullable();
+            $table->string('end_date')->nullable();
             $table->text('description')->nullable();
             $table->longText('content')->nullable();
             $table->string('thumbnail')->nullable();

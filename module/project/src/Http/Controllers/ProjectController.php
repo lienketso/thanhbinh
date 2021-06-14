@@ -1,55 +1,54 @@
 <?php
 
 
-namespace Gallery\Http\Controllers;
+namespace Project\Http\Controllers;
 
 
 use Barryvdh\Debugbar\Controllers\BaseController;
-use Gallery\Http\Requests\GalleryCreateRequest;
-use Gallery\Http\Requests\GalleryEditRequest;
-use Gallery\Repositories\GalleryRepository;
 use Illuminate\Http\Request;
-use Media\Repositories\MediaRepository;
+use Illuminate\Support\Facades\Auth;
 
-class GalleryController extends BaseController
+use Post\Repositories\PostRepository;
+use Project\Http\Requests\ProjectCreateRequest;
+use Project\Http\Requests\ProjectEditRequest;
+
+class ProjectController extends BaseController
 {
     protected $model;
+    protected $cat;
     protected $langcode;
-    public function __construct(GalleryRepository $galleryRepository)
+    public function __construct(PostRepository $postRepository)
     {
-        $this->model = $galleryRepository;
+        $this->model = $postRepository;
         $this->langcode = session('lang');
     }
 
     public function getIndex(Request $request){
         $id = $request->get('id');
-        $groupid = $request->get('group');
         $name = $request->get('name');
         if($id){
             $data = $this->model->scopeQuery(function ($e) use($id){
-                return $e->orderBy('id','desc')->where('id',$id);
+                return $e->orderBy('id','desc')->where('id',$id)->where('post_type','project');
             })->paginate(1);
         }elseif($name){
-            $data = $this->model->scopeQuery(function($e) use ($name,$groupid){
-                return $e->orderBy('id','desc')
-                    ->where('group_id',$groupid)
-                    ->where('lang_code',$this->langcode)
+            $data = $this->model->scopeQuery(function($e) use ($name){
+                return $e->orderBy('id','desc')->where('lang_code',$this->langcode)
+                    ->where('post_type','project')
                     ->where('name','LIKE','%'.$name.'%');
             })->paginate(10);
         }
         else{
             $data = $this->model->orderBy('created_at','desc')
                 ->where('lang_code',$this->langcode)
-                ->where('group_id',$groupid)
-                ->paginate(10);
+                ->where('post_type','project')->paginate(10);
         }
-        return view('wadmin-gallery::index',['data'=>$data,'group_id'=>$groupid]);
+
+        return view('wadmin-project::index',['data'=>$data]);
     }
-    public function getCreate(Request $request){
-        $groupid = $request->get('group');
-        return view('wadmin-gallery::create',['group_id'=>$groupid]);
+    public function getCreate(){
+        return view('wadmin-project::create');
     }
-    public function postCreate(GalleryCreateRequest $request){
+    public function postCreate(ProjectCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
             if($request->hasFile('thumbnail')){
@@ -61,16 +60,24 @@ class GalleryController extends BaseController
                 $image->move('upload/'.$path,$newnname);
             }
             $input['lang_code'] = $this->langcode;
-            $input['group_id'] = $request->get('group');
-
+            $input['slug'] = $request->name;
+            $input['post_type'] = 'project';
+            $input['user_post'] = Auth::id();
+            //cấu hình seo
+            if($request->meta_title==''){
+                $input['meta_title'] = $request->name;
+            }
+            if($request->meta_desc==''){
+                $input['meta_desc'] = $request->description;
+            }
             $data = $this->model->create($input);
 
             if($request->has('continue_post')){
                 return redirect()
-                    ->route('wadmin::gallery.create.get')
+                    ->route('wadmin::project.create.get')
                     ->with('create','Thêm dữ liệu thành công');
             }
-            return redirect()->route('wadmin::gallery.index.get',['id'=>$data->id])
+            return redirect()->route('wadmin::project.index.get',['id'=>$data->id])
                 ->with('create','Thêm dữ liệu thành công');
         }catch (\Exception $e){
             return redirect()->back()->withErrors(config('messages.error'));
@@ -80,10 +87,10 @@ class GalleryController extends BaseController
 
     function getEdit($id){
         $data = $this->model->find($id);
-        return view('wadmin-gallery::edit',['data'=>$data]);
+        return view('wadmin-project::edit',['data'=>$data]);
     }
 
-    function postEdit($id, GalleryEditRequest $request){
+    function postEdit($id, ProjectEditRequest $request){
         try{
             $input = $request->except(['_token']);
 
@@ -95,9 +102,17 @@ class GalleryController extends BaseController
                 $input['thumbnail'] = $path.'/'.$newnname;
                 $image->move('upload/'.$path,$newnname);
             }
-
+            $input['slug'] = $request->name;
+            $input['user_edit'] = Auth::id();
+            //cấu hình seo
+            if($request->meta_title==''){
+                $input['meta_title'] = $request->name;
+            }
+            if($request->meta_desc==''){
+                $input['meta_desc'] = $request->description;
+            }
             $user = $this->model->update($input, $id);
-            return redirect()->route('wadmin::gallery.index.get',['group'=>$user->group_id])->with('edit','Bạn vừa cập nhật dữ liệu');
+            return redirect()->route('wadmin::project.index.get',['post_type'=>'project'])->with('edit','Bạn vừa cập nhật dữ liệu');
         }catch (\Exception $e){
             return redirect()->back()->withErrors(config('messages.error'));
         }

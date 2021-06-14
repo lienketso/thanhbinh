@@ -186,7 +186,7 @@
                             <ul class="list-unstyled mb20">
                                 @foreach($postview  as $d)
                                 <li>
-                                    <a href="{{route('frontend::blog.index.get',$d->slug)}}" target="_blank">{{$d->name}}</a>
+                                    <a href="#" target="_blank">{{$d->name}}</a>
                                     <small>{{format_date($d->created_at)}} <a href="">{{$d->count_view}} Lượt xem</a></small>
                                 </li>
                                 @endforeach
