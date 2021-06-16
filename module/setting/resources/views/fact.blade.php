@@ -18,7 +18,7 @@
 
     <ol class="breadcrumb breadcrumb-quirk">
         <li><a href="{{route('wadmin::dashboard.index.get')}}"><i class="fa fa-home mr5"></i> Dashboard</a></li>
-        <li><a href="{{route('wadmin::setting.index.get')}}">Cấu hình chung</a></li>
+        <li><a href="{{route('wadmin::setting.index.get')}}">Cấu hình thông số</a></li>
         <li class="active">Thông tin cấu hình</li>
     </ol>
 
@@ -37,48 +37,117 @@
             <div class="col-sm-8">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Thông tin cấu hình chung</h4>
+                        <h4 class="panel-title">Thông tin cấu hình thông số</h4>
                         <p>Bạn cần nhập đầy đủ các thông tin để cấu hình thông tin mong muốn</p>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <label>Tiêu đề</label>
+                            <label>Tiêu đề 1</label>
                             <input class="form-control"
-                                   name="site_name_{{$language}}"
+                                   name="fact_title_1_{{$language}}"
                                    type="text"
-                                   value="{{$setting->getSettingMeta('site_name_'.$language)}}"
-                                   placeholder="Tên website">
+                                   value="{{$setting->getSettingMeta('fact_title_1_'.$language)}}"
+                                   placeholder="Tiêu đề nhỏ">
                         </div>
                         <div class="form-group">
-                            <label>Mô tả</label>
-                            <textarea id="" name="site_description_{{$language}}" class="form-control" rows="3"
-                                      placeholder="Mô tả website">{{$setting->getSettingMeta('site_description_'.$language)}}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Nội dung chân trang</label>
-                            <textarea id="editor1" name="site_footer_info_{{$language}}"
-                                      class="form-control makeMeRichTextarea" rows="3"
-                                      placeholder="Nội dung mục chân trang">{{$setting->getSettingMeta('site_footer_info_'.$language)}}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Số hotline</label>
-                            <input class="form-control" name="site_hotline_{{$language}}" value="{{$setting->getSettingMeta('site_hotline_'.$language)}}" type="text" placeholder="Số hotline">
-                        </div>
-                        <div class="form-group">
-                            <label>Địa chỉ</label>
+                            <label>Tiêu đề 2</label>
                             <input class="form-control"
-                                   name="site_address_{{$language}}"
+                                   name="fact_title_2_{{$language}}"
                                    type="text"
-                                   value="{{$setting->getSettingMeta('site_address_'.$language)}}"
+                                   value="{{$setting->getSettingMeta('fact_title_2_'.$language)}}"
+                                   placeholder="Tiêu đề lớn hơn">
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả ngắn thông số</label>
+                            <textarea id="" name="fact_description_{{$language}}" class="form-control" rows="3"
+                                      placeholder="Mô tả ngắn mục thông số">{{$setting->getSettingMeta('fact_description_'.$language)}}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                            <label>Thông số 1</label>
+                            <input class="form-control"
+                                   name="fact_number_1_{{$language}}"
+                                   value="{{$setting->getSettingMeta('fact_number_1_'.$language)}}"
+                                   type="text" placeholder="">
+                            </div>
+                            </div>
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                            <label>Tiêu đề thông số 1</label>
+                            <input class="form-control"
+                                   name="fact_name_1_{{$language}}"
+                                   type="text"
+                                   value="{{$setting->getSettingMeta('fact_name_1_'.$language)}}"
                                    placeholder="">
+                            </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input class="form-control"
-                                   name="site_email_{{$language}}"
-                                   type="text"
-                                   value="{{$setting->getSettingMeta('site_email_'.$language)}}"
-                                   placeholder="">
+
+                        <div class="row" style="padding-top: 15px">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Thông số 2</label>
+                                    <input class="form-control"
+                                           name="fact_number_2_{{$language}}"
+                                           value="{{$setting->getSettingMeta('fact_number_2_'.$language)}}"
+                                           type="text" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Tiêu đề thông số 2</label>
+                                    <input class="form-control"
+                                           name="fact_name_2_{{$language}}"
+                                           type="text"
+                                           value="{{$setting->getSettingMeta('fact_name_2_'.$language)}}"
+                                           placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 15px">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Thông số 3</label>
+                                    <input class="form-control"
+                                           name="fact_number_3_{{$language}}"
+                                           value="{{$setting->getSettingMeta('fact_number_3_'.$language)}}"
+                                           type="text" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Tiêu đề thông số 3</label>
+                                    <input class="form-control"
+                                           name="fact_name_3_{{$language}}"
+                                           type="text"
+                                           value="{{$setting->getSettingMeta('fact_name_3_'.$language)}}"
+                                           placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 15px">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Thông số 4</label>
+                                    <input class="form-control"
+                                           name="fact_number_4_{{$language}}"
+                                           value="{{$setting->getSettingMeta('fact_number_4_'.$language)}}"
+                                           type="text" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Tiêu đề thông số 4</label>
+                                    <input class="form-control"
+                                           name="fact_name_4_{{$language}}"
+                                           type="text"
+                                           value="{{$setting->getSettingMeta('fact_name_4_'.$language)}}"
+                                           placeholder="">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -101,14 +170,24 @@
                     <div class="panel-body">
 
                         <div class="form-group mb-3">
-                            <label>Ảnh logo</label>
+                            <label>Ảnh đại diện</label>
                             <div class="custom-file">
-                                <input type="file" name="site_logo" value="" class="custom-file-input" id="inputGroupFile01" >
+                                <input type="file" name="fact_image" value="" class="custom-file-input" id="inputGroupFile01" >
                                 <div class="thumbnail_w" style="padding-top: 10px">
-                                <img src="{{ ($setting->getSettingMeta('site_logo')!='null') ? upload_url($setting->getSettingMeta('site_logo')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
+                                <img src="{{ ($setting->getSettingMeta('fact_image')!='null') ? upload_url($setting->getSettingMeta('fact_image')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group mb-3">
+                            <label>Ảnh background</label>
+                            <div class="custom-file">
+                                <input type="file" name="fact_background" value="" class="custom-file-input" id="inputGroupFile01" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('fact_background')!='null') ? upload_url($setting->getSettingMeta('fact_background')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>

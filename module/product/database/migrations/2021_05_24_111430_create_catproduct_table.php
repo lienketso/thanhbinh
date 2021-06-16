@@ -19,9 +19,11 @@ class CreateCatproductTable extends Migration
             $table->string('slug')->nullable();
             $table->integer('parent')->default(0);
             $table->string('thumbnail')->nullable();
+            $table->string('background')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_desc')->nullable();
             $table->integer('sort_order')->default(0);
+            $table->integer('display')->default(0);
             $table->enum('status',['active','disable'])->default('active');
             $table->enum('lang_code',['vn','en'])->default('vn');
             $table->timestamps();

@@ -11,7 +11,7 @@
                             <h2><span class="theme-clr"> {{$d->name}}</span> {{$d->title}}</h2>
                             <p>{{$d->description}}</p>
                             <div class="btns-grp">
-                                <a class="theme-btn brd-rd30" href="{{$d->link}}" title="">Xem thêm</a>
+                                <a class="theme-btn brd-rd30" href="{{$d->link}}" title="">{{trans('frontend.read_more')}}</a>
                             </div>
                         </div>
                     </div>
@@ -22,13 +22,13 @@
         </div>
     </section>
 
-    <section class="giaiphap_home">
+    <section class="giaiphap_home " >
         <div class="gap_cc">
             <div class="container">
                 <div class="tem-sec remove-ext5 text-center">
                     <div class="row">
-                        @foreach($popularCat as $d)
-                        <div class="col-md-4 col-sm-6 col-lg-3">
+                        @foreach($popularCat as $key=>$d)
+                        <div class="col-md-4 col-sm-6 col-lg-3 wow bounceInLeft" data-wow-duration="{{$key}}s" data-wow-iteration="1" >
                             <div class="tm-bx">
                                 <div class="tm-thmb">
                                     <a href="{{route('frontend::product.index.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">
@@ -43,7 +43,7 @@
                                     <div class="desc_gp">
                                         {{$d->meta_desc}}
                                     </div>
-                                    <div class="btn-tuvan"><a href="{{route('frontend::product.index.get',$d->slug)}}">Tư vấn giải pháp</a></div>
+                                    <div class="btn-tuvan"><a href="{{route('frontend::product.index.get',$d->slug)}}">{{trans('frontend.solution_consulting')}}</a></div>
                                 </div>
                             </div>
                         </div>
@@ -52,15 +52,15 @@
                     </div>
                 </div>
             </div>
-            <a class="floter-911" href="#" title="" itemprop="url"><img src="assets/images/911-icon.png" alt="911-icon.png" itemprop="image"></a>
+
         </div>
     </section>
 
     @if(!empty($pageAbout))
-    <section>
+    <section class="">
         <div class="gap">
             <div class="container">
-                <div class="abt-sec style-edit">
+                <div class="abt-sec style-edit wow flipInX" data-wow-iteration="1">
                     <div class="row">
                         <div class="col-md-7 col-sm-12 col-lg-7">
                             <div class="abt-cnt">
@@ -86,16 +86,16 @@
 
 
     <div class="sec-tl text-center">
-        <span>Danh sách dịch vụ và lĩnh vực hoạt động</span>
-        <h2 itemprop="headline">Lĩnh vực & <span class="theme-clr">Dịch vụ</span></h2>
+        <span>{{$setting['keyword_1_'.$lang]}}</span>
+        <h2 itemprop="headline"><span class="theme-clr">{{$setting['keyword_2_'.$lang]}}</span></h2>
     </div>
 
     <section class="services_home">
 
 
         <div class="wrap-service">
-           @foreach($linhVuc as $d)
-            <div class="listwrap_sv item1" style="background-image: url('{{upload_url($d->thumbnail)}}');">
+           @foreach($linhVuc as $key=>$d)
+            <div class="listwrap_sv item1 wow slideInRight" data-wow-iteration="1" data-wow-delay="{{$key}}s" style="background-image: url('{{upload_url($d->thumbnail)}}');">
                 <a href="{{route('frontend::page.index.get',$d->slug)}}">
                     <h3 class="title_service">{{$d->name}}</h3>
                 </a>
@@ -110,63 +110,51 @@
         <div class="gap remove-gap">
             <div class="container">
                 <div class="sec-tl text-center">
-                    <h2 itemprop="headline">Tin tức & <span class="theme-clr">Sự kiện</span></h2>
+                    <h2 itemprop="headline"><span class="theme-clr">{{$setting['keyword_3_'.$lang]}}</span></h2>
                 </div>
                 <div class="blg-evnt-wrp">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 col-lg-6">
-                            <div class="remove-ext5">
+                    <div class="tab_news">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            @foreach($catnewsHome as $key=>$d)
+                            <li class="nav-tab-item">
+                                <a class="nav-link {{($key==0) ? 'active' : ''}}" data-toggle="tab" href="#menu{{$d->id}}"><i class="fas fa-newspaper"></i> {{$d->name}}</a>
+                            </li>
+                            @endforeach
+
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content tab_content_news">
+                            @foreach($catnewsHome as $key=>$d)
+                            <div class="tab-pane {{($key==0) ? 'active' : ''}} container" id="menu{{$d->id}}">
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-lg-6">
+                                    @if(!empty($d->postCat))
+                                        @foreach($d->postCat as $p)
+                                    <div class="col-md-4 col-sm-6 col-lg-4">
                                         <div class="blg-bx">
-                                            <div class="blg-thmb"><a href="blog-detail.html" title="" itemprop="url"><img src="assets/images/blg-img1-3.jpg" alt="blg-img1-1.jpg" itemprop="image"></a></div>
+                                            <div class="blg-thmb blg-fix">
+                                                <a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}" itemprop="url">
+                                                    <img src="{{ ($p->thumbnail!='') ? upload_url($p->thumbnail) : public_url('admin/themes/images/no-image.png')}}" alt="{{$p->name}}" itemprop="image"></a>
+                                            </div>
                                             <div class="blg-inf">
-                                                <h6 itemprop="headline"><a href="blog-detail.html" title="" itemprop="url">Lorem ipsum dolor sit amet </a></h6>
+                                                <h6 itemprop="headline"><a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}" itemprop="url">{{$p->name}}</a>
+                                                </h6>
                                                 <ul class="pst-mta">
-                                                    <li><i class="far fa-calendar-alt"></i><a href="#" title="" itemprop="url">08 tháng 6, 2020</a></li>
-                                                    <li><i class="fas fa-user"></i><a href="#" title="" itemprop="url">Admin</a></li>
+                                                    <li><i class="far fa-calendar-alt"></i>{{stringDate($p->created_at)}}</li>
+                                                    <li><i class="fas fa-user"></i> {{trans('frontend.count_view')}} : {{$p->count_view}}</li>
                                                 </ul>
-                                                <p itemprop="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
-                                                <a href="blog-detail.html" title="" itemprop="url">Xem thêm</a>
+                                                <p itemprop="description">{{cut_string($p->description,90)}}</p>
+                                                <a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}" itemprop="url">{{trans('frontend.read_more')}}</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-lg-6">
-                                        <div class="blg-bx">
-                                            <div class="blg-thmb"><a href="blog-detail.html" title="" itemprop="url"><img src="assets/images/blg-img1-7.jpg" alt="blg-img1-2.jpg" itemprop="image"></a></div>
-                                            <div class="blg-inf">
-                                                <h6 itemprop="headline"><a href="blog-detail.html" title="" itemprop="url">Lorem ipsum dolor sit amet</a></h6>
-                                                <ul class="pst-mta">
-                                                    <li><i class="far fa-calendar-alt"></i><a href="#" title="" itemprop="url">08 tháng 6, 2020</a></li>
-                                                    <li><i class="fas fa-user"></i><a href="#" title="" itemprop="url">Admin</a></li>
-                                                </ul>
-                                                <p itemprop="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
-                                                <a href="blog-detail.html" title="" itemprop="url">Xem thêm</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12 col-lg-6">
-                            <div class="evnt-wrp">
-                                <div class="evnt-bx">
-                                    <span class="evnt-dat"><a class="theme-bg" href="#" title="" itemprop="url">08<i>T6</i></a></span>
-                                    <div class="evnt-inf">
-                                        <h5 itemprop="headline"><a href="event-detail.html" title="" itemprop="url">Lorem ipsum dolor sit amet</a></h5>
-                                        <p itemprop="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                                        <a class="event-btn" href="event-detail.html" title="" itemprop="url">Xem thêm</a>
-                                    </div>
-                                </div>
-                                <div class="evnt-bx">
-                                    <span class="evnt-dat"><a class="theme-bg" href="#" title="" itemprop="url">08<i>T6</i></a></span>
-                                    <div class="evnt-inf">
-                                        <h5 itemprop="headline"><a href="event-detail.html" title="" itemprop="url">Lorem ipsum dolor sit amet</a></h5>
-                                        <p itemprop="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <a class="event-btn" href="event-detail.html" title="" itemprop="url">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -176,25 +164,25 @@
 
     <section>
         <div class="gap black-layer opc8">
-            <div class="fixed-bg" style="background-image: url(assets/images/para-new.png);"></div>
+            <div class="fixed-bg" style="background-image: url('{{upload_url($setting['fact_background'])}}');"></div>
             <div class="container">
                 <div class="shrt-fcts-wrp">
                     <div class="row">
                         <div class="col-md-5 col-sm-12 col-lg-5">
-                            <img class="facts-mockup animated bounce" src="assets/images/fact-mockup.png" alt="mockup-image">
+                            <img class="facts-mockup" src="{{upload_url($setting['fact_image'])}}" alt="{{$setting['fact_title_2_'.$lang]}}">
                         </div>
                         <div class="col-md-6 col-sm-12 col-lg-6">
                             <div class="fcts-wrp">
                                 <div class="sec-tl">
-                                    <span>Youth Fire Stop Prevention &amp; Intervention Program.</span>
-                                    <h2 itemprop="headline">Few Facts About Naar</h2>
+                                    <span>{{$setting['fact_title_1_'.$lang]}}</span>
+                                    <h2 itemprop="headline">{{$setting['fact_title_2_'.$lang]}}</h2>
                                 </div>
-                                <p itemprop="description">Every live, every property we save does matter, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                                <p itemprop="description">{{$setting['fact_description_'.$lang]}}</p>
                                 <ul class="fcts-lst">
-                                    <li><span class="counter">369</span><h6 itemprop="headline">Emergencies</h6></li>
-                                    <li><span class="counter">421</span><h6 itemprop="headline">Traffic Crashes</h6></li>
-                                    <li><span class="counter">275</span><h6 itemprop="headline">Fire Emergencies</h6></li>
-                                    <li><span class="counter">50</span><h6 itemprop="headline">Year of Experience</h6></li>
+                                    <li><span class="counter">{{$setting['fact_number_1_'.$lang]}}</span><h6 itemprop="headline">{{$setting['fact_name_1_'.$lang]}}</h6></li>
+                                    <li><span class="counter">{{$setting['fact_number_2_'.$lang]}}</span><h6 itemprop="headline">{{$setting['fact_name_2_'.$lang]}}</h6></li>
+                                    <li><span class="counter">{{$setting['fact_number_3_'.$lang]}}</span><h6 itemprop="headline">{{$setting['fact_name_3_'.$lang]}}</h6></li>
+                                    <li><span class="counter">{{$setting['fact_number_4_'.$lang]}}</span><h6 itemprop="headline">{{$setting['fact_name_4_'.$lang]}}</h6></li>
                                 </ul>
                             </div>
                         </div>
@@ -206,24 +194,24 @@
     </section>
 
     <section>
-        <div class="gap theme-bg-layer opc7 hlf-parallax">
-            <div class="fixed-bg" style="background-image: url(../assets/images/s31.jpg);"></div>
+        <div class="gap theme-bg-layer opc9 hlf-parallax">
+            <div class="fixed-bg" style="background-image: url('{{public_url('frontend/assets/images/parallax1.jpg')}}');"></div>
             <div class="sec-tl text-center">
-                <span>We provide you with practical actions, advice and resources.</span>
-                <h2 itemprop="headline">Sản phẩm nổi bật</h2>
+                <span>{{$setting['keyword_4_'.$lang]}}</span>
+                <h2 itemprop="headline">{{$setting['keyword_5_'.$lang]}}</h2>
             </div>
             <div class="vdo-sec-wrp">
                 <div class="vdo-car owl-carousel">
                     @foreach($productHot as $d)
                     <div class="vdo-bx-fix">
-                        <a href="" class="img_product">
+                        <a href="{{route('frontend::product.detail.get',$d->slug)}}" class="img_product">
                             <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
                                  alt="{{$d->name}}" itemprop="image">
                         </a>
                         <h3 class="title_product">{{$d->name}}</h3>
                         <p>{{$d->description}}</p>
                         <div class="btn_xemthem">
-                            <a href="#">Xem sản phẩm</a>
+                            <a href="{{route('frontend::product.detail.get',$d->slug)}}">{{trans('frontend.view_product')}}</a>
                         </div>
                     </div>
                     @endforeach
@@ -238,7 +226,7 @@
         <div class="gap-cac">
             <div class="container">
                 <div class="sec-tl text-center">
-                    <h2 itemprop="headline">Dự án <span class="theme-clr">Tiêu biểu</span></h2>
+                    <h2 itemprop="headline"><span class="theme-clr">{{$setting['keyword_6_'.$lang]}}</span></h2>
                 </div>
                 <div class="camp-wrp remove-ext5">
                     <div class="row">
@@ -246,11 +234,13 @@
                         <div class="col-md-4 col-sm-6 col-lg-4">
                             <div class="camp-bx">
                                 <div class="camp-thmb">
-                                    <a href="#" title="" itemprop="url">
-                                        <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}" alt="camp-img1.jpg" itemprop="image">
+                                    <a href="{{route('frontend::project.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">
+                                        <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
+                                             alt="{{$d->name}}" itemprop="image">
                                     </a>
                                     <div class="camp-inf">
-                                        <h5 itemprop="headline"><a href="#" title="" itemprop="url">{{$d->name}}</a></h5>
+                                        <h5 itemprop="headline"><a href="{{route('frontend::project.detail.get',$d->slug)}}"
+                                                                   title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h5>
                                         <span><i class="fas fa-map-marker-alt theme-clr"></i>{{$d->address}}</span>
                                     </div>
                                 </div>
@@ -258,9 +248,10 @@
                                     <div class="progress">
                                         <div class="progress-bar w30 theme-bg"></div>
                                     </div>
-                                    <span class="rs-gl float-left">Giá trị thầu : <i class="theme-clr">{{$d->price_value}}</i></span>
-                                    <span class="rs-gl float-right">Hoàn thành : <i class="theme-clr">{{$d->end_date}}</i></span>
-                                    <a class="theme-btn brd-rd5" href="#" title="" itemprop="url">Xem</a>
+                                    <span class="rs-gl float-left">{{trans('frontend.bid_value')}} : <i class="theme-clr">{{$d->price_value}}</i></span>
+                                    <span class="rs-gl float-right">{{trans('frontend.complete')}} : <i class="theme-clr">{{$d->end_date}}</i></span>
+                                    <a class="theme-btn brd-rd5" href="{{route('frontend::project.detail.get',$d->slug)}}"
+                                       title="{{$d->name}}" itemprop="url">{{trans('frontend.view')}}</a>
                                 </div>
                             </div>
                         </div>

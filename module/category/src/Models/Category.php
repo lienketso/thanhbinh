@@ -5,11 +5,12 @@ namespace Category\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Post\Models\Post;
 
 class Category extends Model
 {
     protected $table = 'category';
-    protected $fillable = ['name','slug','parent','description','thumbnail','sort_order','lang_code','status','meta_title','meta_desc'];
+    protected $fillable = ['name','slug','parent','description','thumbnail','sort_order','lang_code','status','meta_title','meta_desc','display'];
 
     public function setSlugAttribute($value)
     {
@@ -24,6 +25,10 @@ class Category extends Model
     public function childrenCategories()
     {
         return $this->hasMany(Category::class)->with('categories');
+    }
+
+    public function postCat(){
+        return $this->hasMany(Post::class,'category')->limit(6);
     }
 
 }

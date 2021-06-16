@@ -51,6 +51,12 @@ class CatproductController extends BaseController
                 $input['thumbnail'] = $path.'/'.$image->getClientOriginalName();
                 $image->move('upload/'.$path,$image->getClientOriginalName());
             }
+            if($request->hasFile('background')){
+                $image = $request->background;
+                $path = date('Y').'/'.date('m').'/'.date('d');
+                $input['background'] = $path.'/'.$image->getClientOriginalName();
+                $image->move('upload/'.$path,$image->getClientOriginalName());
+            }
             $input['slug'] = $request->name;
             $input['lang_code'] = $this->langcode;
             //cấu hình seo
@@ -86,6 +92,12 @@ class CatproductController extends BaseController
                 $image = $request->thumbnail;
                 $path = date('Y').'/'.date('m').'/'.date('d');
                 $input['thumbnail'] = $path.'/'.$image->getClientOriginalName();
+                $image->move('upload/'.$path,$image->getClientOriginalName());
+            }
+            if($request->hasFile('background')){
+                $image = $request->background;
+                $path = date('Y').'/'.date('m').'/'.date('d');
+                $input['background'] = $path.'/'.$image->getClientOriginalName();
                 $image->move('upload/'.$path,$image->getClientOriginalName());
             }
             $input['slug'] = $request->name;

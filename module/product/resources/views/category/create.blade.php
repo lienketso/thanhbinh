@@ -84,6 +84,14 @@
                                    placeholder="">
                         </div>
                         <div class="form-group">
+                            <label>Hiển thị</label>
+                            <select id="" name="display" class="form-control" style="width: 100%">
+                                <option value="0" {{ (old('display')==0) ? 'selected' : ''}}>Không chọn</option>
+                                <option value="1" {{ (old('display')==1) ? 'selected' : ''}}>Nổi bật</option>
+                                <option value="2" {{ (old('display')==2) ? 'selected' : ''}}>Chân trang</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Trạng thái</label>
                             <select id="" name="status" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
                                 <option value="active" {{ (old('status')=='active') ? 'selected' : ''}}>Hiển thị</option>
@@ -96,6 +104,13 @@
                             <div class="custom-file">
                                 <input type="file" name="thumbnail" value="{{old('thumbnail')}}" class="custom-file-input" id="inputGroupFile01" >
                                 <label class="custom-file-label" for="inputGroupFile01">{{old('thumbnail')}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Ảnh banner trang danh mục</label>
+                            <div class="custom-file">
+                                <input type="file" name="background" value="{{old('background')}}" class="custom-file-input" id="inputGroupFile01" >
+                                <label class="custom-file-label" for="inputGroupFile01">{{old('background')}}</label>
                             </div>
                         </div>
 

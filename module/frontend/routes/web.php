@@ -8,17 +8,15 @@ $moduleRoute = 'home';
 
 Route::get('/', 'HomeController@getIndex')->name('frontend::home');
 Route::get('lang/{lang}', 'HomeController@changeLang')->name('frontend::lang');
+Route::get('about', 'HomeController@about')->name('frontend::about.detail.get');
 
-Route::group(['prefix'=>'member'],function(Router $router){
-        $router->get('register','MemberController@register')
-            ->name('frontend::member.register.get');
-});
 
-Route::group(['prefix'=>'company'],function(Router $router){
-    $router->get('/','CompanyController@index')
-        ->name('frontend::company.index.get');
-    $router->get('{slug}','CompanyController@detail')
-        ->name('frontend::company.detail.get');
+
+Route::group(['prefix'=>'project'],function(Router $router){
+    $router->get('/','ProjectController@index')
+        ->name('frontend::project.index.get');
+    $router->get('{slug}','ProjectController@detail')
+        ->name('frontend::project.detail.get');
 });
 
 Route::group(['prefix'=>'category'],function(Router $router){
@@ -34,10 +32,18 @@ Route::group(['prefix'=>'product'],function(Router $router){
 });
 
 Route::group(['prefix'=>'page'],function(Router $router){
-    $router->get('{slug}','BlogController@index')
+    $router->get('{slug}','BlogController@page')
         ->name('frontend::page.index.get');
 });
 
+Route::group(['prefix'=>'post'],function(Router $router){
+    $router->get('{slug}','BlogController@detail')
+        ->name('frontend::blog.detail.get');
+});
+Route::group(['prefix'=>'blog'],function(Router $router){
+    $router->get('{slug}','BlogController@index')
+        ->name('frontend::blog.index.get');
+});
 
 Route::group(['prefix'=>'search'],function(Router $router){
     $router->get('/','ProductController@search')

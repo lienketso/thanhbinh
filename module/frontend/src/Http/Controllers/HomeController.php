@@ -5,6 +5,7 @@ namespace Frontend\Http\Controllers;
 
 
 use Barryvdh\Debugbar\Controllers\BaseController;
+use Category\Repositories\CategoryRepository;
 use Company\Repositories\CompanyRepository;
 use Contact\Http\Requests\ContactCreateRequest;
 use Contact\Repositories\ContactRepository;
@@ -19,16 +20,16 @@ use Transaction\Repositories\TransactionRepository;
 
 class HomeController extends BaseController
 {
-    protected $com;
+    protected $catnews;
     protected $lang;
     protected $cat;
     protected $ga;
     protected $po;
-    public function __construct(CompanyRepository $companyRepository,CatproductRepository $catproductRepository,
+    public function __construct(CategoryRepository $categoryRepository,CatproductRepository $catproductRepository,
                                 GalleryRepository $galleryRepository, ProductRepository $productRepository)
     {
         $this->lang = session('lang');
-        $this->com = $companyRepository;
+        $this->catnews = $categoryRepository;
         $this->cat = $catproductRepository;
         $this->ga = $galleryRepository;
         $this->po = $productRepository;
@@ -38,7 +39,7 @@ class HomeController extends BaseController
     public function changeLang(Request $request, $lang){
         if(in_array($lang,$this->langActive)){
             $request->session()->put(['lang'=>$lang]);
-            return redirect()->back();
+            return redirect()->route('frontend::home');
         }
     }
     function getIndex(PostRepository $postRepository){
@@ -79,6 +80,14 @@ class HomeController extends BaseController
                 ->where('post_type','project')
                 ->get();
         })->limit(6);
+        //danh mục tin trang chủ
+        $catnewsHome = $this->catnews->with('postCat')->scopeQuery(function($e){
+            return $e->orderBy('sort_order','asc')
+                ->where('status','active')
+                ->where('lang_code',$this->lang)
+                ->where('display',1)->get();
+        })->limit(4);
+
 
         return view('frontend::home.index',[
             'gallery'=>$gallery,
@@ -86,8 +95,12 @@ class HomeController extends BaseController
             'popularCat'=>$popularCat,
             'linhVuc'=>$linhVuc,
             'pageAbout'=>$pageAbout,
-            'projectHot'=>$projectHot
+            'projectHot'=>$projectHot,
+            'catnewsHome'=>$catnewsHome
         ]);
+    }
+    public function about(){
+        return view('frontend::home.about');
     }
 
     public function contact(){

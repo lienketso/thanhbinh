@@ -85,8 +85,16 @@
                                    name="sort_order"
                                    type="number"
                                    min="0"
-                                   value="0"
+                                   value="{{old('sort_order',0)}}"
                                    placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Hiển thị</label>
+                            <select id="" name="display" class="form-control" style="width: 100%" >
+                                <option value="0" {{ (old('display')==0) ? 'selected' : ''}}>Không chọn</option>
+                                <option value="1" {{ (old('display')==1) ? 'selected' : ''}}>Trang chủ</option>
+                                <option value="2" {{ (old('display')==2) ? 'selected' : ''}}>Chân trang</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Trạng thái</label>

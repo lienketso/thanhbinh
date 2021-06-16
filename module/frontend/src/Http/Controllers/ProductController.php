@@ -31,12 +31,16 @@ class ProductController extends BaseController
                 ->where('status',1)->where('lang_code',$this->lang);
         })->paginate(20);
 
+        //all category
+        $allCatProduct = $this->cat->with('getProductCat')->orderBy('sort_order','asc')
+            ->findWhere(['status'=>'active','lang_code'=>$this->lang,'parent'=>0])->all();
+
         //cấu hình các thẻ meta
         $meta_title = $catInfor->meta_title;
         $meta_desc = cut_string($catInfor->meta_desc,190);
         $meta_url = route('frontend::product.index.get',$catInfor->slug);
         if($catInfor->thumbnail!=''){
-            $meta_thumbnail = upload_url($data->thumbnail);
+            $meta_thumbnail = upload_url($catInfor->thumbnail);
         }else{
             $meta_thumbnail = public_url('admin/themes/images/no-image.png');
         }
@@ -47,7 +51,8 @@ class ProductController extends BaseController
 
         return view('frontend::product.index',[
             'catInfor'=>$catInfor,
-            'data'=>$data
+            'data'=>$data,
+            'allCatProduct'=>$allCatProduct
         ]);
     }
 
@@ -55,9 +60,10 @@ class ProductController extends BaseController
         $data = $this->model->findWhere(['slug'=>$slug])->first();
         //related product
         $relatedProduct = $this->model->scopeQuery(function ($e) use($data){
-            return $e->orderBy('created_at','desc')->where('cat_id',$data->cat_id)->where('id','!=',$data->id)
-                ->where('company_id',$data->company_id);
+            return $e->orderBy('created_at','desc')->where('cat_id',$data->cat_id)->where('id','!=',$data->id);
         })->limit(8);
+
+        $catInforName = $this->cat->findWhere(['id'=>$data->cat_id])->first();
 
         //cấu hình các thẻ meta
         $meta_title = $data->meta_title;
@@ -78,36 +84,19 @@ class ProductController extends BaseController
         $this->model->update($input,$data->id);
         //end update count view
 
-        return view('frontend::product.detail',['data'=>$data,'relatedProduct'=>$relatedProduct]);
+        return view('frontend::product.detail',['data'=>$data,'relatedProduct'=>$relatedProduct,'catInforName'=>$catInforName]);
     }
 
     function search(Request $request){
         $name = $request->get('name');
-        $sort_order = $request->get('sort_order');
-        $category = $request->get('category');
         $q = Product::query();
 
         if (!is_null($name))
         {
             $q = $q->where('name','LIKE', '%'.$name.'%');
         }
-        if (!is_null($category))
-        {
-            $q = $q->whereHas('category', function ($e) use ($category){
-                return $e->where('cat_id',$category);
-            });
-        }
-        $sort_name = 'created_at';
-        $sort_by = 'desc';
-        if (!is_null($sort_order))
-        {
-            if($sort_order==2){
-                $sort_name = 'count_view';
-                $sort_by = 'asc';
-            }
-        }
 
-        $data = $q->orderBy($sort_name,$sort_by)
+        $data = $q->orderBy('created_at','desc')
             ->where('lang_code',$this->lang)
             ->where('status','active')->paginate(15);
 
@@ -117,9 +106,7 @@ class ProductController extends BaseController
             'data'=>$data,
             'allCategory'=>$allCategory,
             'countProduct'=>$countProduct,
-            'name'=>$name,
-            'category'=>$category,
-            'sort_order'=>$sort_order
+            'name'=>$name
         ]);
     }
 

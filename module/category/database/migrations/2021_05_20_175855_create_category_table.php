@@ -23,6 +23,7 @@ class CreateCategoryTable extends Migration
             $table->integer('sort_order')->default(0);
             $table->string('meta_title')->nullable();
             $table->string('meta_desc')->nullable();
+            $table->tinyInteger('display')->default(0);
             $table->enum('status',['active','disable'])->default('active');
             $table->enum('lang_code',['vn','en'])->default('vn');
             $table->timestamps();

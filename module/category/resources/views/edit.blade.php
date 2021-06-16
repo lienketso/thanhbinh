@@ -89,6 +89,14 @@
                                    placeholder="">
                         </div>
                         <div class="form-group">
+                            <label>Hiển thị</label>
+                            <select id="" name="display" class="form-control" style="width: 100%" >
+                                <option value="0" {{ ($data->display==0) ? 'selected' : ''}}>Không chọn</option>
+                                <option value="1" {{ ($data->display==1) ? 'selected' : ''}}>Trang chủ</option>
+                                <option value="2" {{ ($data->display==2) ? 'selected' : ''}}>Chân trang</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Trạng thái</label>
                             <select id="" name="status" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
                                 <option value="active" {{ ($data->status=='active') ? 'selected' : ''}}>Hiển thị</option>

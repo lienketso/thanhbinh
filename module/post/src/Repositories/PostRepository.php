@@ -27,4 +27,12 @@ class PostRepository extends BaseRepository
         return $pageFoot;
     }
 
+    public function getLatestPost(){
+        $latest = $this->scopeQuery(function($e){
+            return $e->orderBy('created_at','desc')->where('post_type','blog')
+                ->where('lang_code',session('lang'));
+        })->limit(5);
+        return $latest;
+    }
+
 }

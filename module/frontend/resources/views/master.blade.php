@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/fix.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/animate.css')}}">
     <link rel="shortcut icon" type="image/png" href="{{asset('frontend/assets/images/favicon.png')}}" />
     <link rel="stylesheet" href="{{asset('frontend/assets/css/colors/color.css')}}" title="color" />
 
@@ -48,6 +49,37 @@
 <script src="{{asset('frontend/assets/js/fancybox.min.js')}}"></script>
 <script src="{{asset('frontend/assets/js/slick.min.js')}}"></script>
 <script src="{{asset('frontend/assets/js/custom-scripts.js')}}"></script>
+<script src="{{asset('frontend/assets/js/wow.min.js')}}"></script>
+
+<script type="text/javascript">
+    var wow = new WOW(
+        {
+            boxClass:     'wow',      // animated element css class (default is wow)
+            animateClass: 'animated', // animation css class (default is animated)
+            offset:       0,          // distance to the element when triggering the animation (default is 0)
+            mobile:       true,       // trigger animations on mobile devices (default is true)
+            live:         true,       // act on asynchronously loaded content (default is true)
+            callback:     function(box) {
+                // the callback is fired every time an animation is started
+                // the argument that is passed in is the DOM node being animated
+            },
+            scrollContainer: null,    // optional scroll container selector, otherwise use window,
+            resetAnimation: false,     // reset animation on end (default is true)
+        }
+    );
+    wow.init();
+
+
+    $('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
+    $('.tab ul.tabs li').on('click',function(g){
+        var tab=$(this).closest('.tab'),index=$(this).closest('li').index();
+    tab.find('ul.tabs > li').removeClass('current');
+    $(this).closest('li').addClass('current');
+    tab.find('.tab_content').find('div.tabs_item').not('div.tabs_item:eq('+index+')').slideUp();
+    tab.find('.tab_content').find('div.tabs_item:eq('+index+')').slideDown();
+    g.preventDefault();
+    });
+</script>
 
 @yield("js")
 @yield("js-init")

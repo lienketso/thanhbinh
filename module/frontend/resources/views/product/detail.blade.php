@@ -1,72 +1,73 @@
 @extends('frontend::master')
 @section('content')
-<div class="page-title">
-    <div class="container">
-        <div class="page-caption">
-            <h2>{{trans('frontend.product_detail')}}</h2>
-            <p><a href="{{route('frontend::home')}}" title="Home">{{trans('frontend.home')}}</a> <i class="ti-angle-double-right"></i> {{$data->name}}</p>
-        </div>
-    </div>
-</div>
-<section class="padd-top-80 padd-bot-50">
-    <div class="container">
-        <div class="user_product_info">
-            <div class="col-md-3 col-sm-5">
-                <div class="emp-pic">
-                    <img class="img-responsive width-270" src="{{ ($data->thumbnail!='') ? upload_url($data->thumbnail) : public_url('admin/themes/images/no-image.png')}}" alt="{{$data->name}}">
+
+    <section>
+        <div class="gap black-layer opc8 overlap144">
+            <div class="fixed-bg2" style="background-image: url('{{upload_url($catInforName->background)}}');"></div>
+            <div class="container">
+                <div class="pg-tp-wrp">
+                    <h1 itemprop="headline">{{$catInforName->name}}</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('frontend::home')}}" title="" itemprop="url">{{trans('frontend.home')}}</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('frontend::product.index.get',$catInforName->slug)}}" title="" itemprop="url">{{$catInforName->name}}</a></li>
+                        <li class="breadcrumb-item active">{{$data->name}}</li>
+                    </ol>
                 </div>
             </div>
-            <div class="col-md-9 col-sm-7">
-                <div class="emp-des">
-                    <h3>{{$data->name}}</h3>
-                    <p>{{trans('frontend.company')}} : <a href="{{route('frontend::company.detail.get',$data->getCompany->slug)}}"
-                                                          target="_blank"><span class="theme-cl">{{$data->getCompanyName()}}</span></a></p>
-                    <p>{{trans('frontend.category')}} : {{$data->getCategory()}}</p>
-                    <p>{{trans('frontend.dis_price')}} : {{number_format($data->disprice)}}  đ</p>
-                    <div class="desc_product_page">{{$data->description}}</div>
-                    <div class="col-sm-12 mrg-bot-10">
-                        <button type="button" id="btnPopup" data-id="{{$data->company_id}}"
-                                data-company="{{$data->getCompanyName()}}" data-toggle="modal" data-target="#partner" class="btn-job theme-btn btnPopup">{{trans('frontend.co_operate')}}</button>
+        </div>
+    </section>
+    <section>
+        <div class="gap">
+            <div class="container">
+                <div class="campaign-detail-wrp">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12 col-lg-9">
+                            <h1 class="title_product_page">{{$data->name}}</h1>
+                            <div class="campaign-detail-desc">
+                                {!! $data->content !!}
+                                <div class="pst-shr-tgs">
+                                    <div class="scl4 float-left">
+                                        <span>{{trans('frontend.share')}} :</span>
+                                        <a href="https://twitter.com/intent/tweet?text={{$data->name}}&url={{route('frontend::product.detail.get',$data->slug)}}&via=TWITTER-HANDLER"
+                                           title="Twitter" itemprop="url" target="_blank"><i class="fab fa-twitter"></i></a>
+                                        <a href="http://www.facebook.com/sharer/sharer.php?u={{route('frontend::product.detail.get',$data->slug)}}"
+                                           title="Facebook" itemprop="url" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#" title="Linkedin" itemprop="url" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-lg-3">
+                            <div class="sidebar-wrp remove-ext7">
+
+                                <div class="wdgt-bx">
+                                    <h4 itemprop="headline">{{trans('frontend.relate_product')}}</h4>
+                                    <div class="ltst-wrp">
+                                        @foreach($relatedProduct as $d)
+                                        <div class="ltst-nws-bx">
+                                            <a class="brd-rd5" href="{{route('frontend::product.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">
+                                                <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
+                                                     alt="{{$d->name}}" itemprop="image"></a>
+                                            <div class="ltst-nws-inf">
+                                                <h6 itemprop="headline">
+                                                    <a href="{{route('frontend::product.detail.get',$d->slug)}}"
+                                                       title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h6>
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<section class="padd-top-30">
-    <div class="container">
-        <h2>{{trans('frontend.product_info')}}</h2>
-        <div class="row">
-
-            <div class="col-lg-12">
-                <div class="content_product">{!! $data->content !!}</div>
-            </div>
-
-        </div>
-
-        @if(!empty($relatedProduct) && count($relatedProduct)>0)
-        <h2 class="title_related">{{trans('frontend.related_products')}}</h2>
-        <div class="row">
-            @foreach($relatedProduct as $row)
-            <!-- Single Job -->
-            <div class="col-md-3 col-sm-6">
-                <div class="img_product_related">
-                    <a href="{{route('frontend::product.detail.get',$row->slug)}}">
-                        <img src="{{ ($row->thumbnail!='') ? upload_url($row->thumbnail) : public_url('admin/themes/images/no-image.png')}}" alt="{{$row->name}}">
-                    </a>
-                </div>
-                <div class="title_product_related">
-                    <h3><a href="{{route('frontend::product.detail.get',$row->slug)}}">{{$row->name}}</a></h3>
-                </div>
-            </div>
-            @endforeach
-        </div>
-            @endif
-
-    </div>
-</section>
-
-@include('frontend::blocks.newsletter')
+    </section>
 
 @endsection

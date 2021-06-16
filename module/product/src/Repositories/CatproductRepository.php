@@ -38,8 +38,11 @@ class CatproductRepository extends BaseRepository
 
     public function getCatFoot(){
         $catFoot = $this->scopeQuery(function($e) {
-            return $e->orderBy('sort_order','asc')->where('lang_code',session('lang'))->where('status','active')->get();
-        })->limit(5);
+            return $e->orderBy('sort_order','asc')->where('lang_code',session('lang'))
+                ->where('status','active')
+                ->where('display',2)
+                ->get();
+        })->limit(6);
         return $catFoot;
     }
 

@@ -1,53 +1,97 @@
 @extends('frontend::master')
 @section('content')
-<div class="page-title">
-    <div class="container">
-        <div class="page-caption">
-            <h2>{{$catInfor->name}}</h2>
-            <p><a href="{{route('frontend::home')}}" title="Home">{{trans('frontend.home')}}</a> <i class="ti-angle-double-right"></i> {{$catInfor->name}}</p>
-        </div>
-    </div>
-</div>
-<section class="utf_manage_jobs_area padd-top-80 padd-bot-80">
-    <div class="container">
-        <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="heading">
-                <h2>{{trans('frontend.product_list')}}</h2>
-                <p>{{trans('frontend.desc_product_page')}} <strong>{{$catInfor->name}}</strong></p>
+    <section>
+        <div class="gap black-layer opc8 overlap144">
+            <div class="fixed-bg2" style="background-image: url('{{upload_url($catInfor->background)}}');"></div>
+            <div class="container">
+                <div class="pg-tp-wrp">
+                    <h1 itemprop="headline">{{$catInfor->name}}</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('frontend::home')}}" title="Trang chủ" itemprop="url">{{trans('frontend.home')}}</a></li>
+                        <li class="breadcrumb-item active">{{$catInfor->name}}</li>
+                    </ol>
+                </div>
             </div>
         </div>
-        </div>
+    </section>
 
-        <div class="table-responsive">
-            <table class="table table-lg table-hover">
-                <thead>
-                <tr>
-                    <th>{{trans('frontend.product_name')}}</th>
-                    <th>{{trans('frontend.company_info')}}</th>
-                    <th>{{trans('frontend.view_product')}}</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($data as $row)
-                <tr>
-                    <td><a href="{{route('frontend::product.detail.get',$row->slug)}}">
-                            <img src="{{ ($row->thumbnail!='') ? upload_url($row->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
-                                 class="avatar-lg" alt="{{$row->name}}">{{$row->name}} </a>
-                    </td>
-                    <td><a href="{{route('frontend::company.detail.get',$row->getCompany->slug)}}" target="_blank">{{$row->getCompanyName()}}</a></td>
-                    <td><a class="btn-signup red-btn" href="{{route('frontend::product.detail.get',$row->slug)}}" ><span class="mng-jb">{{trans('frontend.view_product')}}</span></a></td>
-                </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="utf_flexbox_area padd-10">
-                {{$data->links()}}
+    <section style="background: #F6F6F6">
+        <div class="gap">
+            <div class="container">
+                <div class="evnt-sec remove-ext5">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="sidebar_product">
+                                <div class="list_sidebar">
+                                    <h3>{{trans('frontend.categories')}}</h3>
+                                    <div class="content_catpro">
+                                        <div id="accordion">
+
+                                            @foreach($allCatProduct as $key=>$val)
+                                            <div class="card-fix ">
+                                                <div class="card-header" id="heading_{{$val->id}}">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link {{($catInfor->id==$val->id) ? '' : 'collapsed'}}" data-toggle="collapse" data-target="#collapse_{{$val->id}}"
+                                                                aria-expanded="{{($catInfor->id==$val->id) ? 'true' : 'false'}}"
+                                                                aria-controls="collapse_{{$val->id}}">
+                                                            {{$val->name}}
+                                                        </button>
+                                                    </h5>
+                                                </div>
+
+                                                <div id="collapse_{{$val->id}}" class="collapse {{($catInfor->id==$val->id) ? 'show' : ''}}" aria-labelledby="heading_{{$val->id}}" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        @if(!empty($val->getProductCat) && count($val->getProductCat)>0)
+                                                        <ul class="list_sb_cat">
+                                                            @foreach($val->getProductCat as $d)
+                                                            <li><a href="{{route('frontend::product.detail.get',$d->slug)}}">{{$d->name}}</a></li>
+                                                            @endforeach
+                                                        </ul>
+                                                            @endif
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="row">
+                        @foreach($data as $d)
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <div class="evnt-bx2">
+                                <div class="evnt-thmb fix-thumb">
+                                    <a href="{{route('frontend::product.detail.get',$d->slug)}}" title="" itemprop="url">
+                                        <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
+                                             alt="{{$d->name}}" itemprop="image">
+                                    </a>
+
+                                </div>
+                                <div class="evnt-inf">
+                                    <h5 itemprop="headline" class="title_tao">
+                                        <a href="{{route('frontend::product.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">{{$d->name}}</a>
+                                    </h5>
+                                    <a class="theme-btn" href="{{route('frontend::product.detail.get',$d->slug)}}"
+                                       title="{{$d->name}}" itemprop="url">{{trans('frontend.view_product')}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pgn-wrp text-center">
+                   {{$data->links()}}
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-@include('frontend::blocks.newsletter')
-
+    </section>
     @endsection

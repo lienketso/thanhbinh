@@ -65,6 +65,10 @@
                             <input class="form-control" name="site_hotline_{{$language}}" value="{{$setting->getSettingMeta('site_hotline_'.$language)}}" type="text" placeholder="Số hotline">
                         </div>
                         <div class="form-group">
+                            <label>Số hotline 2</label>
+                            <input class="form-control" name="site_hotline_2_{{$language}}" value="{{$setting->getSettingMeta('site_hotline_2_'.$language)}}" type="text" placeholder="Số điện thoại khác">
+                        </div>
+                        <div class="form-group">
                             <label>Địa chỉ</label>
                             <input class="form-control"
                                    name="site_address_{{$language}}"
@@ -80,7 +84,36 @@
                                    value="{{$setting->getSettingMeta('site_email_'.$language)}}"
                                    placeholder="">
                         </div>
-
+                        <div class="form-group">
+                            <label>Iframe google map</label>
+                            <textarea id="" name="site_goolge_map"
+                                      class="form-control makeMeRichTextarea" rows="4"
+                                      placeholder="">{{$setting->getSettingMeta('site_goolge_map')}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Link facebook</label>
+                            <input class="form-control"
+                                   name="site_facebook"
+                                   type="text"
+                                   value="{{$setting->getSettingMeta('site_facebook')}}"
+                                   placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Link Twitter</label>
+                            <input class="form-control"
+                                   name="site_twitter"
+                                   type="text"
+                                   value="{{$setting->getSettingMeta('site_twitter')}}"
+                                   placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Link Instagram</label>
+                            <input class="form-control"
+                                   name="site_instagram"
+                                   type="text"
+                                   value="{{$setting->getSettingMeta('site_instagram')}}"
+                                   placeholder="">
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>
                             <button class="btn btn-success" name="continue_post" value="1">Lưu và tiếp tục thêm</button>
