@@ -142,6 +142,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group mb-3">
+                            <label>Tải lên profile</label>
+                            <div class="custom-file">
+                                <input type="file" name="site_profile" value="" class="custom-file-input" id="inputGroupFile01" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <a href="{{upload_url($setting->getSettingMeta('site_profile'))}}"> <i class="fa fa-file-pdf-o"></i> File is here</a>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>

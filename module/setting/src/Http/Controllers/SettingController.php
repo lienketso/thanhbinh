@@ -39,6 +39,51 @@ class SettingController extends BaseController
         return view('wadmin-setting::keyword',['setting'=>$setting,'language'=>$langcode]);
     }
 
+    public function getAbout(){
+        $setting = $this->model;
+        $langcode = $this->langcode;
+        $check = $this->model->getSettingMeta('about_section_list_1_title_'.$langcode);
+
+        $checkList = json_decode($check);
+        return view('wadmin-setting::about',['setting'=>$setting,'language'=>$langcode,'checkList'=>$checkList]);
+    }
+
+    public function postAbout(Request $request){
+        $langcode = $this->langcode;
+        $data = $request->except('_token');
+        if($request->hasFile('about_banner_page')){
+            $image = $request->about_banner_page;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['about_banner_page'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+        if($request->hasFile('about_section_1_img')){
+            $image = $request->about_section_1_img;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['about_section_1_img'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+        if($request->hasFile('about_section_2_img')){
+            $image = $request->about_section_2_img;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['about_section_2_img'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+        if($request->hasFile('about_section_3_img')){
+            $image = $request->about_section_3_img;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['about_section_3_img'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+
+        $about_title = $data['about_section_list_1_title_'.$langcode];
+        $data['about_section_list_1_title_'.$langcode] = json_encode($about_title);
+
+
+        $this->saveSetting($data);
+        return redirect()->back()->with('edit','Sửa cấu hình thành công !');
+    }
+
     public function saveSetting($data){
         foreach($data as $key=>$val){
             Setting::updateOrCreate(['setting_key'=>$key],['setting_value'=>$val]);
@@ -51,6 +96,12 @@ class SettingController extends BaseController
             $image = $request->site_logo;
             $path = date('Y').'/'.date('m').'/'.date('d');
             $data['site_logo'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+        if($request->hasFile('site_profile')){
+            $image = $request->site_profile;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['site_profile'] = $path.'/'.$image->getClientOriginalName();
             $image->move('upload/'.$path,$image->getClientOriginalName());
         }
         $this->saveSetting($data);

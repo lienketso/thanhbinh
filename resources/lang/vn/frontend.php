@@ -35,4 +35,6 @@ return [
     'search_result' => 'Kết quả tìm kếm',
     'have_result' => 'Có tất cả',
     'result_with_keyword' => 'kết quả được tìm thấy với từ khóa',
+    'download_profile' => 'Tải về profile',
+    'contact_price' => 'Liên hệ báo giá',
 ];

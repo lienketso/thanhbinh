@@ -2,13 +2,13 @@
 @section('content')
     <section>
         <div class="gap black-layer opc8 overlap144">
-            <div class="fixed-bg2" style="background-image: url('{{public_url('frontend/assets/images/page-bg.png')}}');"></div>
+            <div class="fixed-bg2" style="background-image: url('{{ ($setting['about_banner_page']!='null') ? upload_url($setting['about_banner_page']) :  public_url('admin/themes/images/no-image.png')}}');"></div>
             <div class="container">
                 <div class="pg-tp-wrp">
-                    <h1 itemprop="headline">Về chúng tôi</h1>
+                    <h1 itemprop="headline">{{$setting['about_main_title_'.$lang]}}</h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('frontend::home')}}" title="" itemprop="url">{{trans('frontend.home')}}</a></li>
-                        <li class="breadcrumb-item active">Về chúng tôi</li>
+                        <li class="breadcrumb-item active">{{$setting['about_main_title_'.$lang]}}</li>
                     </ol>
                 </div>
             </div>
@@ -21,55 +21,31 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="cybersecurity-img">
-                        <img src="{{public_url('frontend/assets/images/cybersecurity-img.jpg')}}">
+                        <img src="{{ ($setting['about_section_1_img']!='null') ? upload_url($setting['about_section_1_img']) :  public_url('admin/themes/images/no-image.png')}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="cybersecurity-content">
-                        <h2>24/7 Cybersecurity Operation Center</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
+                        <h2>{{$setting['about_section_1_title_'.$lang]}}</h2>
+                        <p>{{$setting['about_section_1_desc_'.$lang]}}</p>
                         <div class="row">
+                            @foreach( $decodeCheck as $chunk)
                             <div class="col-lg-6 col-sm-6">
                                 <ul class="cybersecurity-item">
+                                    @foreach($chunk as $c)
                                     <li>
                                         <i class="fas fa-check"></i>
-                                        Managed Web Application
+                                        {{$c}}
                                     </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        SIEM Threat Detection
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        Content Delivery Network
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        Website Hack Repair
-                                    </li>
+                                    @endforeach
+
 
                                 </ul>
                             </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <ul class="cybersecurity-item">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        Instant Malware Removal
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        Instant Malware Removal
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        Instant Malware Removal
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        Instant Malware Removal
-                                    </li>
+                            @endforeach
 
-                                </ul>
+
+
                             </div>
                         </div>
                     </div>
@@ -85,57 +61,26 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="electronic-content">
-                        <h2>Innovative Electronic Protection of Your Office and Home Control Online</h2>
+                        <h2>{{$setting['about_section_2_title_'.$lang]}}</h2>
                         <div class="electronic-tab-wrap">
                             <div class="tab electronic-tab">
                                 <ul class="tabs active">
-                                    <li class="current">
+                                    @foreach($pageList as $key=>$d)
+                                    <li class="{{($key==0) ? 'current' : ''}}">
                                         <a href="#">
-                                            Intercom System
+                                            {{$d->name}}
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="#">
-                                            CCTV
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="#">
-                                            GDPR
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="#">
-                                            Encryption
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="#">
-                                            Our Goal
-                                        </a>
-                                    </li>
+                                    @endforeach
+
                                 </ul>
                                 <div class="tab_content">
-                                    <div class="tabs_item" style="">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, vero corporis voluptates beatae pariatur laudantium, fugiat illum ab deserunt nostrum aliquid quisquam esse? Voluptatibus quia velit numquam esse porro ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, corporis.</p>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, soluta, aspernatur dolorum sequi quisquam ullam in pariatur nihil dolorem cumque excepturi totam. Qui excepturi quasi cumque placeat fuga. Ea, eius?</p>
+                                    @foreach($pageList as $key=> $d)
+                                    <div class="tabs_item" style="{{($key!=0) ? 'display:none ' : ''}}">
+                                        {!!$d->content!!}
                                     </div>
-                                    <div class="tabs_item" style="display: none;">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, vero corporis voluptates beatae pariatur laudantium, fugiat illum ab deserunt nostrum aliquid quisquam esse? Voluptatibus quia velit numquam esse porro ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, corporis.</p>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, soluta, aspernatur dolorum sequi quisquam ullam in pariatur nihil dolorem cumque excepturi totam. Qui excepturi quasi cumque placeat fuga. Ea, eius?</p>
-                                    </div>
-                                    <div class="tabs_item" style="display: none;">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, vero corporis voluptates beatae pariatur laudantium, fugiat illum ab deserunt nostrum aliquid quisquam esse? Voluptatibus quia velit numquam esse porro ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, corporis.</p>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, soluta, aspernatur dolorum sequi quisquam ullam in pariatur nihil dolorem cumque excepturi totam. Qui excepturi quasi cumque placeat fuga. Ea, eius?</p>
-                                    </div>
-                                    <div class="tabs_item" style="display: none;">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, vero corporis voluptates beatae pariatur laudantium, fugiat illum ab deserunt nostrum aliquid quisquam esse? Voluptatibus quia velit numquam esse porro ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, corporis.</p>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, soluta, aspernatur dolorum sequi quisquam ullam in pariatur nihil dolorem cumque excepturi totam. Qui excepturi quasi cumque placeat fuga. Ea, eius?</p>
-                                    </div>
-                                    <div class="tabs_item" style="display: none;">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, vero corporis voluptates beatae pariatur laudantium, fugiat illum ab deserunt nostrum aliquid quisquam esse? Voluptatibus quia velit numquam esse porro ipsum dolor, sit amet consectetur adipisicing elit. Illo ducimus vero, corporis.</p>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, soluta, aspernatur dolorum sequi quisquam ullam in pariatur nihil dolorem cumque excepturi totam. Qui excepturi quasi cumque placeat fuga. Ea, eius?</p>
-                                    </div>
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
@@ -143,7 +88,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="electronic-img">
-                        <img src="{{public_url('frontend/assets/images/electronic-img.png')}}" alt="Image">
+                        <img src="{{ ($setting['about_section_2_img']!='null') ? upload_url($setting['about_section_2_img']) :  public_url('admin/themes/images/no-image.png')}}"
+                             alt="{{$setting['about_section_2_title_'.$lang]}}">
                     </div>
                 </div>
             </div>
@@ -155,40 +101,41 @@
             <div class="row">
                 <div class="col-lg-6 pl-0">
                     <div class="complete-img">
-                        <img src="{{public_url('frontend/assets/images/complete-img.jpg')}}">
+                        <img src="{{ ($setting['about_section_3_img']!='null') ? upload_url($setting['about_section_3_img']) :  public_url('admin/themes/images/no-image.png')}}"
+                             alt="{{$setting['about_section_3_title_'.$lang]}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="complete-content">
-                        <h2>The most Complete and Effective Protection for Your Home and Office</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor elit incididunt ut labore et dolore magna aliqua. Quis ipsum</p>
+                        <h2>{{$setting['about_section_3_title_'.$lang]}}</h2>
+                        <p>{{$setting['about_section_3_desc_'.$lang]}}</p>
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security">
                                     <i class="fa fa-lock"></i>
-                                    <h3>Check and Search Hazards</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                                    <h3>{{$setting['about_section_box_title_1_'.$lang]}}</h3>
+                                    <p>{{$setting['about_section_box_content_1_'.$lang]}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security">
                                     <i class="fa fa-lock"></i>
-                                    <h3>Install and Configure Software</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                                    <h3>{{$setting['about_section_box_title_2_'.$lang]}}</h3>
+                                    <p>{{$setting['about_section_box_content_2_'.$lang]}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security mb-0 mb-rs-need">
                                     <i class="fa fa-lock"></i>
-                                    <h3>Departure of the Our Experts</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                                    <h3>{{$setting['about_section_box_title_3_'.$lang]}}</h3>
+                                    <p>{{$setting['about_section_box_content_3_'.$lang]}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security mb-0">
                                     <i class="fa fa-lock"></i>
-                                    <h3>24/7 Support and Remote Admit</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                                    <h3>{{$setting['about_section_box_title_4_'.$lang]}}</h3>
+                                    <p>{{$setting['about_section_box_content_4_'.$lang]}}</p>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,7 @@ use Newsletter\Repositories\NewsletterRepository;
 use Post\Repositories\PostRepository;
 use Product\Repositories\CatproductRepository;
 use Product\Repositories\ProductRepository;
+use Setting\Repositories\SettingRepositories;
 use Transaction\Http\Requests\TransactionCreateRequest;
 use Transaction\Repositories\TransactionRepository;
 
@@ -99,8 +100,20 @@ class HomeController extends BaseController
             'catnewsHome'=>$catnewsHome
         ]);
     }
-    public function about(){
-        return view('frontend::home.about');
+    public function about(SettingRepositories $settingRepositories, PostRepository $postRepository){
+        $checkList = $settingRepositories->getSettingMeta('about_section_list_1_title_'.$this->lang);
+        $decodeCheck = json_decode($checkList);
+        $decodeCheck = array_chunk($decodeCheck,4);
+
+        //page to page
+        $pageList = $postRepository->scopeQuery(function($e){
+            return $e->orderBy('created_at','desc')
+                ->where('status','active')
+                ->where('lang_code',$this->lang)
+                ->where('display',3);
+        })->limit(5);
+
+        return view('frontend::home.about',['decodeCheck'=>$decodeCheck,'pageList'=>$pageList]);
     }
 
     public function contact(){

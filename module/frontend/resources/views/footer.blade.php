@@ -40,10 +40,10 @@
                         <div class="wdgt-bx">
                             <h5 itemprop="headline">Download</h5>
                             <div class="btn_profile">
-                                <a href="#"><i class="fas fa-download"></i> Tải về profile</a>
+                                <a href="{{upload_url($setting['site_profile'])}}" target="_blank"><i class="fas fa-download"></i> {{trans('frontend.download_profile')}}</a>
                             </div>
                             <div class="btn_contact_foot">
-                                <a href="#"><i class="fas fa-phone"></i> Liên hệ báo giá</a>
+                                <a href="tel:{{$setting['site_hotline_'.$lang]}}"><i class="fas fa-phone"></i> {{trans('frontend.contact_price')}}</a>
                             </div>
                         </div>
 

@@ -96,8 +96,9 @@
                             <label>Vị trí hiển thị</label>
                             <select id="" name="display" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
                                 <option value="0" {{ ($data->display==0) ? 'selected' : ''}}>Không chọn</option>
-                                <option value="1" {{ ($data->display==1) ? 'selected' : ''}}>Giới thiệu</option>
+                                <option value="1" {{ ($data->display==1) ? 'selected' : ''}}>Trang chủ</option>
                                 <option value="2" {{ ($data->display==2) ? 'selected' : ''}}>Lĩnh vực hoạt động</option>
+                                <option value="3" {{ ($data->display==3) ? 'selected' : ''}}>Trang giới thiệu</option>
                             </select>
                         </div>
                         <div class="form-group">

@@ -35,4 +35,6 @@ return [
     'search_result' => 'Search Result',
     'have_result' => 'Has all',
     'result_with_keyword' => 'Results found with keyword',
+    'download_profile' => 'Download Profile',
+    'contact_price' => 'Contact get price',
 ];
