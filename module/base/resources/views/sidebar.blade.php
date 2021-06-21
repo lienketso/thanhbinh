@@ -102,13 +102,7 @@
                         <h5><a href="{{route('wadmin::setting.index.get')}}">Thông tin website</a></h5>
                         <small>Chỉnh sửa các thông tin trên website (Hotline, địa chỉ, email...)</small>
                     </li>
-                    <li class="list-group-item">
-                        <h5>Call Phones</h5>
-                        <small>Make calls to friends and family right from your account.</small>
-                        <div class="toggle-wrapper">
-                            <div class="leftpanel-toggle-off toggle-light success"></div>
-                        </div>
-                    </li>
+
                 </ul>
 
             </div><!-- tab-pane -->

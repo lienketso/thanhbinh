@@ -209,7 +209,7 @@
                                  alt="{{$d->name}}" itemprop="image">
                         </a>
                         <h3 class="title_product">{{$d->name}}</h3>
-                        <p>{{$d->description}}</p>
+                        <p>{{cut_string($d->description,120)}}</p>
                         <div class="btn_xemthem">
                             <a href="{{route('frontend::product.detail.get',$d->slug)}}">{{trans('frontend.view_product')}}</a>
                         </div>
