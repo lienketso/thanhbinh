@@ -12,6 +12,6 @@ class Menu extends Model
     protected $fillable = ['name','parent','link','type','type_id','sort_order','status','lang_code'];
 
     public function childs() {
-        return $this->hasMany(Menu::class,'parent','id') ;
+        return $this->hasMany(Menu::class,'parent','id')->orderBy('sort_order','asc');
     }
 }

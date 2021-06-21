@@ -21,6 +21,7 @@
 }
 .desc_pro{
     float: left;
+    width: 100%;
 }
 .theme-btn-cc{
     background: #000;
