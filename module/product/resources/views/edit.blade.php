@@ -65,18 +65,18 @@
                             <label>Nội dung sản phẩm</label>
                             <textarea id="editor1" name="content" class="form-control makeMeRichTextarea" rows="3" placeholder="Nội dung sản phẩm">{{$data->content}}</textarea>
                         </div>
-                        <div class="form-group">
-                            <label>Giá sản phẩm</label>
-                            <input class="form-control"  onkeyup="this.value=FormatNumber(this.value);" name="price" value="{{number_format($data->price)}}" type="text" placeholder="Giá bán">
-                        </div>
-                        <div class="form-group">
-                            <label>Giá cũ</label>
-                            <input class="form-control" onkeyup="this.value=FormatNumber(this.value);" name="disprice" value="{{number_format($data->disprice)}}" type="text" placeholder="Giá gốc">
-                        </div>
-                        <div class="form-group">
-                            <label>Giảm giá (%)</label>
-                            <input class="form-control" min="0" max="100" name="discount" value="{{$data->discount}}" type="number" placeholder="Giảm giá">
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label>Giá sản phẩm</label>--}}
+{{--                            <input class="form-control"  onkeyup="this.value=FormatNumber(this.value);" name="price" value="{{number_format($data->price)}}" type="text" placeholder="Giá bán">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label>Giá cũ</label>--}}
+{{--                            <input class="form-control" onkeyup="this.value=FormatNumber(this.value);" name="disprice" value="{{number_format($data->disprice)}}" type="text" placeholder="Giá gốc">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label>Giảm giá (%)</label>--}}
+{{--                            <input class="form-control" min="0" max="100" name="discount" value="{{$data->discount}}" type="number" placeholder="Giảm giá">--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <label>Thẻ Meta title</label>
                             <input class="form-control"

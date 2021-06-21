@@ -14,7 +14,7 @@
     <meta property="og:description" content="{{(isset($meta_desc)) ? $meta_desc : $setting['site_description_'.$lang]}}" />
     <meta property="og:url" content="{{(isset($meta_url)) ? $meta_url : domain_url()}}" />
     <meta property="og:image" content="{{(isset($meta_thumbnail)) ? $meta_thumbnail : $setting['site_logo']}}" />
-    <meta property="og:site_name" content="Liên Kết Số" />
+    <meta property="og:site_name" content="Thanh Bình BCA" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="{{asset('frontend/assets/css/icons.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">

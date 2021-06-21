@@ -60,7 +60,7 @@
                         <tr>
                             <td>
                                 <div class="product-img bg-transparent border">
-                                    <img src="{{upload_url($d->thumbnail)}}" width="100" alt="">
+                                    <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                                 </div>
                             </td>
                             <td>{{$d->email}}</td>

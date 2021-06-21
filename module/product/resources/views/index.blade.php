@@ -67,7 +67,6 @@
                             </td>
                             <td>
                                 {{$d->name}}
-                                <p>Giá : <span style="color: #0F9E5E">{{number_format($d->price)}} {{($langcode=='vn') ? 'đ' : '$'}}</span></p>
                             </td>
                             <td>{{$d->getCompanyName()}}</td>
                             <td>{{$d->getCategory()}}</td>
