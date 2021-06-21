@@ -115,16 +115,7 @@
                                 {{$catmodel->optionCat(0,1,4,$data->cat_id,0)}}
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Thuộc công ty</label>
-                            <select id="select1" data-url="{{route('ajax.product.company.get')}}" class="form-control select2-hidden-accessible" name="company_id" style="width: 100%"
-                                    data-placeholder="Chọn chông ty" tabindex="-1" aria-hidden="true">
-                                <option value="0">Vui lòng chọn</option>
-                                @if($data->getCompany!='')
-                                <option value="{{$data->getCompany->id}}" selected="selected">{{$data->getCompany->name}}</option>
-                                @endif
-                            </select>
-                        </div>
+
                         <div class="form-group">
                             <label>Vị trí hiển thị</label>
                             <select id="" name="display" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
@@ -151,27 +142,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label>Thư viện ảnh ( Ấn ctrl để upload nhiều ảnh )</label>
-                            <div class="custom-file">
-                                <input type="hidden" name="productid" id="productid" value="{{$data->id}}">
-                                <input type="file" name="media[]" multiple="multiple" value="" class="custom-file-input" id="mutilFile" data-url="{{route('ajax.media.product.get')}}" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <div id="listMedia" class="list_dinh_kem ">
-                                        @if(!empty($imageAttach))
-                                            @foreach($imageAttach as $val)
-                                                <div class="img_att_list" id="del{{$val->id}}">
-                                                    <span class="del_image" data-id="{{$val->id}}>" data-link="{{'upload/'.$val->name}}"
-                                                          data-url="{{route('ajax.media.delete.get')}}">
-                                                        <img  src="<?= public_url('admin/themes/images/delete.png') ?>"></span>
-                                                    <img class="img_at" src="{{upload_url($val->name)}}">
-                                                </div>
-                                            @endforeach
-                                            @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>

@@ -48,7 +48,6 @@
                     <tr>
                         <th>Hình ảnh</th>
                         <th>Tiêu đề</th>
-                        <th>Thuộc công ty</th>
                         <th>Danh mục</th>
                         <th>Người post</th>
                         <th>Lượt xem</th>
@@ -68,7 +67,6 @@
                             <td>
                                 {{$d->name}}
                             </td>
-                            <td>{{$d->getCompanyName()}}</td>
                             <td>{{$d->getCategory()}}</td>
                             <td>{{$d->getUserPost->username}}</td>
                             <td>{{$d->count_view}}</td>
