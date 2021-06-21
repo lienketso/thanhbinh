@@ -37,4 +37,9 @@ return [
     'result_with_keyword' => 'kết quả được tìm thấy với từ khóa',
     'download_profile' => 'Tải về profile',
     'contact_price' => 'Liên hệ báo giá',
+    'factory_information' => 'Thông tin nhà máy',
+    'factory_member' => 'Thông tin nhà máy & Công ty thành viên',
+    'view_info' => 'Xem thông tin',
+    'view_website' => 'Xem website',
+    'product' => 'Sản phẩm',
 ];

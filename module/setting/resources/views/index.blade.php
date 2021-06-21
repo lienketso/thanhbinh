@@ -54,12 +54,7 @@
                             <textarea id="" name="site_description_{{$language}}" class="form-control" rows="3"
                                       placeholder="Mô tả website">{{$setting->getSettingMeta('site_description_'.$language)}}</textarea>
                         </div>
-                        <div class="form-group">
-                            <label>Nội dung chân trang</label>
-                            <textarea id="editor1" name="site_footer_info_{{$language}}"
-                                      class="form-control makeMeRichTextarea" rows="3"
-                                      placeholder="Nội dung mục chân trang">{{$setting->getSettingMeta('site_footer_info_'.$language)}}</textarea>
-                        </div>
+
                         <div class="form-group">
                             <label>Số hotline</label>
                             <input class="form-control" name="site_hotline_{{$language}}" value="{{$setting->getSettingMeta('site_hotline_'.$language)}}" type="text" placeholder="Số hotline">
@@ -115,6 +110,22 @@
                                    placeholder="">
                         </div>
                         <div class="form-group">
+                            <label>Nội dung trang nhà máy</label>
+                            <textarea id="editor1" name="site_footer_info_{{$language}}"
+                                      class="form-control makeMeRichTextarea" rows="3"
+                                      placeholder="Nội dung mục chân trang">{{$setting->getSettingMeta('site_footer_info_'.$language)}}</textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Banner trang nhà máy</label>
+                            <div class="custom-file">
+                                <input type="file" name="banner_factory" value="" class="custom-file-input" id="inputGroupFile01" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('banner_factory')!='null') ? upload_url($setting->getSettingMeta('banner_factory')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>
                             <button class="btn btn-success" name="continue_post" value="1">Lưu và tiếp tục thêm</button>
                         </div>
@@ -148,6 +159,34 @@
                                 <input type="file" name="site_profile" value="" class="custom-file-input" id="inputGroupFile01" >
                                 <div class="thumbnail_w" style="padding-top: 10px">
                                     <a href="{{upload_url($setting->getSettingMeta('site_profile'))}}"> <i class="fa fa-file-pdf-o"></i> File is here</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Banner trang dự án</label>
+                            <div class="custom-file">
+                                <input type="file" name="banner_project" value="" class="custom-file-input" id="" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('banner_project')!='null') ? upload_url($setting->getSettingMeta('banner_project')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Banner trang sản phẩm</label>
+                            <div class="custom-file">
+                                <input type="file" name="banner_product" value="" class="custom-file-input" id="" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('banner_product')!='null') ? upload_url($setting->getSettingMeta('banner_product')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Banner trang liên hệ</label>
+                            <div class="custom-file">
+                                <input type="file" name="banner_contact" value="" class="custom-file-input" id="" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('banner_contact')!='null') ? upload_url($setting->getSettingMeta('banner_contact')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                                 </div>
                             </div>
                         </div>

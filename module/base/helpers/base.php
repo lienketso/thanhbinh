@@ -1,6 +1,8 @@
 <?php
 use Base\Supports\FlashMessage;
+use Category\Models\Category;
 use Illuminate\Support\Str;
+use Post\Models\Post;
 
 if (!function_exists('is_in_dashboard')) {
     /**
@@ -14,6 +16,15 @@ if (!function_exists('is_in_dashboard')) {
         }
 
         return false;
+    }
+}
+
+if(!function_exists('menu_url')){
+    function menu_url($type,$typeid){
+        if($type=='blog'){
+           $post = Category::find($typeid);
+            return domain_url().'/blog/'.$post->slug;
+        }
     }
 }
 

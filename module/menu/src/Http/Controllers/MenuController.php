@@ -13,6 +13,8 @@ use Menu\Http\Requests\MenuEditRequest;
 use Menu\Models\Menu;
 use Menu\Repositories\MenuRepository;
 use Post\Repositories\PostRepository;
+use Product\Repositories\CatproductRepository;
+use function GuzzleHttp\Promise\all;
 
 class MenuController extends BaseController
 {
@@ -20,11 +22,13 @@ class MenuController extends BaseController
     protected $blog;
     protected $page;
     protected $langcode;
-    public function __construct(MenuRepository $menuRepository, CategoryRepository $categoryRepository,PostRepository $postRepository)
+    protected $cat;
+    public function __construct(MenuRepository $menuRepository, CategoryRepository $categoryRepository,PostRepository $postRepository, CatproductRepository $catproductRepository)
     {
        $this->model = $menuRepository;
        $this->blog = $categoryRepository;
        $this->page = $postRepository;
+       $this->cat = $catproductRepository;
         $this->langcode = session('lang');
     }
 
@@ -35,7 +39,16 @@ class MenuController extends BaseController
         $listBlog = $this->blog->orderBy('sort_order','asc')->where('lang_code',$this->langcode)->get();
         //danh sách trang tĩnh
         $listPage = $this->page->findWhere(['post_type'=>'page','lang_code'=>$this->langcode])->all();
-        return view('wadmin-menu::index',['menus'=>$menus,'menuModel'=>$menuModel,'listBlog'=>$listBlog,'listPage'=>$listPage]);
+        //danh sách danh mục sản phẩm
+        $listCatProduct = $this->cat->orderBy('name','asc')
+            ->findWhere(['lang_code'=>$this->langcode])->all();
+        return view('wadmin-menu::index',[
+            'menus'=>$menus,
+            'menuModel'=>$menuModel,
+            'listBlog'=>$listBlog,
+            'listPage'=>$listPage,
+            'listCatProduct'=>$listCatProduct
+        ]);
     }
     public function postIndex(MenuCreateRequest $request){
         $input = $request->except(['_token']);
@@ -66,12 +79,15 @@ class MenuController extends BaseController
         $listBlog = $this->blog->orderBy('sort_order')->all();
         //danh sách trang tĩnh
         $listPage = $this->page->findWhere(['post_type'=>'page'])->all();
-
+        //danh sách danh mục sản phẩm
+        $listCatProduct = $this->cat->orderBy('name','asc')
+            ->findWhere(['lang_code'=>$this->langcode])->all();
         $menuModel = $this->model;
         return view('wadmin-menu::edit',['data'=>$data,
             'listBlog'=>$listBlog,
             'listPage'=>$listPage,
-            'menuModel'=>$menuModel
+            'menuModel'=>$menuModel,
+            'listCatProduct'=>$listCatProduct
         ]);
     }
 

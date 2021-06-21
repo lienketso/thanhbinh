@@ -1,25 +1,22 @@
 <?php
 
 
-namespace Page\Http\Controllers;
+namespace Product\Http\Controllers;
 
 
 use Barryvdh\Debugbar\Controllers\BaseController;
+use Barryvdh\Debugbar\LaravelDebugbar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Product\Http\Requests\FactoryCreateRequest;
+use Product\Repositories\FactoryRepository;
 
-use Page\Http\Requests\PageCreateRequest;
-use Page\Http\Requests\PageEditRequest;
-use Post\Repositories\PostRepository;
-
-class PageController extends BaseController
+class FactoryController extends BaseController
 {
     protected $model;
-    protected $cat;
     protected $langcode;
-    public function __construct(PostRepository $postRepository)
+    public function __construct(FactoryRepository $factoryRepository)
     {
-        $this->model = $postRepository;
+        $this->model = $factoryRepository;
         $this->langcode = session('lang');
     }
 
@@ -28,23 +25,24 @@ class PageController extends BaseController
         $name = $request->get('name');
         if($id){
             $data = $this->model->scopeQuery(function ($e) use($id){
-                return $e->orderBy('id','desc')->where('id',$id)->where('post_type','page');
+                return $e->orderBy('id','desc')->where('id',$id);
             })->paginate(1);
         }elseif($name){
             $data = $this->model->scopeQuery(function($e) use ($name){
-                return $e->orderBy('id','desc')->where('lang_code',$this->langcode)->where('post_type','page')->where('name','LIKE','%'.$name.'%')->orWhere('email',$name);
+                return $e->orderBy('id','desc')->where('name','LIKE','%'.$name.'%')->where('lang_code',$this->langcode);
             })->paginate(10);
         }
         else{
-            $data = $this->model->orderBy('created_at','desc')->where('lang_code',$this->langcode)->where('post_type','page')->paginate(10);
+            $data = $this->model->orderBy('created_at','desc')
+                ->where('lang_code',$this->langcode)->paginate(10);
         }
 
-        return view('wadmin-page::index',['data'=>$data]);
+        return view('wadmin-product::factory.index',['data'=>$data,'langcode'=>$this->langcode]);
     }
     public function getCreate(){
-        return view('wadmin-page::create');
+        return view('wadmin-product::factory.create');
     }
-    public function postCreate(PageCreateRequest $request){
+    public function postCreate(FactoryCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
             if($request->hasFile('thumbnail')){
@@ -55,18 +53,10 @@ class PageController extends BaseController
                 $input['thumbnail'] = $path.'/'.$newnname;
                 $image->move('upload/'.$path,$newnname);
             }
-            if($request->hasFile('banner')){
-                $image = $request->banner;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['banner'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
-            $input['lang_code'] = $this->langcode;
+
             $input['slug'] = $request->name;
-            $input['post_type'] = $request->get('post_type');
-            $input['user_post'] = Auth::id();
+            $input['lang_code'] = $this->langcode;
+
             //cấu hình seo
             if($request->meta_title==''){
                 $input['meta_title'] = $request->name;
@@ -74,14 +64,17 @@ class PageController extends BaseController
             if($request->meta_desc==''){
                 $input['meta_desc'] = $request->description;
             }
-            $data = $this->model->create($input);
 
+            $data = $this->model->create($input);
+            //upload multi file
+
+            //continue post if click continue
             if($request->has('continue_post')){
                 return redirect()
-                    ->route('wadmin::page.create.get')
+                    ->route('wadmin::factory.create.get')
                     ->with('create','Thêm dữ liệu thành công');
             }
-            return redirect()->route('wadmin::page.index.get',['id'=>$data->id])
+            return redirect()->route('wadmin::factory.index.get',['id'=>$data->id])
                 ->with('create','Thêm dữ liệu thành công');
         }catch (\Exception $e){
             return redirect()->back()->withErrors(config('messages.error'));
@@ -91,10 +84,10 @@ class PageController extends BaseController
 
     function getEdit($id){
         $data = $this->model->find($id);
-        return view('wadmin-page::edit',['data'=>$data]);
+        return view('wadmin-product::factory.edit',['data'=>$data]);
     }
 
-    function postEdit($id, PageEditRequest $request){
+    function postEdit($id, FactoryCreateRequest $request){
         try{
             $input = $request->except(['_token']);
 
@@ -106,17 +99,8 @@ class PageController extends BaseController
                 $input['thumbnail'] = $path.'/'.$newnname;
                 $image->move('upload/'.$path,$newnname);
             }
-            if($request->hasFile('banner')){
-                $image = $request->banner;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['banner'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+
             $input['slug'] = $request->name;
-            $input['user_edit'] = Auth::id();
-            $input['post_type'] = 'page';
             //cấu hình seo
             if($request->meta_title==''){
                 $input['meta_title'] = $request->name;
@@ -124,8 +108,9 @@ class PageController extends BaseController
             if($request->meta_desc==''){
                 $input['meta_desc'] = $request->description;
             }
+
             $user = $this->model->update($input, $id);
-            return redirect()->route('wadmin::page.index.get',['post_type'=>'page'])->with('edit','Bạn vừa cập nhật dữ liệu');
+            return redirect()->route('wadmin::factory.index.get')->with('edit','Bạn vừa cập nhật dữ liệu');
         }catch (\Exception $e){
             return redirect()->back()->withErrors(config('messages.error'));
         }

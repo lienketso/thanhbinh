@@ -104,6 +104,30 @@ class SettingController extends BaseController
             $data['site_profile'] = $path.'/'.$image->getClientOriginalName();
             $image->move('upload/'.$path,$image->getClientOriginalName());
         }
+        if($request->hasFile('banner_factory')){
+            $image = $request->banner_factory;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['banner_factory'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+        if($request->hasFile('banner_project')){
+            $image = $request->banner_project;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['banner_project'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+        if($request->hasFile('banner_product')){
+            $image = $request->banner_product;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['banner_product'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
+        if($request->hasFile('banner_contact')){
+            $image = $request->banner_contact;
+            $path = date('Y').'/'.date('m').'/'.date('d');
+            $data['banner_contact'] = $path.'/'.$image->getClientOriginalName();
+            $image->move('upload/'.$path,$image->getClientOriginalName());
+        }
         $this->saveSetting($data);
         return redirect()->back()->with('edit','Sửa cấu hình thành công !');
     }

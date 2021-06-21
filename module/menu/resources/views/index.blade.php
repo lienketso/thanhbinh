@@ -6,6 +6,8 @@
         node_blog.hide();
         var node_page = $('.node_page');
         node_page.hide();
+        var node_product = $('.node_product');
+        node_product.hide();
 
             var nodeType = $('select[name="type"]');
             if(nodeType.val() === 'blog'){
@@ -14,6 +16,9 @@
             if(nodeType.val() === 'page'){
             node_page.show();
             }
+            if(nodeType.val() === 'product'){
+            node_product.show();
+            }
 
         nodeType.on('change', function (e) {
             var _this = $(e.currentTarget);
@@ -21,33 +26,57 @@
             if (value === 'blog') {
                 node_blog.show();
                 node_page.hide();
+                node_product.hide();
                 $('#selectBlog').attr('disabled',false);
+            }
+            else if (value === 'product') {
+                node_product.show();
+                node_blog.hide();
+                node_page.hide();
+                $('#selectProduct').attr('disabled',false);
             }
             else if(value === 'page'){
                 node_page.show();
                 node_blog.hide();
+                node_product.hide();
                 $('#selectBlog').attr('disabled',true);
             }
             else if(value === 'link'){
                 node_page.hide();
                 node_blog.hide();
+                node_product.hide();
                 $('#urlLink').attr('readonly',false);
             }
         });
 
         $('select[id="selectBlog"]').on('change', function (e) {
             var selectedData = $(this).children("option:selected").text();
+            var idType = $(this).children('option:selected').attr('data-id');
+
             var url = $(this).children("option:selected").val();
             $('input[name="name"]').val(selectedData);
             $('input[name="link"]').val(url);
+            $('#typeID').val(idType);
+            $('#urlLink').attr('readonly',true);
+        });
+
+        $('select[id="selectProduct"]').on('change', function (e) {
+            var selectedData = $(this).children("option:selected").text();
+            var idType = $(this).children('option:selected').attr('data-id');
+            var url = $(this).children("option:selected").val();
+            $('input[name="name"]').val(selectedData);
+            $('input[name="link"]').val(url);
+            $('#typeID').val(idType);
             $('#urlLink').attr('readonly',true);
         });
 
         $('select[id="selectPage"]').on('change', function (e) {
             var selectedData = $(this).children("option:selected").text();
+            var idType = $(this).children('option:selected').attr('data-id');
             var url = $(this).children("option:selected").val();
             $('input[name="name"]').val(selectedData);
             $('input[name="link"]').val(url);
+            $('#typeID').val(idType);
             $('#urlLink').attr('readonly',true);
         });
 
@@ -98,6 +127,7 @@
                             <select id="selectType" name="type" class="form-control" style="width: 100%" data-placeholder="">
                                 <option value="0">--Chọn loại--</option>
                                 <option value="blog">Danh mục bài viết</option>
+                                <option value="product">Danh mục sản phẩm</option>
                                 <option value="page">Trang tĩnh</option>
                                 <option value="link">Link khác</option>
                             </select>
@@ -109,7 +139,18 @@
                             <select id="selectBlog" name="blog" class="form-control" style="width: 100%" >
                                 <option value="0">--Chọn danh mục--</option>
                                 @foreach($listBlog as $b)
-                                <option value="{{domain_url().'/blog/'.$b->slug}}">{{$b->name}}</option>
+                                <option data-id="{{$b->id}}" value="{{domain_url().'/blog/'.$b->slug}}">{{$b->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group node_product" >
+                        <label class="col-sm-3 control-label">Danh mục sản phẩm</label>
+                        <div class="col-sm-8">
+                            <select id="selectProduct" name="blog" class="form-control" style="width: 100%" >
+                                <option value="0">--Chọn danh mục--</option>
+                                @foreach($listCatProduct as $c)
+                                    <option data-id="{{$c->id}}" value="{{domain_url().'/category/'.$c->slug}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -120,7 +161,7 @@
                             <select id="selectPage" name="page" class="form-control" style="width: 100%" >
                                 <option value="0">--Chọn trang tĩnh--</option>
                                 @foreach($listPage as $b)
-                                    <option value="{{domain_url().'/page/'.$b->slug}}">{{$b->name}}</option>
+                                    <option data-id="{{$b->id}}" value="{{domain_url().'/page/'.$b->slug}}">{{$b->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -151,6 +192,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">URL</label>
                         <div class="col-sm-8">
+                            <input type="hidden" id="typeID" name="type_id" value="">
                             <input type="text" id="urlLink" name="link" class="form-control">
                         </div>
                     </div>

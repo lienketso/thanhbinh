@@ -2,7 +2,7 @@
 @section('content')
     <section>
         <div class="gap black-layer opc8 overlap144">
-            <div class="fixed-bg2" style="background-image: url('{{public_url('frontend/assets/images/page-title.jpg')}}');"></div>
+            <div class="fixed-bg2" style="background-image: url('{{ ($setting['banner_contact'] != '') ? upload_url($setting['banner_contact']) : public_url('frontend/assets/images/page-title.jpg')}}');"></div>
             <div class="container">
                 <div class="pg-tp-wrp">
                     <h1 itemprop="headline">{{trans('frontend.contact_us')}}</h1>

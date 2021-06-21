@@ -118,6 +118,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group mb-3">
+                            <label>Banner trang</label>
+                            <div class="custom-file">
+                                <input type="file" name="banner" value="" class="custom-file-input" id="inputGroupFile01" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{($data->banner!='') ? upload_url($data->banner) : public_url('admin/themes/images/no-image.png')}}" width="100">
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>

@@ -6,8 +6,9 @@ use Illuminate\Routing\Router;
 $adminRoute = config('base.admin_route');
 $moduleRoute = 'product';
 $catRoute = 'cat';
+$facRoute = 'factory';
 
-Route::group(['prefix'=>$adminRoute],function(Router $router) use($adminRoute,$moduleRoute,$catRoute){
+Route::group(['prefix'=>$adminRoute],function(Router $router) use($adminRoute,$moduleRoute,$catRoute,$facRoute){
     $router->group(['prefix'=>$moduleRoute],function(Router $router) use ($adminRoute,$moduleRoute){
         $router->get('index','ProductController@getIndex')
             ->name('wadmin::product.index.get')->middleware('permission:product_index');
@@ -40,6 +41,24 @@ Route::group(['prefix'=>$adminRoute],function(Router $router) use($adminRoute,$m
             ->name('wadmin::cat.remove.get')->middleware('permission:cat_delete');
         $router->get('change/{id}','CatproductController@changeStatus')
             ->name('wadmin::cat.change.get');
+    });
+
+    //factory route
+    $router->group(['prefix'=>$facRoute],function(Router $router) use ($adminRoute,$facRoute){
+        $router->get('index','FactoryController@getIndex')
+            ->name('wadmin::factory.index.get')->middleware('permission:factory_index');
+        $router->get('create','FactoryController@getCreate')
+            ->name('wadmin::factory.create.get')->middleware('permission:factory_create');
+        $router->post('create','FactoryController@postCreate')
+            ->name('wadmin::factory.create.post')->middleware('permission:factory_create');
+        $router->get('edit/{id}','FactoryController@getEdit')
+            ->name('wadmin::factory.edit.get')->middleware('permission:factory_edit');
+        $router->post('edit/{id}','FactoryController@postEdit')
+            ->name('wadmin::factory.edit.post')->middleware('permission:factory_edit');
+        $router->get('remove/{id}','FactoryController@remove')
+            ->name('wadmin::factory.remove.get')->middleware('permission:factory_delete');
+        $router->get('change/{id}','FactoryController@changeStatus')
+            ->name('wadmin::factory.change.get');
     });
 
 });

@@ -37,4 +37,9 @@ return [
     'result_with_keyword' => 'Results found with keyword',
     'download_profile' => 'Download Profile',
     'contact_price' => 'Contact get price',
+    'factory_information' => 'Factory information',
+    'factory_member' => 'Factory & Member Company Information',
+    'view_info' => 'Overview',
+    'view_website' => 'View website',
+    'product' => 'Products',
 ];

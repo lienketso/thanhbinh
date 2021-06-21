@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Category\Http\Controllers;
+namespace Menu\Http\Controllers;
 use Barryvdh\Debugbar\Controllers\BaseController;
 use Barryvdh\Debugbar\LaravelDebugbar;
 use Category\Repositories\CategoryRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class ApiCategoryController extends BaseController
+class ApiMenuController extends BaseController
 {
     protected $model;
     public function __construct(CategoryRepository $categoryRepository)

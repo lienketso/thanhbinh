@@ -28,7 +28,7 @@ class BlogController extends BaseController
         //cấu hình các thẻ meta
         $meta_title = $data->meta_title;
         $meta_desc = cut_string($data->meta_desc,190);
-        $meta_url = route('frontend::blog.index.get',$data->slug);
+        $meta_url = route('frontend::page.index.get',$data->slug);
         if($data->thumbnail!=''){
             $meta_thumbnail = upload_url($data->thumbnail);
         }else{
@@ -44,8 +44,17 @@ class BlogController extends BaseController
         $this->model->update($input,$data->id);
         //end update count view
 
+        $related = $this->model->scopeQuery(function ($e) use ($data){
+            return $e->orderBy('created_at','desc')
+                ->where('post_type','page')
+                ->where('status','active')
+                ->where('lang_code',$this->lang)
+                ->where('id','!=',$data->id);
+        })->limit(6);
+
         return view('frontend::blog.page',[
-            'data'=>$data
+            'data'=>$data,
+            'related'=>$related
         ]);
     }
 

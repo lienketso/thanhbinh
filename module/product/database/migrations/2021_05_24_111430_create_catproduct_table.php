@@ -13,6 +13,23 @@ class CreateCatproductTable extends Migration
      */
     public function up()
     {
+        Schema::create('factory', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug')->nullable();
+            $table->integer('description')->default(0);
+            $table->string('thumbnail')->nullable();
+            $table->string('content')->nullable();
+            $table->text('link')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_desc')->nullable();
+            $table->integer('sort_order')->default(0);
+            $table->integer('display')->default(0);
+            $table->enum('status',['active','disable'])->default('active');
+            $table->enum('lang_code',['vn','en'])->default('vn');
+            $table->timestamps();
+        });
+
         Schema::create('catproduct', function (Blueprint $table) {
             $table->id();
             $table->string('name');

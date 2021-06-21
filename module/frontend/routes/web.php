@@ -57,3 +57,10 @@ Route::group(['prefix'=>'contact'],function(Router $router){
         ->name('frontend::home.contact.post');
 });
 
+Route::group(['prefix'=>'factory'],function(Router $router){
+    $router->get('/','FactoryController@index')
+        ->name('frontend::factory.index.get');
+    $router->get('{sluf}','FactoryController@detail')
+        ->name('frontend::factory.detail.get');
+});
+

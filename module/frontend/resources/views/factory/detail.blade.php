@@ -2,12 +2,15 @@
 @section('content')
     <section>
         <div class="gap black-layer opc8 overlap144">
-            <div class="fixed-bg2" style="background-image: url('{{($data->banner!='') ? upload_url($data->banner) : public_url('frontend/assets/images/tech.png')}}');"></div>
+            <div class="fixed-bg2" style="background-image: url('{{($setting['banner_factory']!='') ? upload_url($setting['banner_factory']) : public_url('frontend/assets/images/tech.png')}}');"></div>
             <div class="container">
                 <div class="pg-tp-wrp">
-                    <h1 itemprop="headline">{{$data->name}}</h1>
+                    <h1 itemprop="headline">{{trans('frontend.factory_information')}}</h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('frontend::home')}}" title="Trang chủ" itemprop="url">{{trans('frontend.home')}}</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('frontend::factory.index.get')}}"
+                                                       title="{{trans('frontend.factory_information')}}"
+                                                       itemprop="url">{{trans('frontend.factory_information')}}</a></li>
                         <li class="breadcrumb-item active">{{$data->name}}</li>
                     </ol>
                 </div>
@@ -44,17 +47,17 @@
                                                     <div class="col-md-4 col-sm-6 col-lg-4">
                                                         <div class="blg-bx">
                                                             <div class="blg-thmb blg_news">
-                                                                <a href="{{route('frontend::page.index.get',$d->slug)}}" title="" itemprop="url">
+                                                                <a href="{{route('frontend::factory.detail.get',$d->slug)}}" title="" itemprop="url">
                                                                     <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
                                                                          alt="{{$d->name}}" itemprop="image">
                                                                 </a>
                                                             </div>
                                                             <div class="blg-inf-fix">
                                                                 <h4 itemprop="headline">
-                                                                    <a href="{{route('frontend::page.index.get',$d->slug)}}"
+                                                                    <a href="{{route('frontend::factory.detail.get',$d->slug)}}"
                                                                        title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h4>
                                                                 <p itemprop="description">{{cut_string($d->description,80)}}</p>
-                                                                <a href="{{route('frontend::page.index.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">{{trans('frontend.read_more')}}</a>
+                                                                <a href="{{route('frontend::factory.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">{{trans('frontend.read_more')}}</a>
                                                             </div>
                                                         </div>
                                                     </div>

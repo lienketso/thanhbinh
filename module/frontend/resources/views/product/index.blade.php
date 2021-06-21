@@ -64,7 +64,7 @@
                         <div class="col-lg-9">
                             <div class="row">
                         @foreach($data as $d)
-                        <div class="col-md-4 col-sm-6 col-lg-4">
+                        <div class="col-md-4 col-sm-6 col-6 col-lg-4">
                             <div class="evnt-bx2">
                                 <div class="evnt-thmb fix-thumb">
                                     <a href="{{route('frontend::product.detail.get',$d->slug)}}" title="" itemprop="url">
@@ -73,11 +73,11 @@
                                     </a>
 
                                 </div>
-                                <div class="evnt-inf">
+                                <div class="bg-white desc_pro">
                                     <h5 itemprop="headline" class="title_tao">
                                         <a href="{{route('frontend::product.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">{{$d->name}}</a>
                                     </h5>
-                                    <a class="theme-btn" href="{{route('frontend::product.detail.get',$d->slug)}}"
+                                    <a class="theme-btn-cc" href="{{route('frontend::product.detail.get',$d->slug)}}"
                                        title="{{$d->name}}" itemprop="url">{{trans('frontend.view_product')}}</a>
                                 </div>
                             </div>
