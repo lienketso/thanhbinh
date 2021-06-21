@@ -33,10 +33,13 @@ class MenuController extends BaseController
     }
 
     public function getIndex(Request $request){
-        $menus = Menu::orderBy('sort_order','asc')->where('parent', '=', 0)->where('lang_code',$this->langcode)->get();
+        $menus = Menu::orderBy('sort_order','asc')->where('parent', '=', 0)
+            ->where('lang_code',$this->langcode)->get();
         $menuModel = $this->model;
         //danh sách danh mục bài viết
-        $listBlog = $this->blog->orderBy('sort_order','asc')->where('lang_code',$this->langcode)->get();
+        $listBlog = $this->blog->orderBy('sort_order','asc')
+            ->where('lang_code',$this->langcode)
+            ->get();
         //danh sách trang tĩnh
         $listPage = $this->page->findWhere(['post_type'=>'page','lang_code'=>$this->langcode])->all();
         //danh sách danh mục sản phẩm
@@ -76,9 +79,12 @@ class MenuController extends BaseController
     function getEdit($id){
         $data = $this->model->find($id);
         //danh sách danh mục bài viết
-        $listBlog = $this->blog->orderBy('sort_order')->all();
+        $listBlog = $this->blog
+            ->orderBy('sort_order')
+            ->where('lang_code',$this->langcode)
+            ->all();
         //danh sách trang tĩnh
-        $listPage = $this->page->findWhere(['post_type'=>'page'])->all();
+        $listPage = $this->page->findWhere(['post_type'=>'page','lang_code'=>$this->langcode])->all();
         //danh sách danh mục sản phẩm
         $listCatProduct = $this->cat->orderBy('name','asc')
             ->findWhere(['lang_code'=>$this->langcode])->all();
