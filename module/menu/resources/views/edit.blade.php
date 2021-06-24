@@ -117,6 +117,7 @@
                                 <select id="selectType" name="type" class="form-control" style="width: 100%" data-placeholder="">
                                     <option value="0">--Chọn loại--</option>
                                     <option value="blog" {{($data->type=='blog') ? 'selected' : ''}}>Danh mục bài viết</option>
+                                    <option value="product" {{($data->type=='product') ? 'selected' : ''}}>Danh mục sản phẩm</option>
                                     <option value="page" {{($data->type=='page') ? 'selected' : ''}}>Trang tĩnh</option>
                                     <option value="link" {{($data->type=='link') ? 'selected' : ''}}>Link khác</option>
                                 </select>

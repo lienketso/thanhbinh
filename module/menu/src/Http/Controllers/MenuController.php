@@ -81,8 +81,7 @@ class MenuController extends BaseController
         //danh sách danh mục bài viết
         $listBlog = $this->blog
             ->orderBy('sort_order')
-            ->where('lang_code',$this->langcode)
-            ->all();
+            ->where('lang_code',$this->langcode)->get();
         //danh sách trang tĩnh
         $listPage = $this->page->findWhere(['post_type'=>'page','lang_code'=>$this->langcode])->all();
         //danh sách danh mục sản phẩm
