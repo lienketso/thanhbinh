@@ -674,6 +674,7 @@ ul.pst-mta-date li i{
 }
 .relate_product_page{
     display: inline-block;
+    width: 100%;
 }
 .relate_product_page h3{
     padding-top: 50px;
