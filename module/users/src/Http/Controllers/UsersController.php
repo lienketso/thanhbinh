@@ -6,6 +6,7 @@ use Acl\Repositories\RoleRepository;
 use Barryvdh\Debugbar\Controllers\BaseController;
 use Base\Supports\FlashMessage;
 use Illuminate\Http\Request;
+use Product\Repositories\FactoryRepository;
 use Users\Http\Requests\UsersCreateRequest;
 use Users\Http\Requests\UsersEditRequest;
 use Users\Repositories\UsersRepository;
@@ -13,9 +14,13 @@ use Users\Repositories\UsersRepository;
 class UsersController extends BaseController
 {
     protected $users;
-    public function __construct(UsersRepository $repository)
+    protected $fac;
+    protected $langcode;
+    public function __construct(UsersRepository $repository, FactoryRepository $factoryRepository)
     {
         $this->users = $repository;
+        $this->fac = $factoryRepository;
+        $this->langcode = session('lang');
     }
 
     public function getIndex(Request $request){
@@ -39,7 +44,8 @@ class UsersController extends BaseController
     public function getCreate(RoleRepository $roleRepository){
         //lấy ra role
         $listRole = $roleRepository->orderBy('name','asc')->all();
-        return view('wadmin-users::create',['listRole'=>$listRole]);
+        $factory = $this->fac->findWhere(['status'=>'active','lang_code'=>$this->langcode]);
+        return view('wadmin-users::create',['listRole'=>$listRole,'factory'=>$factory]);
     }
     public function postCreate(UsersCreateRequest $request){
         try{
@@ -63,8 +69,9 @@ class UsersController extends BaseController
         $data = $this->users->find($id);
         //lấy ra role
         $listRole = $roleRepository->orderBy('name','asc')->all();
+        $factory = $this->fac->findWhere(['status'=>'active','lang_code'=>$this->langcode]);
 
-        return view('wadmin-users::edit',['data'=>$data,'listRole'=>$listRole]);
+        return view('wadmin-users::edit',['data'=>$data,'listRole'=>$listRole,'factory'=>$factory]);
     }
 
     function postEdit($id, UsersEditRequest $request){

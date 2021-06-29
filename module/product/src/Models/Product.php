@@ -11,7 +11,7 @@ use Users\Models\Users;
 class Product extends Model
 {
     protected $table = 'product';
-    protected $fillable = ['name','slug','cat_id','company_id','price','disprice','discount','description','content','meta_desc','meta_title','thumbnail','display','count_view','user_post'
+    protected $fillable = ['name','slug','cat_id','factory_id','price','disprice','discount','description','content','meta_desc','meta_title','thumbnail','display','count_view','user_post'
     ,'user_edit','status','lang_code'];
 
 

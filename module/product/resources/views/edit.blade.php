@@ -115,6 +115,15 @@
                                 {{$catmodel->optionCat(0,1,4,$data->cat_id,0)}}
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Nhà máy</label>
+                            <select id="" name="factory_id" class="form-control" style="width: 100%" >
+                                <option value="0">--Chọn nhà máy--</option>
+                                @foreach($factory as $d)
+                                    <option value="{{$d->id}}" {{($data->factory_id==$d->id) ? 'selected' : '' }} >{{$d->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <label>Vị trí hiển thị</label>

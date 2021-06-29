@@ -100,10 +100,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Phân quyền</label>
                                 <select id="" name="role" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
-                                    <option value="">--Phân quyền cho user--</option>
                                     @foreach($listRole as $r)
                                         <option value="{{$r->id}}" >{{$r->name}} ({{$r->display_name}})</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>User nhà máy ( Gán user cho nhà máy )</label>
+                                <select id="" name="factory_id" class="form-control" style="width: 100%" >
+                                    <option value="0">---Chọn nhà máy---</option>
+                                    @foreach($factory as $d)
+                                        <option value="{{$d->id}}" {{((old('factory_id'))==$d->id) ? 'selected' : ''}}>{{$d->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

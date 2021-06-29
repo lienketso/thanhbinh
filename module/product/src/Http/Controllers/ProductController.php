@@ -12,6 +12,7 @@ use Product\Http\Requests\CatEditRequest;
 use Product\Http\Requests\ProductCreateRequest;
 use Product\Http\Requests\ProductEditRequest;
 use Product\Repositories\CatproductRepository;
+use Product\Repositories\FactoryRepository;
 use Product\Repositories\ProductRepository;
 
 
@@ -20,10 +21,12 @@ class ProductController extends BaseController
     protected $model;
     protected $cat;
     protected $langcode;
-    public function __construct(ProductRepository $productRepository,CatproductRepository $catproductRepository)
+    protected $fac;
+    public function __construct(ProductRepository $productRepository,CatproductRepository $catproductRepository, FactoryRepository $factoryRepository)
     {
         $this->model = $productRepository;
         $this->cat = $catproductRepository;
+        $this->fac = $factoryRepository;
         $this->langcode = session('lang');
     }
 
@@ -47,8 +50,8 @@ class ProductController extends BaseController
     }
     public function getCreate(MediaRepository $mediaRepository){
         $catmodel = $this->cat;
-
-        return view('wadmin-product::create',['catmodel'=>$catmodel]);
+        $factory = $this->fac->findWhere(['status'=>'active','lang_code'=>$this->langcode]);
+        return view('wadmin-product::create',['catmodel'=>$catmodel,'factory'=>$factory]);
     }
     public function postCreate(ProductCreateRequest $request, MediaRepository $mediaRepository){
         try{
@@ -110,8 +113,9 @@ class ProductController extends BaseController
     function getEdit($id,MediaRepository $mediaRepository){
         $data = $this->model->find($id);
         $catmodel = $this->cat;
+        $factory = $this->fac->findWhere(['status'=>'active','lang_code'=>$this->langcode]);
         $imageAttach = $mediaRepository->findWhere(['table_id'=>$id])->all();
-        return view('wadmin-product::edit',['data'=>$data,'catmodel'=>$catmodel,'imageAttach'=>$imageAttach]);
+        return view('wadmin-product::edit',['data'=>$data,'catmodel'=>$catmodel,'imageAttach'=>$imageAttach, 'factory'=>$factory]);
     }
 
     function postEdit($id, ProductEditRequest $request){
