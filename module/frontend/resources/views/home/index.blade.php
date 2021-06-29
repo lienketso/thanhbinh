@@ -93,15 +93,16 @@
     <section class="services_home">
 
 
-        <div class="wrap-service">
+        <div class="wrap-service-cac">
+            <div class="owl-carousel owl-theme">
            @foreach($linhVuc as $key=>$d)
-            <div class="listwrap_sv item1 wow slideInRight" data-wow-iteration="1" data-wow-delay="{{$key}}s" style="background-image: url('{{upload_url($d->thumbnail)}}');">
+            <div class="item item_lv" style="background-image: url('{{upload_url($d->thumbnail)}}');">
                 <a href="{{route('frontend::page.index.get',$d->slug)}}">
                     <h3 class="title_service">{{$d->name}}</h3>
                 </a>
             </div>
             @endforeach
-
+            </div>
 
         </div>
     </section>

@@ -81,6 +81,31 @@
     });
 </script>
 
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:0,
+        autoplay: true,
+        responsiveClass:true,
+        navText : ["<i class='fa fa-arrow-circle-left'></i>","<i class='fa fa-arrow-circle-right'></i>"],
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            1000:{
+                items:4,
+                nav:true,
+                loop:false
+            }
+        }
+    })
+</script>
+
 @yield("js")
 @yield("js-init")
 @stack("js")

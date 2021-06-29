@@ -64,7 +64,7 @@ class HomeController extends BaseController
                 ->where('status','active')
                 ->where('post_type','page')
                 ->where('display',2)->get();
-        })->limit(4);
+        })->limit(20);
 
         //sản phẩm nổi bật
         $productHot = $this->po->scopeQuery(function ($e){

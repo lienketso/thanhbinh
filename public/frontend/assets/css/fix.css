@@ -22,13 +22,13 @@
 .item1 {
 
 }
-.listwrap_sv{
+.item_lv{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 	height: 500px;
 }
-.listwrap_sv a{
+.item_lv a{
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -37,8 +37,22 @@
 	position: relative;
 	background: rgba(0,0,0,0.5);
 }
-.listwrap_sv a:hover{
+.item_lv a:hover{
 	background: none;
+}
+.owl-next, .owl-prev{
+    position: absolute;
+    top: 45%;
+}
+.owl-next{
+    right: 15px;
+}
+.owl-prev{
+    left: 15px;
+}
+.owl-next i, .owl-prev i{
+    color: #fff;
+    font-size: 2rem;
 }
 .title_service{
 	text-transform: uppercase;
@@ -734,6 +748,9 @@ ul.pst-mta-date li i{
 }
 .sidebar_popular ul li a:hover{
     color: #0C7FCC;
+}
+.item_lv{
+    height: 500px;
 }
 
 /*Responsive*/
