@@ -94,7 +94,7 @@
 
 
         <div class="wrap-service-cac">
-            <div class="owl-carousel owl-theme">
+            <div class="owl-carousel owl-linhvuc">
            @foreach($linhVuc as $key=>$d)
             <div class="item item_lv" style="background-image: url('{{upload_url($d->thumbnail)}}');">
                 <a href="{{route('frontend::page.index.get',$d->slug)}}">

@@ -82,7 +82,7 @@
 </script>
 
 <script>
-    $('.owl-carousel').owlCarousel({
+    $('.owl-linhvuc').owlCarousel({
         loop:true,
         margin:0,
         autoplay: true,
