@@ -21,82 +21,96 @@
     <section>
         <div class="gap">
             <div class="container">
-                <div class="blog-detail-wrp">
+                <div class="about_factory">
                     <div class="row">
-                        <div class="col-md-9 col-sm-12 col-lg-9">
-                            <div class="blog-detail">
-
-                                <h1 class="title_blog_detail">{{$data->name}}</h1>
-                                <div class="blog-detail-desc">
+                        <div class="col-lg-6">
+                            <div class="img_factory_detail">
+                                <img src="<?= upload_url($data->image) ?>" alt="<?= $data->name; ?>">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="info_factory">
+                                <h4>{{$data->name}}</h4>
+                                <div class="desc_fact">
+                                    {{$data->description}}
+                                </div>
+                                <div class="content_fact">
                                     {!! $data->content !!}
-                                    <div class="pst-shr-tgs">
-                                        <div class="scl4 float-left">
-                                            <span>{{trans('frontend.share')}} :</span>
-                                            <a href="https://twitter.com/intent/tweet?text={{$data->name}}&url={{route('frontend::blog.detail.get',$data->slug)}}&via=TWITTER-HANDLER" title="Twitter" itemprop="url" target="_blank"><i class="fab fa-twitter"></i></a>
-                                            <a href="http://www.facebook.com/sharer/sharer.php?u={{route('frontend::blog.detail.get',$data->slug)}}"
-                                               title="Facebook" itemprop="url" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#" title="Linkedin" itemprop="url" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                        </div>
-
-                                    </div>
-                                    <div class="rltd-wrp">
-                                        <h4 itemprop="headline">{{trans('frontend.related_post')}}</h4>
-                                        <div class="remove-ext5">
-                                            <div class="row">
-                                                @foreach($related as $d)
-                                                    <div class="col-md-4 col-sm-6 col-lg-4">
-                                                        <div class="blg-bx">
-                                                            <div class="blg-thmb blg_news">
-                                                                <a href="{{route('frontend::factory.detail.get',$d->slug)}}" title="" itemprop="url">
-                                                                    <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
-                                                                         alt="{{$d->name}}" itemprop="image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="blg-inf-fix">
-                                                                <h4 itemprop="headline">
-                                                                    <a href="{{route('frontend::factory.detail.get',$d->slug)}}"
-                                                                       title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h4>
-                                                                <p itemprop="description">{{cut_string($d->description,80)}}</p>
-                                                                <a href="{{route('frontend::factory.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">{{trans('frontend.read_more')}}</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-lg-3">
-                            <div class="sidebar-wrp remove-ext7">
+                    </div>
+                </div>
+                <div class="product_factory">
+                    <div class="title_main_fac">
+                        <h4>Sản phẩm</h4>
+                        <p>Danh sách sản phẩm được sản xuất tại <span>{{$data->name}}</span></p>
+                    </div>
+                    <div class="list_product_fact">
+                        <div class="row">
 
-                                <div class="wdgt-bx">
-                                    <h4 class="sidebar_title" itemprop="headline">{{trans('frontend.latest_post')}}</h4>
-                                    <div class="ltst-wrp">
-                                        @foreach($latest as $d)
-                                            <div class="ltst-nws-bx">
-                                                <a href="{{route('frontend::blog.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">
-                                                    <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
-                                                         alt="{{$d->name}}" itemprop="image">
-                                                </a>
-                                                <div class="ltst-nws-inf">
-                                                    <h6 itemprop="headline">
-                                                        <a href="{{route('frontend::blog.detail.get',$d->slug)}}"
-                                                           title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h6>
-                                                    <span><i class="far fa-calendar-alt theme-clr"></i>{{stringDate($d->created_at)}}</span>
-                                                </div>
+                            <div class="col-lg-3">
+                                <div class="item_product_fac">
+                                    <a href="#">
+                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
+                                        <div class="desc_pro_fact">
+                                        <h3>Website Scanning</h3>
+                                            <div class="none_hover" >
+                                            <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
+                                            <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
                                             </div>
-                                        @endforeach
+                                        </div>
 
-                                    </div>
+                                    </a>
                                 </div>
-
-
                             </div>
+                            <div class="col-lg-3">
+                                <div class="item_product_fac">
+                                    <a href="#">
+                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
+                                        <div class="desc_pro_fact">
+                                            <h3>Website Scanning</h3>
+                                            <div class="none_hover" >
+                                                <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
+                                                <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="item_product_fac">
+                                    <a href="#">
+                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
+                                        <div class="desc_pro_fact">
+                                            <h3>Website Scanning</h3>
+                                            <div class="none_hover" >
+                                                <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
+                                                <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="item_product_fac">
+                                    <a href="#">
+                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
+                                        <div class="desc_pro_fact">
+                                            <h3>Website Scanning</h3>
+                                            <div class="none_hover" >
+                                                <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
+                                                <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

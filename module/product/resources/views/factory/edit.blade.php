@@ -117,11 +117,20 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label>Ảnh đại diện</label>
+                            <label>Ảnh logo</label>
                             <div class="custom-file">
                                 <input type="file" name="thumbnail" value="" class="custom-file-input" id="inputGroupFile01" >
                                 <div class="thumbnail_w" style="padding-top: 10px">
                                     <img src="{{($data->thumbnail!='') ? upload_url($data->thumbnail) : public_url('admin/themes/images/no-image.png')}}" width="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Ảnh đại diện</label>
+                            <div class="custom-file">
+                                <input type="file" name="image" value="" class="custom-file-input" id="" >
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{($data->image!='') ? upload_url($data->image) : public_url('admin/themes/images/no-image.png')}}" width="100">
                                 </div>
                             </div>
                         </div>

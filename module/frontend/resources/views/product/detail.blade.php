@@ -21,7 +21,7 @@
             <div class="container">
                 <div class="campaign-detail-wrp">
                     <div class="row">
-                        <div class="col-md-9 col-sm-12 col-lg-9">
+                        <div class="col-md-8 col-sm-12 col-lg-8">
                             <h1 class="title_product_page">{{$data->name}}</h1>
                             <div class="campaign-detail-desc">
                                 {!! $data->content !!}
@@ -37,29 +37,55 @@
 
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-lg-3">
-                            <div class="sidebar-wrp remove-ext7">
 
-                                <div class="wdgt-bx">
-                                    <h4 itemprop="headline">{{trans('frontend.relate_product')}}</h4>
-                                    <div class="ltst-wrp">
-                                        @foreach($relatedProduct as $d)
-                                        <div class="ltst-nws-bx">
-                                            <a class="brd-rd5" href="{{route('frontend::product.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">
+                            <div class="relate_product_page">
+                                <h3>{{trans('frontend.relate_product')}}</h3>
+                                <div class="row">
+                                    @foreach($relatedProduct as $d)
+                                    <div class="col-lg-4">
+                                        <div class="item_product_re">
+                                            <a href="{{route('frontend::product.detail.get',$d->slug)}}">
                                                 <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
-                                                     alt="{{$d->name}}" itemprop="image"></a>
-                                            <div class="ltst-nws-inf">
-                                                <h6 itemprop="headline">
-                                                    <a href="{{route('frontend::product.detail.get',$d->slug)}}"
-                                                       title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h6>
-                                            </div>
+                                                alt="{{$d->name}}" >
+                                                <h4>{{$d->name}}</h4>
+                                            </a>
                                         </div>
+                                    </div>
+                                        @endforeach
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <div class="sidebar-wrp remove-ext7">
+                                <div class="sidebar_popular">
+                                <div class="wdgt-bx">
+                                    <h4 itemprop="headline">Sản phẩm tiêu biểu</h4>
+                                    @foreach($popular as $d)
+                                    <div class="list_polular">
+                                        <div class="img_p_product">
+                                            <a href="{{route('frontend::product.detail.get',$d->slug)}}">
+                                                <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
+                                                     alt="{{$d->name}}">
+                                            </a>
+                                        </div>
+                                        <div class="desc_p_product">
+                                            <p><a href="{{route('frontend::product.detail.get',$d->slug)}}">{{$d->name}}</a></p>
+                                        </div>
+                                    </div>
                                         @endforeach
 
+                                </div>
+                                </div>
 
+                                <div class="sidebar_popular">
+                                    <h4 itemprop="headline">Danh mục sản phẩm</h4>
+                                    <ul>
+                                        @foreach($categorySingle as $d)
+                                        <li><a href="{{route('frontend::product.index.get',$d->slug)}}">{{$d->name}}</a></li>
+                                            @endforeach
 
-                                    </div>
+                                    </ul>
                                 </div>
 
                             </div>

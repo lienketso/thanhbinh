@@ -140,10 +140,10 @@
                                             <div class="blg-inf">
                                                 <h6 itemprop="headline"><a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}" itemprop="url">{{$p->name}}</a>
                                                 </h6>
-                                                <ul class="pst-mta">
-                                                    <li><i class="far fa-calendar-alt"></i>{{stringDate($p->created_at)}}</li>
-                                                    <li><i class="fas fa-user"></i> {{trans('frontend.count_view')}} : {{$p->count_view}}</li>
-                                                </ul>
+{{--                                                <ul class="pst-mta">--}}
+{{--                                                    <li><i class="far fa-calendar-alt"></i>{{stringDate($p->created_at)}}</li>--}}
+{{--                                                    <li><i class="fas fa-user"></i> {{trans('frontend.count_view')}} : {{$p->count_view}}</li>--}}
+{{--                                                </ul>--}}
                                                 <p itemprop="description">{{cut_string($p->description,90)}}</p>
                                                 <a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}" itemprop="url">{{trans('frontend.read_more')}}</a>
                                             </div>
@@ -215,8 +215,6 @@
                         </div>
                     </div>
                     @endforeach
-
-
                 </div>
             </div>
         </div>

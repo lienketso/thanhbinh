@@ -117,10 +117,16 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label>Ảnh đại diện</label>
+                            <label>Ảnh logo</label>
                             <div class="custom-file">
                                 <input type="file" name="thumbnail" value="{{old('thumbnail')}}" class="custom-file-input" id="inputGroupFile01" >
                                 <label class="custom-file-label" for="inputGroupFile01">{{old('thumbnail')}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Ảnh đại diện</label>
+                            <div class="custom-file">
+                                <input type="file" name="image" value="{{old('image')}}" class="custom-file-input" id="" >
                             </div>
                         </div>
 

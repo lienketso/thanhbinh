@@ -1,24 +1,3 @@
-@media(min-width: 768px) {
-    .wrap-service{
-        display: grid;
-    }
-    .nav-tab-item a{
-        font-size: 16px;
-    }
-    .fix-thumb{
-        height: 220px;
-    }
-}
-
-@media(max-width: 767px) {
-    .nav-tab-item a{
-        font-size: 11px;
-        line-height: 20px;
-    }
-    .srv-inf h5, .evnt-inf>h5{
-        font-size: 13px;
-    }
-}
 .desc_pro{
     float: left;
     width: 100%;
@@ -585,3 +564,205 @@ ul.pst-mta-date li i{
 .desc_uud img{
     height: auto !important;
 }
+.desc_fact{
+    font-weight: bold;
+    padding: 10px 0;
+}
+.content_fact p{
+    color: #000 !important;
+}
+.title_main_fac{
+    text-align: center;
+}
+.title_main_fac h4{
+    color: #0C7FCC;
+    font-weight: bold;
+}
+.title_main_fac p{
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #000;
+    line-height: 50px;
+}
+
+.list_product_fact{
+    padding-top: 50px;
+}
+.item_product_fac{
+    margin-bottom: 20px;
+}
+.item_product_fac a{
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+.item_product_fac a:hover .desc_pro_fact{
+    animation-delay: 2s;
+    bottom:10px;
+}
+.item_product_fac a:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg,transparent,#000);
+}
+.item_product_fac img{
+    width: 100%;
+}
+.desc_pro_fact{
+    position: absolute;
+    bottom: -105px;
+    padding: 10px;
+    transition: 1s;
+}
+.desc_pro_fact h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+.desc_pro_fact p{
+    color: #fff;
+}
+.desc_pro_fact span{
+    color: #e21f36;
+}
+.desc_pro_fact span i{
+    font-size: 12px;
+}
+.item_product_re{
+    position: relative;
+}
+.item_product_re a{
+    display: block;
+    height: 320px;
+    overflow: hidden;
+}
+.item_product_re:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg,transparent,#000);
+}
+.item_product_re h4{
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    padding: 10px;
+    line-height: 25px;
+}
+.relate_product_page{
+    display: inline-block;
+}
+.relate_product_page h3{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+.campaign-detail-desc, .campaign-detail-desc p {
+    color: #000;
+}
+.sidebar_popular h4{
+    font-size: 20px;
+    border-left: 2px solid #e21f36;
+    font-weight: bold;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+.sidebar_popular{
+    background: #f9fafb;
+    padding: 15px;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.list_polular{
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.list_polular:last-child{
+    border-bottom: 0;
+}
+.img_p_product{
+    width: 25%;
+}
+.desc_p_product{
+    width: 75%;
+    padding-left: 15px;
+}
+.desc_p_product p{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    line-height: 20px;
+}
+.desc_p_product p a{
+    color: #000;
+    font-weight: bold;
+}
+.desc_p_product p a:hover{
+    color: #0C7FCC;
+}
+.sidebar_popular ul{
+    margin-left: 0;
+    padding-left: 0;
+}
+.sidebar_popular ul li{
+    list-style: none;
+    padding-bottom: 5px;
+    position: relative;
+}
+.sidebar_popular ul li:before{
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #0C7FCC;
+}
+.sidebar_popular ul li a{
+    color: #000;
+    font-size: 16px;
+    padding-left: 25px;
+}
+.sidebar_popular ul li a:hover{
+    color: #0C7FCC;
+}
+
+/*Responsive*/
+@media(min-width: 768px) {
+    .wrap-service{
+        display: grid;
+    }
+    .nav-tab-item a{
+        font-size: 16px;
+    }
+    .fix-thumb{
+        height: 220px;
+    }
+    .title_main_fac{
+        width: 70%;
+        margin: 0 auto;
+    }
+    .item_product_fac a{
+        height: 320px;
+    }
+}
+
+@media(max-width: 767px) {
+    .nav-tab-item a{
+        font-size: 11px;
+        line-height: 20px;
+    }
+    .srv-inf h5, .evnt-inf>h5{
+        font-size: 13px;
+    }
+}
+/*end responsive*/

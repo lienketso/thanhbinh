@@ -13,13 +13,17 @@ use Menu\Models\Menu;
 use Menu\Repositories\MenuRepository;
 use Post\Repositories\PostRepository;
 use Product\Repositories\CatproductRepository;
+use Product\Repositories\ProductRepository;
 use Setting\Repositories\SettingRepositories;
 
 class ModuleProvider extends \Illuminate\Support\ServiceProvider
 {
     protected $lang;
-    public function boot(MenuRepository $menuRepository, SettingRepositories $settingRepositories, PostRepository $postRepository, CatproductRepository $catproductRepository,
-        CategoryRepository $categoryRepository)
+    public function boot(MenuRepository $menuRepository,
+                         SettingRepositories $settingRepositories,
+                         PostRepository $postRepository,
+                         CatproductRepository $catproductRepository,
+        CategoryRepository $categoryRepository, ProductRepository $productRepository)
     {
         $this->loadViewsFrom(__DIR__.'/../../resources/views','frontend');
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');

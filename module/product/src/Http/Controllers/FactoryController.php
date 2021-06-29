@@ -53,6 +53,14 @@ class FactoryController extends BaseController
                 $input['thumbnail'] = $path.'/'.$newnname;
                 $image->move('upload/'.$path,$newnname);
             }
+            if($request->hasFile('image')){
+                $image = $request->image;
+                $path = date('Y').'/'.date('m').'/'.date('d');
+                $newnname = time().'-'.$image->getClientOriginalName();
+                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+                $input['image'] = $path.'/'.$newnname;
+                $image->move('upload/'.$path,$newnname);
+            }
 
             $input['slug'] = $request->name;
             $input['lang_code'] = $this->langcode;
@@ -97,6 +105,14 @@ class FactoryController extends BaseController
                 $newnname = time().'-'.$image->getClientOriginalName();
                 $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
                 $input['thumbnail'] = $path.'/'.$newnname;
+                $image->move('upload/'.$path,$newnname);
+            }
+            if($request->hasFile('image')){
+                $image = $request->image;
+                $path = date('Y').'/'.date('m').'/'.date('d');
+                $newnname = time().'-'.$image->getClientOriginalName();
+                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+                $input['image'] = $path.'/'.$newnname;
                 $image->move('upload/'.$path,$newnname);
             }
 

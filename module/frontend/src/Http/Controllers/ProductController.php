@@ -84,7 +84,23 @@ class ProductController extends BaseController
         $this->model->update($input,$data->id);
         //end update count view
 
-        return view('frontend::product.detail',['data'=>$data,'relatedProduct'=>$relatedProduct,'catInforName'=>$catInforName]);
+        //popular product
+        $popular = $this->model->scopeQuery(function($e) {
+            return $e->orderBy('created_at','desc')
+                ->where('status','active')
+                ->where('lang_code',$this->lang);
+        })->limit(6);
+        //Danh mục sản phẩm
+        $categorySingle = $this->cat->orderBy('sort_order','asc')
+            ->findWhere(['status'=>'active','lang_code'=>$this->lang,'parent'=>0]);
+
+        return view('frontend::product.detail',[
+            'data'=>$data,
+            'relatedProduct'=>$relatedProduct,
+            'catInforName'=>$catInforName,
+            'popular'=>$popular,
+            'categorySingle'=>$categorySingle
+        ]);
     }
 
     function search(Request $request){
