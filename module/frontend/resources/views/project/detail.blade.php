@@ -21,7 +21,7 @@
             <div class="container">
                 <div class="blog-detail-wrp">
                     <div class="row">
-                        <div class="col-md-9 col-sm-12 col-lg-9">
+                        <div class="col-md-12 col-sm-12 col-lg-12">
                             <div class="blog-detail">
 
                                 <h1 class="title_blog_detail">{{$data->name}}</h1>
@@ -43,7 +43,7 @@
                                         <div class="remove-ext5">
                                             <div class="row">
                                                 @foreach($related as $d)
-                                                    <div class="col-md-4 col-sm-6 col-lg-4">
+                                                    <div class="col-md-3 col-sm-6 col-lg-3">
                                                         <div class="blg-bx">
                                                             <div class="blg-thmb blg_news">
                                                                 <a href="{{route('frontend::project.detail.get',$d->slug)}}" title="" itemprop="url">
@@ -70,43 +70,43 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-lg-3">
-                            <div class="sidebar-wrp remove-ext7">
+{{--                        <div class="col-md-3 col-sm-6 col-lg-3">--}}
+{{--                            <div class="sidebar-wrp remove-ext7">--}}
 
-                                <div class="wdgt-bx">
-                                    <h4 class="sidebar_title" itemprop="headline">{{trans('frontend.latest_post')}}</h4>
-                                    <div class="ltst-wrp">
-                                        @foreach($latest as $d)
-                                            <div class="ltst-nws-bx">
-                                                <a href="{{route('frontend::blog.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">
-                                                    <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
-                                                         alt="{{$d->name}}" itemprop="image">
-                                                </a>
-                                                <div class="ltst-nws-inf">
-                                                    <h6 itemprop="headline">
-                                                        <a href="{{route('frontend::blog.detail.get',$d->slug)}}"
-                                                           title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h6>
-                                                    <span><i class="far fa-calendar-alt theme-clr"></i>{{stringDate($d->created_at)}}</span>
-                                                </div>
-                                            </div>
-                                        @endforeach
+{{--                                <div class="wdgt-bx">--}}
+{{--                                    <h4 class="sidebar_title" itemprop="headline">{{trans('frontend.latest_post')}}</h4>--}}
+{{--                                    <div class="ltst-wrp">--}}
+{{--                                        @foreach($latest as $d)--}}
+{{--                                            <div class="ltst-nws-bx">--}}
+{{--                                                <a href="{{route('frontend::blog.detail.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">--}}
+{{--                                                    <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"--}}
+{{--                                                         alt="{{$d->name}}" itemprop="image">--}}
+{{--                                                </a>--}}
+{{--                                                <div class="ltst-nws-inf">--}}
+{{--                                                    <h6 itemprop="headline">--}}
+{{--                                                        <a href="{{route('frontend::blog.detail.get',$d->slug)}}"--}}
+{{--                                                           title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h6>--}}
+{{--                                                    <span><i class="far fa-calendar-alt theme-clr"></i>{{stringDate($d->created_at)}}</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        @endforeach--}}
 
-                                    </div>
-                                </div>
-                                <div class="wdgt-bx-cd">
-                                    <h4 class="sidebar_title" itemprop="headline">{{trans('frontend.categories')}}</h4>
-                                    <ul class="cat-lst-se">
-                                        @foreach($catFoot as $d)
-                                            <li><a href="{{route('frontend::product.index.get',$d->slug)}}" title="{{$d->name}}"
-                                                   itemprop="url"><i class="fas fa-angle-double-right"></i>{{$d->name}}</a></li>
-                                        @endforeach
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="wdgt-bx-cd">--}}
+{{--                                    <h4 class="sidebar_title" itemprop="headline">{{trans('frontend.categories')}}</h4>--}}
+{{--                                    <ul class="cat-lst-se">--}}
+{{--                                        @foreach($catFoot as $d)--}}
+{{--                                            <li><a href="{{route('frontend::product.index.get',$d->slug)}}" title="{{$d->name}}"--}}
+{{--                                                   itemprop="url"><i class="fas fa-angle-double-right"></i>{{$d->name}}</a></li>--}}
+{{--                                        @endforeach--}}
 
-                                    </ul>
-                                </div>
+{{--                                    </ul>--}}
+{{--                                </div>--}}
 
 
-                            </div>
-                        </div>
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
