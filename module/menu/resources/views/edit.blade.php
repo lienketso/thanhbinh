@@ -6,6 +6,8 @@
         node_blog.hide();
         var node_page = $('.node_page');
         node_page.hide();
+        var node_product = $('.node_product');
+        node_product.hide();
 
         var nodeType = $('select[name="type"]');
         if(nodeType.val() === 'blog'){
@@ -137,7 +139,7 @@
                         <div class="form-group node_product" >
                             <label class="col-sm-3 control-label">Danh mục sản phẩm</label>
                             <div class="col-sm-8">
-                                <select id="selectProduct" name="blog" class="form-control" style="width: 100%" >
+                                <select id="selectProduct" name="product" class="form-control" style="width: 100%" >
                                     <option value="0">--Chọn danh mục--</option>
                                     @foreach($listCatProduct as $c)
                                         <option data-id="{{$c->id}}" value="{{domain_url().'/category/'.$c->slug}}" {{($c->slug==str_slug($data->name) ? 'selected' : '')}} >{{$c->name}}</option>
