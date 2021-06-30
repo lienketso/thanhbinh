@@ -1,4 +1,10 @@
 @extends('wadmin-dashboard::master')
+
+@section('js-init')
+
+
+@endsection
+
 @section('content')
     <ol class="breadcrumb breadcrumb-quirk">
         <li><a href="{{route('wadmin::dashboard.index.get')}}"><i class="fa fa-home mr5"></i> Dashboard</a></li>
@@ -48,6 +54,7 @@
                     <tr>
                         <th>Hình ảnh</th>
                         <th>Tên nhà máy</th>
+                        <th>Link</th>
                         <th>thứ tự</th>
                         <th class="">Ngày tạo</th>
                         <th class="">Trạng thái</th>
@@ -63,6 +70,7 @@
                                 </div>
                             </td>
                             <td>{{$d->name}}</td>
+                            <td>{{route('frontend::factory.detail.get',$d->slug)}}</td>
                             <td>{{$d->sort_order}}</td>
                             <td>{{format_date($d->created_at)}}</td>
                             <td><a href="{{route('wadmin::factory.change.get',$d->id)}}"
