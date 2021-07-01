@@ -8,6 +8,7 @@
                     <h1 itemprop="headline">{{$catInfor->name}}</h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('frontend::home')}}" title="Trang chủ" itemprop="url">{{trans('frontend.home')}}</a></li>
+                        <li class="breadcrumb-item"><a href="" title="" itemprop="url">{{trans('frontend.product')}}</a></li>
                         <li class="breadcrumb-item active">{{$catInfor->name}}</li>
                     </ol>
                 </div>
