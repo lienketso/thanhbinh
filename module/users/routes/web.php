@@ -20,5 +20,10 @@ Route::group(['prefix'=>$adminRoute],function(Router $router) use($adminRoute,$m
            ->name('wadmin::users.edit.post')->middleware('permission:users_edit');
        $router->get('remove/{id}','UsersController@remove')
            ->name('wadmin::users.remove.get')->middleware('permission:users_delete');
+       $router->get('profile/{id}','UsersController@getProfile')
+           ->name('wadmin::users.profile.get')->middleware('permission:users_edit');
+       $router->post('profile/{id}','UsersController@postProfile')
+           ->name('wadmin::users.profile.post')->middleware('permission:users_edit');
+
    });
 });

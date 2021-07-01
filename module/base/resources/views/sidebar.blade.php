@@ -42,6 +42,9 @@
                         <a href="#"><i class="fa fa-pinterest"></i></a>
                     </div>
                 </li>
+                <li class="list-group-item">
+                    <a href="{{route('wadmin::users.profile.get',$userLogin->id)}}">Cập nhật thông tin</a>
+                </li>
             </ul>
         </div><!-- leftpanel-userinfo -->
         @php

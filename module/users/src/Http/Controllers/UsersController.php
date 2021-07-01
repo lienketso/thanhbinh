@@ -105,4 +105,32 @@ class UsersController extends BaseController
         }
     }
 
+    function getProfile($id){
+        $data = $this->users->find($id);
+        return view('wadmin-users::profile',['data'=>$data]);
+    }
+
+    function postProfile($id, UsersEditRequest $request){
+        try{
+            if ($request->get('password') == null) {
+                $input = $request->except(['_token', 'email', 'password', 're_password']);
+            } else {
+                $input = $request->except(['_token', 'email']);
+            }
+
+            if($request->hasFile('thumbnail')){
+                $image = $request->thumbnail;
+                $path = date('Y').'/'.date('m').'/'.date('d');
+                $input['thumbnail'] = $path.'/'.$image->getClientOriginalName();
+                $image->move('upload/'.$path,$image->getClientOriginalName());
+            }
+            $user = $this->users->update($input, $id);
+            return redirect()->route('wadmin::dashboard.index.get')
+                ->with('edit','Bạn vừa cập nhật thông tin tài khoản');
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors(config('messages.error'));
+        }
+    }
+
+
 }

@@ -11,6 +11,9 @@
                     <h4 class="panel-title">Thông báo mới</h4>
                 </div>
                 <div class="panel-body">
+                    @if (session('edit'))
+                        <div class="alert alert-info">{{session('edit')}}</div>
+                    @endif
                     @if (session('perm'))
                         <div class="alert alert-success">{{session('perm')}}</div>
                     @endif
