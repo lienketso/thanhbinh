@@ -42,6 +42,7 @@
         @endif
         <form method="post" enctype="multipart/form-data">
             {{csrf_field()}}
+            <input type="hidden" name="factory_id" value="{{$userLogin->factory_id}}">
             <div class="col-sm-8">
                 <div class="panel">
                     <div class="panel-heading">
@@ -115,15 +116,6 @@
                                 {{$catmodel->optionCat(0,1,4,0,0)}}
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Nhà máy</label>
-                            <select id="" name="factory_id" class="form-control" style="width: 100%" >
-                                <option value="0">--Chọn nhà máy--</option>
-                                @foreach($factory as $d)
-                                <option value="{{$d->id}}" {{(old('factory_id')==$d->id) ? 'selected' : '' }} >{{$d->name}}</option>
-                               @endforeach
-                            </select>
-                        </div>
 
                         <div class="form-group">
                             <label>Vị trí hiển thị</label>
@@ -134,21 +126,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><b>Hiển thị trên trang</b> (Cho phép sản phẩm của nhà máy hiển thị trong các danh mục)</label>
-                            <label class="rdiobox">
-                                <input type="radio" value="{{old('main_display',0)}}" name="main_display" checked="">
-                                <span>Không hiển thị</span>
-                            </label>
-                            <label class="rdiobox">
-                                <input type="radio" value="{{old('main_display',1)}}" name="main_display" >
-                                <span>Có hiển thị</span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>Trạng thái ( Cho phép hiển thị hoặc tạm ẩn sản phẩm )</label>
+                            <label>Trạng thái</label>
                             <select id="" name="status" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
-                                <option value="active" {{ (old('status')=='active') ? 'selected' : ''}}>Hiển thị</option>
-                                <option value="disable" {{ (old('status')=='disable') ? 'selected' : ''}}>Tạm ẩn</option>
+                                <option value="disable" {{ (old('status')=='disable') ? 'selected' : ''}}>Đợi duyệt</option>
                             </select>
                         </div>
 

@@ -2,12 +2,12 @@
 @section('content')
     <ol class="breadcrumb breadcrumb-quirk">
         <li><a href="{{route('wadmin::dashboard.index.get')}}"><i class="fa fa-home mr5"></i> Dashboard</a></li>
-        <li><a href="">Danh sách bài viết</a></li>
+        <li><a href="">Danh sách sản phẩm</a></li>
     </ol>
     <div class="panel">
         <div class="panel-heading">
-            <h4 class="panel-title">Danh sách bài viết</h4>
-            <p>Danh sách bài viết trên trang</p>
+            <h4 class="panel-title">Danh sách sản phẩm</h4>
+            <p>Danh sách sản phẩm nhà máy trên trang</p>
         </div>
 
         <div class="search_page">
@@ -19,11 +19,11 @@
                         </div>
                         <div class="col-sm-2">
                             <button type="submit" class="btn btn-info">Tìm kiếm</button>
-                            <a href="{{route('wadmin::product.index.get')}}" class="btn btn-default">Làm lại</a>
+                            <a href="{{route('wadmin::vendor.index.get')}}" class="btn btn-default">Làm lại</a>
                         </div>
                         <div class="col-sm-5">
                             <div class="button_more">
-                                <a class="btn btn-primary" href="{{route('wadmin::product.create.get')}}">Thêm mới</a>
+                                <a class="btn btn-primary" href="{{route('wadmin::vendor.create.get')}}">Thêm mới</a>
                             </div>
                         </div>
                     </form>
@@ -65,20 +65,19 @@
                                 </div>
                             </td>
                             <td>
-                                {{$d->name}}<br/>
-                                <strong>Nhà máy</strong> : {{$d->getFactory()}}
+                                {{$d->name}}
                             </td>
                             <td>{{$d->getCategory()}}</td>
                             <td>{{$d->getUserPost->username}}</td>
                             <td>{{$d->count_view}}</td>
                             <td>{{format_date($d->created_at)}}</td>
-                            <td><a href="{{route('wadmin::product.change.get',$d->id)}}"
+                            <td><a href="{{route('wadmin::vendor.change.get',$d->id)}}"
                                    class="btn btn-sm {{($d->status=='active') ? 'btn-success' : 'btn-warning'}} radius-30">
                                     {{($d->status=='active') ? 'Đang hiển thị' : 'Tạm ẩn'}}</a></td>
                             <td>
                                 <ul class="table-options">
-                                    <li><a href="{{route('wadmin::product.edit.get',$d->id)}}"><i class="fa fa-pencil"></i></a></li>
-                                    <li><a class="example-p-6" data-url="{{route('wadmin::product.remove.get',$d->id)}}"><i class="fa fa-trash"></i></a></li>
+                                    <li><a href="{{route('wadmin::vendor.edit.get',$d->id)}}"><i class="fa fa-pencil"></i></a></li>
+                                    <li><a class="example-p-6" data-url="{{route('wadmin::vendor.remove.get',$d->id)}}"><i class="fa fa-trash"></i></a></li>
                                 </ul>
                             </td>
                         </tr>

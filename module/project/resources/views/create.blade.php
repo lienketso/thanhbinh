@@ -18,8 +18,8 @@
 
     <ol class="breadcrumb breadcrumb-quirk">
         <li><a href="{{route('wadmin::dashboard.index.get')}}"><i class="fa fa-home mr5"></i> Dashboard</a></li>
-        <li><a href="{{route('wadmin::project.index.get',['post_type'=>'project'])}}">Dự án</a></li>
-        <li class="active">Thêm dự án</li>
+        <li><a href="{{route('wadmin::project.index.get',['post_type'=>'project'])}}">giải pháp</a></li>
+        <li class="active">Thêm giải pháp</li>
     </ol>
 
     <div class="row">
@@ -37,8 +37,8 @@
             <div class="col-sm-8">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Thêm dự án</h4>
-                        <p>Bạn cần nhập đầy đủ các thông tin để thêm dự án mới</p>
+                        <h4 class="panel-title">Thêm giải pháp</h4>
+                        <p>Bạn cần nhập đầy đủ các thông tin để thêm giải pháp mới</p>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -92,18 +92,7 @@
                         <p>Thông tin các tùy chọn thêm </p>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <label>Địa chỉ</label>
-                            <input class="form-control" name="address" type="text" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label>Giá trị thầu</label>
-                            <input class="form-control" name="price_value" type="text" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label>Ngày hoàn thành</label>
-                            <input class="form-control" name="end_date" type="text" placeholder="">
-                        </div>
+
                         <div class="form-group">
                             <label>Vị trí hiển thị</label>
                             <select id="" name="display" class="form-control" style="width: 100%" data-placeholder="Trạng thái">

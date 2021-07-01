@@ -11,7 +11,7 @@ use Users\Models\Users;
 class Product extends Model
 {
     protected $table = 'product';
-    protected $fillable = ['name','slug','cat_id','factory_id','price','disprice','discount','description','content','meta_desc','meta_title','thumbnail','display','main_display','count_view','user_post'
+    protected $fillable = ['name','slug','cat_id','factory_id','price','disprice','discount','description','content','meta_desc','meta_title','thumbnail','display','count_view','user_post'
     ,'user_edit','status','lang_code'];
 
 
@@ -56,18 +56,6 @@ class Product extends Model
             return $cat->name;
         } else {
             echo '<span style="color:#c00">Chưa chọn danh mục</span>';
-        }
-    }
-
-    public function factory(){
-        return $this->belongsTo(Factory::class,'factory_id','id');
-    }
-    public function getFactory(){
-        $fac = $this->factory()->first();
-        if (!empty($fac)) {
-            return $fac->name;
-        } else {
-            echo '<span style="color:#c00">Công ty</span>';
         }
     }
 

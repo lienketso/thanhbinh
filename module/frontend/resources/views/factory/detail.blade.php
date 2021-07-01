@@ -43,72 +43,33 @@
                 </div>
                 <div class="product_factory">
                     <div class="title_main_fac">
-                        <h4>Sản phẩm</h4>
+                        <h4>{{trans('frontend.product')}}</h4>
                         <p>Danh sách sản phẩm được sản xuất tại <span>{{$data->name}}</span></p>
                     </div>
                     <div class="list_product_fact">
                         <div class="row">
-
+                        @if(!empty($productByFac))
+                            @foreach($productByFac as $d)
                             <div class="col-lg-3">
                                 <div class="item_product_fac">
-                                    <a href="#">
-                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
+                                    <a href="{{route('frontend::product.detail.get',$d->slug)}}">
+                                        <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
+                                             alt="{{$d->name}}">
                                         <div class="desc_pro_fact">
-                                        <h3>Website Scanning</h3>
+                                        <h3>{{$d->name}}</h3>
                                             <div class="none_hover" >
-                                            <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
-                                            <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
+                                            <p>{{cut_string($d->description,60)}}</p>
+                                            <span>{{trans('frontend.view_info')}} <i class="fa fa-arrow-right"></i></span>
                                             </div>
                                         </div>
 
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="item_product_fac">
-                                    <a href="#">
-                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
-                                        <div class="desc_pro_fact">
-                                            <h3>Website Scanning</h3>
-                                            <div class="none_hover" >
-                                                <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
-                                                <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
-                                            </div>
-                                        </div>
-
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="item_product_fac">
-                                    <a href="#">
-                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
-                                        <div class="desc_pro_fact">
-                                            <h3>Website Scanning</h3>
-                                            <div class="none_hover" >
-                                                <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
-                                                <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
-                                            </div>
-                                        </div>
-
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="item_product_fac">
-                                    <a href="#">
-                                        <img src="<?= public_url('frontend/assets/images/services-1.jpg') ?>" alt="">
-                                        <div class="desc_pro_fact">
-                                            <h3>Website Scanning</h3>
-                                            <div class="none_hover" >
-                                                <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit sed do.</p>
-                                                <span>Xem Thêm <i class="fa fa-arrow-right"></i></span>
-                                            </div>
-                                        </div>
-
-                                    </a>
-                                </div>
-                            </div>
+                                @endforeach
+                            @else
+                                <p>Sản phẩm đang được cập nhật ...</p>
+                            @endif
 
 
                         </div>

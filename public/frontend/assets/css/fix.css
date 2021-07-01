@@ -753,6 +753,12 @@ ul.pst-mta-date li i{
 .item_lv{
     height: 500px;
 }
+.title_main_fac{
+    padding-top: 30px;
+}
+.camp-inf>h5{
+    font-size: 20px;
+}
 
 /*Responsive*/
 @media(min-width: 768px) {

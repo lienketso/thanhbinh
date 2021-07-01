@@ -42,7 +42,7 @@ class ProjectController extends BaseController
         //cấu hình các thẻ meta
         $meta_title = $data->meta_title;
         $meta_desc = cut_string($data->meta_desc,190);
-        $meta_url = route('frontend::project.index.get',$data->slug);
+        $meta_url = route('frontend::solution.index.get',$data->slug);
         if($data->thumbnail!=''){
             $meta_thumbnail = upload_url($data->thumbnail);
         }else{

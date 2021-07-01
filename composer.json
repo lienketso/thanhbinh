@@ -57,6 +57,7 @@
             "Transaction\\": "module/transaction/src",
             "Gallery\\": "module/gallery/src",
             "Project\\": "module/project/src",
+            "Vendor\\": "module/vendor/src",
             "Frontend\\": "module/frontend/src"
         },
         "classmap": [

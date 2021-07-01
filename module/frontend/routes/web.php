@@ -12,11 +12,11 @@ Route::get('about', 'HomeController@about')->name('frontend::about.detail.get');
 
 
 
-Route::group(['prefix'=>'project'],function(Router $router){
+Route::group(['prefix'=>'solution'],function(Router $router){
     $router->get('/','ProjectController@index')
-        ->name('frontend::project.index.get');
+        ->name('frontend::solution.index.get');
     $router->get('{slug}','ProjectController@detail')
-        ->name('frontend::project.detail.get');
+        ->name('frontend::solution.detail.get');
 });
 
 Route::group(['prefix'=>'category'],function(Router $router){

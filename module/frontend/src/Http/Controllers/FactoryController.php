@@ -8,14 +8,17 @@ use Barryvdh\Debugbar\Controllers\BaseController;
 use Barryvdh\Debugbar\LaravelDebugbar;
 use Illuminate\Http\Request;
 use Product\Repositories\FactoryRepository;
+use Product\Repositories\ProductRepository;
 
 class FactoryController extends BaseController
 {
     protected $model;
     protected $lang;
-    public function __construct(FactoryRepository $factoryRepository)
+    protected $pro;
+    public function __construct(FactoryRepository $factoryRepository, ProductRepository $productRepository)
     {
         $this->model = $factoryRepository;
+        $this->pro = $productRepository;
         $this->lang = session('lang');
     }
 
@@ -45,6 +48,12 @@ class FactoryController extends BaseController
             $view->with(['meta_title'=>$meta_title,'meta_desc'=>$meta_desc,'meta_url'=>$meta_url,'meta_thumbnail'=>$meta_thumbnail]);
         });
         //end cấu hình thẻ meta
+        $productByFac = $this->pro->scopeQuery(function ($e) use ($data){
+            return $e->orderBy('created_at','desc')
+                ->where('status','active')
+                ->where('lang_code',$this->lang)
+                ->where('factory_id',$data->id);
+        })->paginate(20);
 
         $related = $this->model->scopeQuery(function ($e) use ($data){
             return $e->orderBy('created_at','desc')
@@ -53,7 +62,11 @@ class FactoryController extends BaseController
                 ->where('id','!=',$data->id);
         })->limit(3);
 
-        return view('frontend::factory.detail',['data'=>$data,'related'=>$related]);
+        return view('frontend::factory.detail',[
+            'data'=>$data,
+            'productByFac'=>$productByFac,
+            'related'=>$related
+        ]);
 
     }
 

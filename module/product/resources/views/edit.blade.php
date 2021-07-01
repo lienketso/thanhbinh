@@ -134,6 +134,17 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label><b>Hiển thị trên trang</b> (Cho phép sản phẩm của nhà máy hiển thị trong các danh mục)</label>
+                            <label class="rdiobox">
+                                <input type="radio" value="{{0}}" name="main_display" {{($data->main_display==0) ? 'checked=""' : '' }} >
+                                <span>Không hiển thị</span>
+                            </label>
+                            <label class="rdiobox">
+                                <input type="radio" value="{{1}}" name="main_display" {{($data->main_display==1) ? 'checked=""' : '' }} >
+                                <span>Có hiển thị</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
                             <label>Trạng thái</label>
                             <select id="" name="status" class="form-control" style="width: 100%" data-placeholder="Trạng thái">
                                 <option value="active" {{ ($data->status =='active') ? 'selected' : ''}}>Hiển thị</option>
