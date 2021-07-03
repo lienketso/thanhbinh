@@ -32,7 +32,7 @@ class Category extends Model
             ->orderBy('created_at','desc')
             ->where('display',1)
             ->where('status','active')
-            ->limit(6);
+            ->limit(9);
     }
 
 }
