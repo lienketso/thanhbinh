@@ -759,6 +759,20 @@ ul.pst-mta-date li i{
 .camp-inf>h5{
     font-size: 20px;
 }
+.fact_image{
+    text-align: center;
+}
+.fact_image img{
+    max-width: 350px;
+}
+.fact_image h3{
+    text-transform: uppercase;
+    color: #fff;
+    padding-top: 30px;
+}
+.info_footer p{
+    color: #fff;
+}
 
 /*Responsive*/
 @media(min-width: 768px) {

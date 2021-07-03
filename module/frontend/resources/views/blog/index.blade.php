@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="blg-inf-fix">
                                     <h4 itemprop="headline"><a href="{{route('frontend::blog.detail.get',$d->slug)}}"
-                                                               title="{{$d->name}}" itemprop="url">{{$d->name}}</a>
+                                                               title="{{$d->name}}" itemprop="url">{{cut_string($d->name,70)}}</a>
                                     </h4>
                                     <ul class="pst-mta-date">
                                         <li><i class="far fa-calendar-alt"></i>{{stringDate($d->created_at)}}</li>

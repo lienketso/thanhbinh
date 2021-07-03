@@ -10,6 +10,11 @@
             filebrowserUploadUrl: '{{route('ckeditor.upload',['_token' => csrf_token() ])}}',
             filebrowserUploadMethod: 'form'
         });
+
+        CKEDITOR.replace( 'editor2', {
+            filebrowserUploadUrl: '{{route('ckeditor.upload',['_token' => csrf_token() ])}}',
+            filebrowserUploadMethod: 'form'
+        });
     </script>
 
 @endsection
@@ -110,10 +115,16 @@
                                    placeholder="">
                         </div>
                         <div class="form-group">
+                            <label>Nội dung chân trang</label>
+                            <textarea id="editor2" name="site_footer_info_1_{{$language}}"
+                                      class="form-control makeMeRichTextarea" rows="3"
+                                      placeholder="Nội dung mục chân trang">{{$setting->getSettingMeta('site_footer_info_1_'.$language)}}</textarea>
+                        </div>
+                        <div class="form-group">
                             <label>Nội dung trang nhà máy</label>
                             <textarea id="editor1" name="site_footer_info_{{$language}}"
                                       class="form-control makeMeRichTextarea" rows="3"
-                                      placeholder="Nội dung mục chân trang">{{$setting->getSettingMeta('site_footer_info_'.$language)}}</textarea>
+                                      placeholder="Nội dung trang nhà máy">{{$setting->getSettingMeta('site_footer_info_'.$language)}}</textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label>Banner trang nhà máy</label>

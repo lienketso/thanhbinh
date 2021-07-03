@@ -136,10 +136,13 @@
                                         <div class="blg-bx">
                                             <div class="blg-thmb blg-fix">
                                                 <a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}" itemprop="url">
-                                                    <img src="{{ ($p->thumbnail!='') ? upload_url($p->thumbnail) : public_url('admin/themes/images/no-image.png')}}" alt="{{$p->name}}" itemprop="image"></a>
+                                                    <img src="{{ ($p->thumbnail!='') ? upload_url($p->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
+                                                         alt="{{$p->name}}" itemprop="image"></a>
                                             </div>
                                             <div class="blg-inf">
-                                                <h6 itemprop="headline"><a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}" itemprop="url">{{$p->name}}</a>
+                                                <h6 itemprop="headline">
+                                                    <a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}"
+                                                                           itemprop="url">{{cut_string($p->name,70)}}</a>
                                                 </h6>
 {{--                                                <ul class="pst-mta">--}}
 {{--                                                    <li><i class="far fa-calendar-alt"></i>{{stringDate($p->created_at)}}</li>--}}
@@ -170,7 +173,10 @@
                 <div class="shrt-fcts-wrp">
                     <div class="row">
                         <div class="col-md-5 col-sm-12 col-lg-5">
-                            <img class="facts-mockup" src="{{upload_url($setting['fact_image'])}}" alt="{{$setting['fact_title_2_'.$lang]}}">
+                            <div class="fact_image">
+                                <img class="" src="{{upload_url($setting['fact_image'])}}" alt="{{$setting['fact_title_2_'.$lang]}}">
+                                <h3>Thanh Binh Company</h3>
+                            </div>
                         </div>
                         <div class="col-md-6 col-sm-12 col-lg-6">
                             <div class="fcts-wrp">

@@ -38,13 +38,16 @@
                     <div class="col-md-3 col-sm-12 col-lg-3">
 
                         <div class="wdgt-bx">
-                            <h5 itemprop="headline">Download</h5>
-                            <div class="btn_profile">
-                                <a href="{{upload_url($setting['site_profile'])}}" target="_blank"><i class="fas fa-download"></i> {{trans('frontend.download_profile')}}</a>
+                            <h5 itemprop="headline">{{$setting['keyword_7_'.$lang]}}</h5>
+                            <div class="info_footer">
+                                {!! $setting['site_footer_info_1_'.$lang] !!}
                             </div>
-                            <div class="btn_contact_foot">
-                                <a href="tel:{{$setting['site_hotline_'.$lang]}}"><i class="fas fa-phone"></i> {{trans('frontend.contact_price')}}</a>
-                            </div>
+{{--                            <div class="btn_profile">--}}
+{{--                                <a href="{{upload_url($setting['site_profile'])}}" target="_blank"><i class="fas fa-download"></i> {{trans('frontend.download_profile')}}</a>--}}
+{{--                            </div>--}}
+{{--                            <div class="btn_contact_foot">--}}
+{{--                                <a href="tel:{{$setting['site_hotline_'.$lang]}}"><i class="fas fa-phone"></i> {{trans('frontend.contact_price')}}</a>--}}
+{{--                            </div>--}}
                         </div>
 
                     </div>

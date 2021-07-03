@@ -44,7 +44,7 @@
                 <div class="product_factory">
                     <div class="title_main_fac">
                         <h4>{{trans('frontend.product')}}</h4>
-                        <p>Danh sách sản phẩm được sản xuất tại <span>{{$data->name}}</span></p>
+                        <p>{{$setting['keyword_8_'.$lang]}} <span>{{$data->name}}</span></p>
                     </div>
                     <div class="list_product_fact">
                         <div class="row">

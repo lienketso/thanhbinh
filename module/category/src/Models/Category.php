@@ -28,7 +28,10 @@ class Category extends Model
     }
 
     public function postCat(){
-        return $this->hasMany(Post::class,'category')->limit(6);
+        return $this->hasMany(Post::class,'category')
+            ->where('display',1)
+            ->where('status','active')
+            ->limit(6);
     }
 
 }

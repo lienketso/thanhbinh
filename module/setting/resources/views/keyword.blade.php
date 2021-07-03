@@ -89,6 +89,22 @@
                                    value="{{$setting->getSettingMeta('keyword_6_'.$language)}}"
                                    placeholder="Tiêu đề mục dự án nổi bật trang chủ">
                         </div>
+                        <div class="form-group">
+                            <label>Tiêu chân trang</label>
+                            <input class="form-control"
+                                   name="keyword_7_{{$language}}"
+                                   type="text"
+                                   value="{{$setting->getSettingMeta('keyword_7_'.$language)}}"
+                                   placeholder="Tiêu đề mục thông tin chân trang">
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả nhà máy</label>
+                            <input class="form-control"
+                                   name="keyword_8_{{$language}}"
+                                   type="text"
+                                   value="{{$setting->getSettingMeta('keyword_8_'.$language)}}"
+                                   placeholder="Thông tin mô tả phần sản phẩm nhà máy">
+                        </div>
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>
