@@ -142,7 +142,7 @@
                                             <div class="blg-inf">
                                                 <h6 itemprop="headline">
                                                     <a href="{{route('frontend::blog.detail.get',$p->slug)}}" title="{{$p->name}}"
-                                                                           itemprop="url">{{cut_string($p->name,70)}}</a>
+                                                                           itemprop="url">{{sub($p->name,70)}} ...</a>
                                                 </h6>
 {{--                                                <ul class="pst-mta">--}}
 {{--                                                    <li><i class="far fa-calendar-alt"></i>{{stringDate($p->created_at)}}</li>--}}
