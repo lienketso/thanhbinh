@@ -774,7 +774,45 @@ ul.pst-mta-date li i{
 .info_footer p{
     color: #fff;
 }
-
+.card-header-fix{
+    padding: 5px 0;
+    border-bottom: 1px solid #dfdfdf;
+}
+.btn-link-fix{
+    background: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    outline: none;
+    text-align: left;
+    width: 100%;
+}
+.card-header-fix:hover, .acc-active{
+    background: #0098da;
+}
+.card-header-fix:hover .btn-link-fix{
+    color: #fff;
+}
+.acc-active .btn-link-fix{
+    color: #fff;
+}
+.list_sb_cat a{
+    color: #000;
+    font-weight: bold;
+}
+.list_sb_cat a:hover{
+    color: #0098da;
+}
+.title_acc{
+    position: relative;
+}
+.title_acc span{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    font-size: 12px;
+    color: #000;
+}
 /*Responsive*/
 @media(min-width: 768px) {
     .wrap-service{

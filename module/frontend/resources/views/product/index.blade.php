@@ -30,13 +30,14 @@
 
                                             @foreach($allCatProduct as $key=>$val)
                                             <div class="card-fix ">
-                                                <div class="card-header" id="heading_{{$val->id}}">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link {{($catInfor->id==$val->id) ? '' : 'collapsed'}}" data-toggle="collapse" data-target="#collapse_{{$val->id}}"
+                                                <div class="card-header-fix {{($catInfor->id==$val->id) ? 'acc-active' : ''}}" id="heading_{{$val->id}}">
+                                                    <h5 class="mb-0 title_acc">
+                                                        <button class="btn btn-link-fix {{($catInfor->id==$val->id) ? '' : 'collapsed'}}" data-toggle="collapse" data-target="#collapse_{{$val->id}}"
                                                                 aria-expanded="{{($catInfor->id==$val->id) ? 'true' : 'false'}}"
                                                                 aria-controls="collapse_{{$val->id}}">
                                                             {{$val->name}}
                                                         </button>
+                                                        <span><i class="fa fa-angle-down"></i></span>
                                                     </h5>
                                                 </div>
 
