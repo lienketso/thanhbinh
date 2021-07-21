@@ -18,7 +18,7 @@ class Catproduct extends Model
 
     public function getProductCat(){
         return $this->hasMany(Product::class,'cat_id')
-            ->where('status',1)->where('main_display',1)->take(5);
+            ->where('status',1)->where('main_display',1);
     }
 
 }
