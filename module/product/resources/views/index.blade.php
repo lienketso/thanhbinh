@@ -14,14 +14,23 @@
             <div class="panel-body">
                 <div class="row">
                     <form method="get">
-                        <div class="col-sm-5">
+                        {{csrf_field()}}
+                        <div class="col-sm-3">
                             <input type="text" name="name" placeholder="Nhập tiêu đề" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                            <select name="factory_id" class="form-control">
+                                <option value="">Nhà máy</option>
+                                @foreach($allFactory as $d)
+                                <option value="{{$d->id}}" {{(request()->get('factory_id')==$d->id) ? 'selected' : '' }} >{{$d->name}}</option>
+                                    @endforeach
+                            </select>
                         </div>
                         <div class="col-sm-2">
                             <button type="submit" class="btn btn-info">Tìm kiếm</button>
                             <a href="{{route('wadmin::product.index.get')}}" class="btn btn-default">Làm lại</a>
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <div class="button_more">
                                 <a class="btn btn-primary" href="{{route('wadmin::product.create.get')}}">Thêm mới</a>
                             </div>

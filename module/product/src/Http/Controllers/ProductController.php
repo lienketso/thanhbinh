@@ -11,6 +11,7 @@ use Media\Repositories\MediaRepository;
 use Product\Http\Requests\CatEditRequest;
 use Product\Http\Requests\ProductCreateRequest;
 use Product\Http\Requests\ProductEditRequest;
+use Product\Models\Product;
 use Product\Repositories\CatproductRepository;
 use Product\Repositories\FactoryRepository;
 use Product\Repositories\ProductRepository;
@@ -33,20 +34,26 @@ class ProductController extends BaseController
     public function getIndex(Request $request){
         $id = $request->get('id');
         $name = $request->get('name');
-        if($id){
-            $data = $this->model->scopeQuery(function ($e) use($id){
-                return $e->orderBy('id','desc')->where('id',$id);
-            })->paginate(1);
-        }elseif($name){
-            $data = $this->model->scopeQuery(function($e) use ($name){
-                return $e->orderBy('id','desc')->where('name','LIKE','%'.$name.'%')->where('lang_code',$this->langcode);
-            })->paginate(10);
+        $factory_id = $request->factory_id ;
+
+        $q = Product::query();
+        if(!is_null($id)){
+           $q = $q->where('id',$id);
         }
-        else{
-            $data = $this->model->orderBy('created_at','desc')->where('lang_code',$this->langcode)->paginate(10);
+        if(!is_null($name)){
+            $q = $q->where('name','LIKE','%'.$name.'%');
+        }
+        if(!is_null($factory_id)){
+            $q = $q->where('factory_id',$factory_id);
         }
 
-        return view('wadmin-product::index',['data'=>$data,'langcode'=>$this->langcode]);
+        $data = $q->orderBy('created_at','desc')
+            ->where('lang_code',$this->langcode)->paginate(10);
+
+        $allFactory = $this->fac->orderBy('name','asc')
+            ->findWhere(['lang_code'=>$this->langcode])->all();
+
+        return view('wadmin-product::index',['data'=>$data,'allFactory'=>$allFactory,'langcode'=>$this->langcode]);
     }
     public function getCreate(MediaRepository $mediaRepository){
         $catmodel = $this->cat;
