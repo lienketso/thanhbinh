@@ -134,7 +134,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><b>Hiển thị trên trang</b> (Cho phép sản phẩm của nhà máy hiển thị trong các danh mục)</label>
+                            <label><b>Hiển thị trên trang</b> (Cho phép sản phẩm của nhà máy hiển thị trong các danh mục trên trang chính)</label>
                             <label class="rdiobox">
                                 <input type="radio" value="{{0}}" name="main_display" {{($data->main_display==0) ? 'checked=""' : '' }} >
                                 <span>Không hiển thị</span>

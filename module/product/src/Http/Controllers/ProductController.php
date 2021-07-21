@@ -70,6 +70,7 @@ class ProductController extends BaseController
             $input['user_edit'] = Auth::id();
             $input['lang_code'] = $this->langcode;
             $input['count_view'] = 0;
+            $input['main_display'] = 1;
             //cấu hình seo
             if($request->meta_title==''){
                 $input['meta_title'] = $request->name;

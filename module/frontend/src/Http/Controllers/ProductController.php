@@ -27,7 +27,9 @@ class ProductController extends BaseController
         $catInfor = $this->cat->findWhere(['slug'=>$slug])->first();
 
         $data = $this->model->scopeQuery(function ($e) use ($catInfor){
-            return $e->orderBy('created_at','desc')->where('cat_id',$catInfor->id)
+            return $e->orderBy('created_at','desc')
+                ->where('cat_id',$catInfor->id)
+                ->where('main_display',1)
                 ->where('status',1)->where('lang_code',$this->lang);
         })->paginate(20);
 
@@ -60,7 +62,10 @@ class ProductController extends BaseController
         $data = $this->model->findWhere(['slug'=>$slug])->first();
         //related product
         $relatedProduct = $this->model->scopeQuery(function ($e) use($data){
-            return $e->orderBy('created_at','desc')->where('cat_id',$data->cat_id)->where('id','!=',$data->id);
+            return $e->orderBy('created_at','desc')
+                ->where('cat_id',$data->cat_id)
+                ->where('main_display',1)
+                ->where('id','!=',$data->id);
         })->limit(8);
 
         $catInforName = $this->cat->findWhere(['id'=>$data->cat_id])->first();
@@ -88,6 +93,7 @@ class ProductController extends BaseController
         $popular = $this->model->scopeQuery(function($e) {
             return $e->orderBy('created_at','desc')
                 ->where('status','active')
+                ->where('main_display',1)
                 ->where('lang_code',$this->lang);
         })->limit(6);
         //Danh mục sản phẩm
@@ -114,6 +120,7 @@ class ProductController extends BaseController
 
         $data = $q->orderBy('created_at','desc')
             ->where('lang_code',$this->lang)
+            ->where('main_display',1)
             ->where('status','active')->paginate(15);
 
         $allCategory = $this->cat->orderBy('sort_order','asc')->findWhere(['status'=>1,'lang_code'=>$this->lang])->all();
