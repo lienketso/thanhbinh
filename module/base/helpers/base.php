@@ -107,14 +107,13 @@ if (! function_exists('cut_string')) {
     function cut_string($str, $int)
     {
         if(strlen($str)>$int){
-            return substr($str,0,$int).'...';
+            return Str::substr($str,0,$int).'...';
         }else{
             return substr($str,0,$int);
         }
 
     }
 }
-
 
 
 

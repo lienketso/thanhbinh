@@ -53,7 +53,7 @@ class FactoryController extends BaseController
                 ->where('status','active')
                 ->where('lang_code',$this->lang)
                 ->where('factory_id',$data->id);
-        })->paginate(20);
+        })->paginate(9);
 
         $related = $this->model->scopeQuery(function ($e) use ($data){
             return $e->orderBy('created_at','desc')

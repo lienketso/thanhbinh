@@ -66,7 +66,7 @@ class ProductController extends BaseController
                 ->where('cat_id',$data->cat_id)
                 ->where('main_display',1)
                 ->where('id','!=',$data->id);
-        })->limit(8);
+        })->limit(3);
 
         $catInforName = $this->cat->findWhere(['id'=>$data->cat_id])->first();
 

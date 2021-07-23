@@ -159,6 +159,19 @@
                             </div>
                         </div>
 
+{{--                        <div class="form-group">--}}
+{{--                            <label>Hình ảnh</label>--}}
+{{--                            <div class="input-group col-xs-12">--}}
+{{--                                <input type="text" name="image" value="<?= old('image'); ?>" id="ckfinder-input-1" class="form-control file-upload-info" placeholder="Upload Image">--}}
+{{--                                <span class="input-group-append">--}}
+{{--								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-1"  type="button">Chọn ảnh</button>--}}
+{{--							</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-xs-12">--}}
+{{--                                <img src="" id="imgreview" style="width: 100%; padding-top: 10px">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>

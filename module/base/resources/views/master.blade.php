@@ -72,6 +72,7 @@
 
 <script src="{{asset('admin/themes/js/quirk.js')}}"></script>
 <script src="{{asset('admin/themes/js/dashboard.js')}}"></script>
+<script src="{{asset('admin/libs/ckfinder/ckfinder.js')}}"></script>
 <script src="{{asset('admin/libs/confirm/jquery-confirm.js')}}"></script>
 <script src="{{asset('admin/notify.js')}}"></script>
 <script src="{{asset('admin/ajax.js')}}"></script>
@@ -105,6 +106,55 @@
         });
     });
 
+</script>
+
+<script type="text/javascript">
+    var ckfinder_url = "{{asset('admin/libs/ckfinder')}}";
+    var  editedField;
+    function browseServer(){
+        var finder = new CKFinder();
+        finder.BasePath = ckfinder_url;
+        finder.SelectFunction = SetFileField;
+        finder.Popup();
+    }
+    function SetFileField(fileurl){
+        document.getElementById('xFilePath').value = fileurl;
+        document.getElementById('imgreview').src = fileurl;
+    }
+    function browseServerSetting(field){
+        editedField = field;
+        var finder = new CKFinder();
+        finder.BasePath = ckfinder_url;
+        finder.SelectFunction =  SetFileFieldSetting;
+        finder.Popup();
+    }
+    function SetFileFieldSetting(field,fileurl){
+        document.getElementById(editedField).value = fileurl.fileUrl;
+    }
+
+    var button1 = document.getElementById( 'ckfinder-popup-1' );
+    button1.onclick = function() {
+        selectFileWithCKFinder( 'ckfinder-input-1' );
+    };
+    function selectFileWithCKFinder( elementId ) {
+        CKFinder.popup( {
+            chooseFiles: true,
+            width: 800,
+            height: 600,
+            onInit: function( finder ) {
+                finder.on( 'files:choose', function( evt ) {
+                    var file = evt.data.files.first();
+                    var output = document.getElementById( elementId );
+                    output.value = file.getUrl();
+                } );
+
+                finder.on( 'file:choose:resizedImage', function( evt ) {
+                    var output = document.getElementById( elementId );
+                    output.value = evt.data.resizedUrl;
+                } );
+            }
+        } );
+    }
 </script>
 
 @yield("js")

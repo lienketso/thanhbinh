@@ -61,7 +61,7 @@
                             <div class="sidebar-wrp remove-ext7">
                                 <div class="sidebar_popular">
                                 <div class="wdgt-bx">
-                                    <h4 itemprop="headline">Sản phẩm tiêu biểu</h4>
+                                    <h4 itemprop="headline">sản phẩm mới cập nhật</h4>
                                     @foreach($popular as $d)
                                     <div class="list_polular">
                                         <div class="img_p_product">

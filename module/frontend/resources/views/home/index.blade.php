@@ -177,7 +177,7 @@
                         <div class="col-md-5 col-sm-12 col-lg-5">
                             <div class="fact_image">
                                 <img class="" src="{{upload_url($setting['fact_image'])}}" alt="{{$setting['fact_title_2_'.$lang]}}">
-                                <h3>Thanh Binh Company</h3>
+                                <h3>Công ty TNHH MTV Thanh Bình – BCA</h3>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12 col-lg-6">

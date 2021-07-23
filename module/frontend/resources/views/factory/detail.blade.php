@@ -73,6 +73,9 @@
 
 
                         </div>
+                        <div class="pgn-wrp text-center">
+                            {{$productByFac->links()}}
+                        </div>
                     </div>
                 </div>
             </div>
