@@ -36,33 +36,33 @@
                                         </div>
 
                                     </div>
-                                    <div class="rltd-wrp">
-                                        <h4 itemprop="headline">{{trans('frontend.related_post')}}</h4>
-                                        <div class="remove-ext5">
-                                            <div class="row">
-                                                @foreach($related as $d)
-                                                    <div class="col-md-3 col-sm-6 col-lg-3">
-                                                        <div class="blg-bx">
-                                                            <div class="blg-thmb blg_news">
-                                                                <a href="{{route('frontend::page.index.get',$d->slug)}}" title="" itemprop="url">
-                                                                    <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"
-                                                                         alt="{{$d->name}}" itemprop="image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="blg-inf-fix">
-                                                                <h4 itemprop="headline">
-                                                                    <a href="{{route('frontend::page.index.get',$d->slug)}}"
-                                                                       title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h4>
-                                                                <p itemprop="description">{{cut_string($d->description,80)}}</p>
-                                                                <a href="{{route('frontend::page.index.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">{{trans('frontend.read_more')}}</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--                                    <div class="rltd-wrp">--}}
+{{--                                        <h4 itemprop="headline">{{trans('frontend.related_post')}}</h4>--}}
+{{--                                        <div class="remove-ext5">--}}
+{{--                                            <div class="row">--}}
+{{--                                                @foreach($related as $d)--}}
+{{--                                                    <div class="col-md-3 col-sm-6 col-lg-3">--}}
+{{--                                                        <div class="blg-bx">--}}
+{{--                                                            <div class="blg-thmb blg_news">--}}
+{{--                                                                <a href="{{route('frontend::page.index.get',$d->slug)}}" title="" itemprop="url">--}}
+{{--                                                                    <img src="{{ ($d->thumbnail!='') ? upload_url($d->thumbnail) : public_url('admin/themes/images/no-image.png')}}"--}}
+{{--                                                                         alt="{{$d->name}}" itemprop="image">--}}
+{{--                                                                </a>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="blg-inf-fix">--}}
+{{--                                                                <h4 itemprop="headline">--}}
+{{--                                                                    <a href="{{route('frontend::page.index.get',$d->slug)}}"--}}
+{{--                                                                       title="{{$d->name}}" itemprop="url">{{$d->name}}</a></h4>--}}
+{{--                                                                <p itemprop="description">{{cut_string($d->description,80)}}</p>--}}
+{{--                                                                <a href="{{route('frontend::page.index.get',$d->slug)}}" title="{{$d->name}}" itemprop="url">{{trans('frontend.read_more')}}</a>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                @endforeach--}}
 
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
 
                                 </div>
