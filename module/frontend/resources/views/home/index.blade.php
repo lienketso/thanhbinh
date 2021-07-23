@@ -133,7 +133,7 @@
                             <div class="tab-pane {{($key==0) ? 'active' : ''}} container" id="menu{{$d->id}}">
                                 <div class="row">
                                     @if(!empty($d->postCat))
-                                        @foreach($d->postCat as $p)
+                                        @foreach($d->postCat->take(3) as $p)
                                     <div class="col-md-4 col-sm-6 col-lg-4">
                                         <div class="blg-bx">
                                             <div class="blg-thmb blg-fix">

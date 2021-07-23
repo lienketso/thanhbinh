@@ -85,9 +85,7 @@ class HomeController extends BaseController
                 ->get();
         })->limit(6);
         //danh mục tin trang chủ
-        $catnewsHome = $this->catnews->with(['postCat'=>function($q){
-            $q->limit(6);
-        }])->scopeQuery(function($e){
+        $catnewsHome = $this->catnews->with('postCat')->scopeQuery(function($e){
             return $e->orderBy('sort_order','asc')
                 ->where('status','active')
                 ->where('lang_code',$this->lang)
