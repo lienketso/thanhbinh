@@ -21,12 +21,13 @@
             </div>
         </div>
     </section>
-
+    @if(!empty($popularCat) && count($popularCat)>0)
     <section class="giaiphap_home " >
         <div class="gap_cc">
             <div class="container">
                 <div class="tem-sec remove-ext5 text-center">
                     <div class="row">
+
                         @foreach($popularCat as $key=>$d)
                         <div class="col-md-4 col-sm-6 col-lg-3 wow bounceInLeft" data-wow-duration="{{$key}}s" data-wow-iteration="1" >
                             <div class="tm-bx">
@@ -55,6 +56,7 @@
 
         </div>
     </section>
+    @endif
 
     @if(!empty($pageAbout))
     <section class="">

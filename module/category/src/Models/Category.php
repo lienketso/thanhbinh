@@ -30,9 +30,7 @@ class Category extends Model
     public function postCat(){
         return $this->hasMany(Post::class,'category')
             ->orderBy('created_at','desc')
-            ->where('display',1)
-            ->where('status','active')
-            ->take(12);
+            ->where('status','active');
     }
 
 }

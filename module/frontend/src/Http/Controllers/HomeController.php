@@ -53,7 +53,9 @@ class HomeController extends BaseController
         })->limit(20);
 
         $popularCat = $this->cat->scopeQuery(function($e){
-           return $e->orderBy('sort_order','asc')->where('status',1)->where('lang_code',$this->lang)->get();
+           return $e->orderBy('sort_order','asc')
+               ->where('status',1)->where('display',1)
+               ->where('lang_code',$this->lang)->get();
         })->limit(4);
 
         $pageAbout = $postRepository->findWhere(['lang_code'=>$this->lang,'status'=>'active','display'=>1,'post_type'=>'page'])->first();
@@ -83,7 +85,9 @@ class HomeController extends BaseController
                 ->get();
         })->limit(6);
         //danh mục tin trang chủ
-        $catnewsHome = $this->catnews->with('postCat')->scopeQuery(function($e){
+        $catnewsHome = $this->catnews->with(['postCat'=>function($q){
+            $q->limit(6);
+        }])->scopeQuery(function($e){
             return $e->orderBy('sort_order','asc')
                 ->where('status','active')
                 ->where('lang_code',$this->lang)
