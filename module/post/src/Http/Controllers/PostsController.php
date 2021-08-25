@@ -49,14 +49,15 @@ class PostsController extends BaseController
     public function postCreate(PostCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
             $input['post_type'] = 'blog';
             $input['slug'] = $request->name;
             $input['user_post'] = Auth::id();
@@ -93,14 +94,15 @@ class PostsController extends BaseController
         try{
             $input = $request->except(['_token']);
 
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
             $input['post_type'] = 'blog';
             $input['slug'] = $request->name;
             $input['user_edit'] = Auth::id();

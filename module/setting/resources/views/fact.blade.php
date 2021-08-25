@@ -168,26 +168,32 @@
                         <p>Thông tin các tùy chọn thêm </p>
                     </div>
                     <div class="panel-body">
-
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label>Ảnh đại diện</label>
-                            <div class="custom-file">
-                                <input type="file" name="fact_image" value="" class="custom-file-input" id="inputGroupFile01" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="fact_image" value="{{$setting->getSettingMeta('fact_image')}}"
+                                       id="ckfinder-input-1" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-1"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
                                 <img src="{{ ($setting->getSettingMeta('fact_image')!='null') ? upload_url($setting->getSettingMeta('fact_image')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
                             </div>
                         </div>
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label>Ảnh background</label>
-                            <div class="custom-file">
-                                <input type="file" name="fact_background" value="" class="custom-file-input" id="inputGroupFile01" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <img src="{{ ($setting->getSettingMeta('fact_background')!='null') ? upload_url($setting->getSettingMeta('fact_background')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="fact_background" value="{{$setting->getSettingMeta('fact_background')}}"
+                                       id="ckfinder-input-2" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-2"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
+                                <img src="{{ ($setting->getSettingMeta('fact_background')!='null') ? upload_url($setting->getSettingMeta('fact_background')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>

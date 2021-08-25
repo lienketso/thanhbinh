@@ -45,23 +45,24 @@ class FactoryController extends BaseController
     public function postCreate(FactoryCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
-            if($request->hasFile('image')){
-                $image = $request->image;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['image'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
-
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+//            if($request->hasFile('image')){
+//                $image = $request->image;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['image'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
+            $input['image'] = replace_thumbnail($input['image']);
             $input['slug'] = $request->name;
             $input['lang_code'] = $this->langcode;
 
@@ -99,23 +100,24 @@ class FactoryController extends BaseController
         try{
             $input = $request->except(['_token']);
 
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
-            if($request->hasFile('image')){
-                $image = $request->image;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['image'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
-
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+//            if($request->hasFile('image')){
+//                $image = $request->image;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['image'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
+            $input['image'] = replace_thumbnail($input['image']);
             $input['slug'] = $request->name;
             //cấu hình seo
             if($request->meta_title==''){

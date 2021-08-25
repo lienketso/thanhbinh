@@ -104,11 +104,13 @@
                             </select>
                         </div>
 
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label>Ảnh danh mục</label>
-                            <div class="custom-file">
-                                <input type="file" name="thumbnail" value="{{old('thumbnail')}}" class="custom-file-input" id="inputGroupFile01" >
-                                <label class="custom-file-label" for="inputGroupFile01">{{old('thumbnail')}}</label>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="thumbnail" value="<?= old('thumbnail'); ?>" id="ckfinder-input-1" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-1"  type="button">Chọn ảnh</button>
+							</span>
                             </div>
                         </div>
 

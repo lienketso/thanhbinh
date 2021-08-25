@@ -136,6 +136,26 @@
     button1.onclick = function() {
         selectFileWithCKFinder( 'ckfinder-input-1' );
     };
+    var button2 = document.getElementById( 'ckfinder-popup-2' );
+    button2.onclick = function() {
+        selectFileWithCKFinder( 'ckfinder-input-2' );
+    };
+    var button3 = document.getElementById( 'ckfinder-popup-3' );
+    button3.onclick = function() {
+        selectFileWithCKFinder( 'ckfinder-input-3' );
+    };
+    var button4 = document.getElementById( 'ckfinder-popup-4' );
+    button4.onclick = function() {
+        selectFileWithCKFinder( 'ckfinder-input-4' );
+    };
+    var button5 = document.getElementById( 'ckfinder-popup-5' );
+    button5.onclick = function() {
+        selectFileWithCKFinder( 'ckfinder-input-5' );
+    };
+    var button6 = document.getElementById( 'ckfinder-popup-6' );
+    button6.onclick = function() {
+        selectFileWithCKFinder( 'ckfinder-input-6' );
+    };
     function selectFileWithCKFinder( elementId ) {
         CKFinder.popup( {
             chooseFiles: true,

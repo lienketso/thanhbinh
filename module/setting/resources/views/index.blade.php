@@ -126,13 +126,17 @@
                                       class="form-control makeMeRichTextarea" rows="3"
                                       placeholder="Nội dung trang nhà máy">{{$setting->getSettingMeta('site_footer_info_'.$language)}}</textarea>
                         </div>
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label>Banner trang nhà máy</label>
-                            <div class="custom-file">
-                                <input type="file" name="banner_factory" value="" class="custom-file-input" id="inputGroupFile01" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <img src="{{ ($setting->getSettingMeta('banner_factory')!='null') ? upload_url($setting->getSettingMeta('banner_factory')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="banner_factory" value="{{$setting->getSettingMeta('banner_factory')}}"
+                                       id="ckfinder-input-1" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-1"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
+                                <img src="{{ ($setting->getSettingMeta('banner_factory')!='null') ? upload_url($setting->getSettingMeta('banner_factory')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                             </div>
                         </div>
 
@@ -154,53 +158,72 @@
                         <p>Thông tin các tùy chọn thêm </p>
                     </div>
                     <div class="panel-body">
-
                         <div class="form-group mb-3">
                             <label>Ảnh logo</label>
-                            <div class="custom-file">
-                                <input type="file" name="site_logo" value="" class="custom-file-input" id="inputGroupFile01" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="site_logo" value="{{$setting->getSettingMeta('site_logo')}}"
+                                       id="ckfinder-input-2" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-2"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
                                 <img src="{{ ($setting->getSettingMeta('site_logo')!='null') ? upload_url($setting->getSettingMeta('site_logo')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
                             </div>
                         </div>
                         <div class="form-group mb-3">
                             <label>Tải lên profile</label>
-                            <div class="custom-file">
-                                <input type="file" name="site_profile" value="" class="custom-file-input" id="inputGroupFile01" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <a href="{{upload_url($setting->getSettingMeta('site_profile'))}}"> <i class="fa fa-file-pdf-o"></i> File is here</a>
-                                </div>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="site_profile" value="{{$setting->getSettingMeta('site_profile')}}"
+                                       id="ckfinder-input-3" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-3"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
+                                <a href="{{upload_url($setting->getSettingMeta('site_profile'))}}"> <i class="fa fa-file-pdf-o"></i> File is here</a>
                             </div>
                         </div>
-
                         <div class="form-group mb-3">
                             <label>Banner trang dự án</label>
-                            <div class="custom-file">
-                                <input type="file" name="banner_project" value="" class="custom-file-input" id="" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <img src="{{ ($setting->getSettingMeta('banner_project')!='null') ? upload_url($setting->getSettingMeta('banner_project')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="banner_project" value="{{$setting->getSettingMeta('banner_project')}}"
+                                       id="ckfinder-input-4" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-4"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
+                                <img src="{{ ($setting->getSettingMeta('banner_project')!='null') ? upload_url($setting->getSettingMeta('banner_project')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                             </div>
                         </div>
                         <div class="form-group mb-3">
                             <label>Banner trang sản phẩm</label>
-                            <div class="custom-file">
-                                <input type="file" name="banner_product" value="" class="custom-file-input" id="" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <img src="{{ ($setting->getSettingMeta('banner_product')!='null') ? upload_url($setting->getSettingMeta('banner_product')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="banner_product" value="{{$setting->getSettingMeta('banner_product')}}"
+                                       id="ckfinder-input-5" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-5"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
+                                <img src="{{ ($setting->getSettingMeta('banner_product')!='null') ? upload_url($setting->getSettingMeta('banner_product')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                             </div>
                         </div>
                         <div class="form-group mb-3">
                             <label>Banner trang liên hệ</label>
-                            <div class="custom-file">
-                                <input type="file" name="banner_contact" value="" class="custom-file-input" id="" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <img src="{{ ($setting->getSettingMeta('banner_contact')!='null') ? upload_url($setting->getSettingMeta('banner_contact')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="banner_contact" value="{{$setting->getSettingMeta('banner_contact')}}"
+                                       id="ckfinder-input-6" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-6"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
+                                <img src="{{ ($setting->getSettingMeta('banner_contact')!='null') ? upload_url($setting->getSettingMeta('banner_contact')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                             </div>
                         </div>
+
 
                         <div class="form-group">
                             <button class="btn btn-primary">Lưu lại</button>

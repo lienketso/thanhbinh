@@ -52,14 +52,15 @@ class GalleryController extends BaseController
     public function postCreate(GalleryCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
             $input['lang_code'] = $this->langcode;
             $input['group_id'] = $request->get('group');
 
@@ -87,14 +88,15 @@ class GalleryController extends BaseController
         try{
             $input = $request->except(['_token']);
 
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
 
             $user = $this->model->update($input, $id);
             return redirect()->route('wadmin::gallery.index.get',['group'=>$user->group_id])->with('edit','Bạn vừa cập nhật dữ liệu');

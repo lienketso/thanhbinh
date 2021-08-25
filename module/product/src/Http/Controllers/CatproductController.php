@@ -45,18 +45,20 @@ class CatproductController extends BaseController
     public function postCreate(CatCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $input['thumbnail'] = $path.'/'.$image->getClientOriginalName();
-                $image->move('upload/'.$path,$image->getClientOriginalName());
-            }
-            if($request->hasFile('background')){
-                $image = $request->background;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $input['background'] = $path.'/'.$image->getClientOriginalName();
-                $image->move('upload/'.$path,$image->getClientOriginalName());
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $input['thumbnail'] = $path.'/'.$image->getClientOriginalName();
+//                $image->move('upload/'.$path,$image->getClientOriginalName());
+//            }
+//            if($request->hasFile('background')){
+//                $image = $request->background;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $input['background'] = $path.'/'.$image->getClientOriginalName();
+//                $image->move('upload/'.$path,$image->getClientOriginalName());
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
+            $input['background'] = replace_thumbnail($input['background']);
             $input['slug'] = $request->name;
             $input['lang_code'] = $this->langcode;
             //cấu hình seo
@@ -88,18 +90,20 @@ class CatproductController extends BaseController
         try{
             $input = $request->except(['_token']);
 
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $input['thumbnail'] = $path.'/'.$image->getClientOriginalName();
-                $image->move('upload/'.$path,$image->getClientOriginalName());
-            }
-            if($request->hasFile('background')){
-                $image = $request->background;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $input['background'] = $path.'/'.$image->getClientOriginalName();
-                $image->move('upload/'.$path,$image->getClientOriginalName());
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $input['thumbnail'] = $path.'/'.$image->getClientOriginalName();
+//                $image->move('upload/'.$path,$image->getClientOriginalName());
+//            }
+//            if($request->hasFile('background')){
+//                $image = $request->background;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $input['background'] = $path.'/'.$image->getClientOriginalName();
+//                $image->move('upload/'.$path,$image->getClientOriginalName());
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
+            $input['background'] = replace_thumbnail($input['background']);
             $input['slug'] = $request->name;
             //cấu hình seo
             if($request->meta_title==''){

@@ -48,14 +48,15 @@ class CategoryController extends BaseController
     public function postCreate(CategoryCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
             $input['lang_code'] = $this->langcode;
             //cấu hình seo
             $input['slug'] = $request->name;
@@ -90,14 +91,15 @@ class CategoryController extends BaseController
         try{
             $input = $request->except(['_token']);
 
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
             //cấu hình seo
             $input['slug'] = $request->name;
             if($request->meta_title==''){

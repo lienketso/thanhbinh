@@ -47,22 +47,17 @@ class PageController extends BaseController
     public function postCreate(PageCreateRequest $request){
         try{
             $input = $request->except(['_token','continue_post']);
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
-            if($request->hasFile('banner')){
-                $image = $request->banner;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['banner'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+//            if($request->hasFile('thumbnail')){
+//                $image = $request->thumbnail;
+//                $path = date('Y').'/'.date('m').'/'.date('d');
+//                $newnname = time().'-'.$image->getClientOriginalName();
+//                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
+//                $input['thumbnail'] = $path.'/'.$newnname;
+//                $image->move('upload/'.$path,$newnname);
+//            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
+            $input['banner'] = replace_thumbnail($input['banner']);
+
             $input['lang_code'] = $this->langcode;
             $input['slug'] = $request->name;
             $input['post_type'] = $request->get('post_type');
@@ -98,22 +93,8 @@ class PageController extends BaseController
         try{
             $input = $request->except(['_token']);
 
-            if($request->hasFile('thumbnail')){
-                $image = $request->thumbnail;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['thumbnail'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
-            if($request->hasFile('banner')){
-                $image = $request->banner;
-                $path = date('Y').'/'.date('m').'/'.date('d');
-                $newnname = time().'-'.$image->getClientOriginalName();
-                $newnname = convert_vi_to_en(str_replace(' ','-',$newnname));
-                $input['banner'] = $path.'/'.$newnname;
-                $image->move('upload/'.$path,$newnname);
-            }
+            $input['thumbnail'] = replace_thumbnail($input['thumbnail']);
+            $input['banner'] = replace_thumbnail($input['banner']);
             $input['slug'] = $request->name;
             $input['user_edit'] = Auth::id();
             $input['post_type'] = 'page';

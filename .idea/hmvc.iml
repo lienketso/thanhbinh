@@ -6,7 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/module/users/src" isTestSource="false" packagePrefix="Users\" />
       <sourceFolder url="file://$MODULE_DIR$/module/base/src" isTestSource="false" packagePrefix="Base\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/module/vendor/src" isTestSource="false" packagePrefix="Vendor\" />
       <sourceFolder url="file://$MODULE_DIR$/module/acl/src" isTestSource="false" packagePrefix="Acl\" />
+      <sourceFolder url="file://$MODULE_DIR$/module/project/src" isTestSource="false" packagePrefix="Project\" />
       <sourceFolder url="file://$MODULE_DIR$/module/category/src" isTestSource="false" packagePrefix="Category\" />
       <sourceFolder url="file://$MODULE_DIR$/module/newsletter/src" isTestSource="false" packagePrefix="Newsletter\" />
       <sourceFolder url="file://$MODULE_DIR$/module/post/src" isTestSource="false" packagePrefix="Post\" />

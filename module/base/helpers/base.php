@@ -72,6 +72,12 @@ if (!function_exists('domain_url')) {
     }
 }
 
+if (!function_exists('replace_thumbnail')) {
+    function replace_thumbnail($thumbnail){
+        return str_replace(env('APP_URL').'/upload/','',$thumbnail);
+    }
+}
+
 
 if (! function_exists('str_slug')) {
     function convert_vi_to_en($str)

@@ -33,7 +33,7 @@ class RoleController extends BaseController
         try{
             $input = $request->except(['_token','continue_post']);
             $role = $this->model->create($input);
-            $this->model->sync($request->perm);
+            $this->model->sync($role->id,'perms',$request->perm);
             if($request->has('continue_post')){
                 return redirect()
                     ->route('wadmin::role.create.get')

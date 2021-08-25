@@ -71,13 +71,17 @@
                                    value="{{$setting->getSettingMeta('about_main_title_'.$language)}}"
                                    placeholder="Tiêu đề trang giới thiệu">
                         </div>
-                        <div class="form-group mb-3">
+
+                        <div class="form-group">
                             <label>Ảnh banner trang</label>
-                            <div class="custom-file">
-                                <input type="file" name="about_banner_page" value="" class="custom-file-input" id="inputGroupFile01" >
-                                <div class="thumbnail_w" style="padding-top: 10px">
-                                    <img src="{{ ($setting->getSettingMeta('about_banner_page')!='null') ? upload_url($setting->getSettingMeta('about_banner_page')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                </div>
+                            <div class="input-group col-xs-12" style="display: flex">
+                                <input type="text" name="about_banner_page" value="{{$setting->getSettingMeta('about_banner_page')}}" id="ckfinder-input-1" class="form-control file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-1"  type="button">Chọn ảnh</button>
+							</span>
+                            </div>
+                            <div class="thumbnail_w" style="padding-top: 10px">
+                                <img src="{{ ($setting->getSettingMeta('about_banner_page')!='null') ? upload_url($setting->getSettingMeta('about_banner_page')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                             </div>
                         </div>
                         <div class="info_ss_list">
@@ -90,13 +94,18 @@
                                        value="{{$setting->getSettingMeta('about_section_1_title_'.$language)}}"
                                        placeholder="Tiêu đề section 1">
                             </div>
-                            <div class="form-group mb-3">
+
+                            <div class="form-group">
                                 <label>Ảnh đại diện</label>
-                                <div class="custom-file">
-                                    <input type="file" name="about_section_1_img" value="" class="custom-file-input" id="inputGroupFile01" >
-                                    <div class="thumbnail_w" style="padding-top: 10px">
-                                        <img src="{{ ($setting->getSettingMeta('about_section_1_img')!='null') ? upload_url($setting->getSettingMeta('about_section_1_img')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                    </div>
+                                <div class="input-group col-xs-12" style="display: flex">
+                                    <input type="text" name="about_section_1_img" value="{{$setting->getSettingMeta('about_section_1_img')}}"
+                                           id="ckfinder-input-2" class="form-control file-upload-info" placeholder="Upload Image">
+                                    <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-2"  type="button">Chọn ảnh</button>
+							</span>
+                                </div>
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('about_section_1_img')!='null') ? upload_url($setting->getSettingMeta('about_section_1_img')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -145,16 +154,19 @@
                                        value="{{$setting->getSettingMeta('about_section_2_title_'.$language)}}"
                                        placeholder="Tiêu đề section 2">
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group">
                                 <label>Ảnh đại diện</label>
-                                <div class="custom-file">
-                                    <input type="file" name="about_section_2_img" value="" class="custom-file-input" id="inputGroupFile01" >
-                                    <div class="thumbnail_w" style="padding-top: 10px">
-                                        <img src="{{ ($setting->getSettingMeta('about_section_2_img')!='null') ? upload_url($setting->getSettingMeta('about_section_2_img')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                    </div>
+                                <div class="input-group col-xs-12" style="display: flex">
+                                    <input type="text" name="about_section_2_img" value="{{$setting->getSettingMeta('about_section_2_img')}}"
+                                           id="ckfinder-input-3" class="form-control file-upload-info" placeholder="Upload Image">
+                                    <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-3"  type="button">Chọn ảnh</button>
+							</span>
+                                </div>
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('about_section_2_img')!='null') ? upload_url($setting->getSettingMeta('about_section_2_img')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                                 </div>
                             </div>
-
 
                         </div>
 
@@ -168,13 +180,18 @@
                                        value="{{$setting->getSettingMeta('about_section_3_title_'.$language)}}"
                                        placeholder="Tiêu đề section 3">
                             </div>
-                            <div class="form-group mb-3">
+
+                            <div class="form-group">
                                 <label>Ảnh đại diện</label>
-                                <div class="custom-file">
-                                    <input type="file" name="about_section_3_img" value="" class="custom-file-input" id="inputGroupFile01" >
-                                    <div class="thumbnail_w" style="padding-top: 10px">
-                                        <img src="{{ ($setting->getSettingMeta('about_section_3_img')!='null') ? upload_url($setting->getSettingMeta('about_section_3_img')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
-                                    </div>
+                                <div class="input-group col-xs-12" style="display: flex">
+                                    <input type="text" name="about_section_3_img" value="{{$setting->getSettingMeta('about_section_3_img')}}"
+                                           id="ckfinder-input-4" class="form-control file-upload-info" placeholder="Upload Image">
+                                    <span class="input-group-append">
+								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-4"  type="button">Chọn ảnh</button>
+							</span>
+                                </div>
+                                <div class="thumbnail_w" style="padding-top: 10px">
+                                    <img src="{{ ($setting->getSettingMeta('about_section_3_img')!='null') ? upload_url($setting->getSettingMeta('about_section_3_img')) :  public_url('admin/themes/images/no-image.png')}}" width="100" alt="">
                                 </div>
                             </div>
                             <div class="form-group">

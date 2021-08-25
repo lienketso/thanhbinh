@@ -51,30 +51,16 @@ class SettingController extends BaseController
     public function postAbout(Request $request){
         $langcode = $this->langcode;
         $data = $request->except('_token');
-        if($request->hasFile('about_banner_page')){
-            $image = $request->about_banner_page;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['about_banner_page'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('about_section_1_img')){
-            $image = $request->about_section_1_img;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['about_section_1_img'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('about_section_2_img')){
-            $image = $request->about_section_2_img;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['about_section_2_img'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('about_section_3_img')){
-            $image = $request->about_section_3_img;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['about_section_3_img'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
+//        if($request->hasFile('about_banner_page')){
+//            $image = $request->about_banner_page;
+//            $path = date('Y').'/'.date('m').'/'.date('d');
+//            $data['about_banner_page'] = $path.'/'.$image->getClientOriginalName();
+//            $image->move('upload/'.$path,$image->getClientOriginalName());
+//        }
+        $data['about_banner_page'] = replace_thumbnail($data['about_banner_page']);
+        $data['about_section_1_img'] = replace_thumbnail($data['about_section_1_img']);
+        $data['about_section_2_img'] = replace_thumbnail($data['about_section_2_img']);
+        $data['about_section_3_img'] = replace_thumbnail($data['about_section_3_img']);
 
         $about_title = $data['about_section_list_1_title_'.$langcode];
         $data['about_section_list_1_title_'.$langcode] = json_encode($about_title);
@@ -92,60 +78,34 @@ class SettingController extends BaseController
 
     public function postIndex(Request $request){
         $data = $request->except('_token');
-        if($request->hasFile('site_logo')){
-            $image = $request->site_logo;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['site_logo'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('site_profile')){
-            $image = $request->site_profile;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['site_profile'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('banner_factory')){
-            $image = $request->banner_factory;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['banner_factory'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('banner_project')){
-            $image = $request->banner_project;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['banner_project'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('banner_product')){
-            $image = $request->banner_product;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['banner_product'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('banner_contact')){
-            $image = $request->banner_contact;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['banner_contact'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
+
+//        if($request->hasFile('site_logo')){
+//            $image = $request->site_logo;
+//            $path = date('Y').'/'.date('m').'/'.date('d');
+//            $data['site_logo'] = $path.'/'.$image->getClientOriginalName();
+//            $image->move('upload/'.$path,$image->getClientOriginalName());
+//        }
+        $data['site_logo'] = replace_thumbnail($data['site_logo']);
+        $data['site_profile'] = replace_thumbnail($data['site_profile']);
+        $data['banner_factory'] = replace_thumbnail($data['banner_factory']);
+        $data['banner_project'] = replace_thumbnail($data['banner_project']);
+        $data['banner_product'] = replace_thumbnail($data['banner_product']);
+        $data['banner_contact'] = replace_thumbnail($data['banner_contact']);
         $this->saveSetting($data);
         return redirect()->back()->with('edit','Sửa cấu hình thành công !');
     }
 
     public function postFact(Request $request){
         $data = $request->except(['_token']);
-        if($request->hasFile('fact_image')){
-            $image = $request->fact_image;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['fact_image'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
-        if($request->hasFile('fact_background')){
-            $image = $request->fact_background;
-            $path = date('Y').'/'.date('m').'/'.date('d');
-            $data['fact_background'] = $path.'/'.$image->getClientOriginalName();
-            $image->move('upload/'.$path,$image->getClientOriginalName());
-        }
+//        if($request->hasFile('fact_image')){
+//            $image = $request->fact_image;
+//            $path = date('Y').'/'.date('m').'/'.date('d');
+//            $data['fact_image'] = $path.'/'.$image->getClientOriginalName();
+//            $image->move('upload/'.$path,$image->getClientOriginalName());
+//        }
+        $data['fact_image'] = replace_thumbnail($data['fact_image']);
+        $data['fact_background'] = replace_thumbnail($data['fact_background']);
+
         $this->saveSetting($data);
         return redirect()->back()->with('edit','Sửa cấu hình thành công !');
     }
