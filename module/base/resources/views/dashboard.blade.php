@@ -29,7 +29,12 @@
                 </div>
             </div><!-- panel -->
 
-
+            @php
+                use Illuminate\Support\Facades\Auth;
+                $userLog = Auth::user();
+                $roles = $userLog->load('roles.perms');
+                $permissions = $roles->roles->first()->perms;
+            @endphp
             <div class="row panel-quick-page">
                 <div class="col-xs-4 col-sm-5 col-md-4 page-user">
                     <div class="panel">
@@ -91,6 +96,7 @@
                         </a>
                     </div>
                 </div>
+                @if ($permissions->contains('name','role_index'))
                 <div class="col-xs-4 col-sm-4 col-md-2 page-statistics">
                     <div class="panel">
                         <a href="{{route('wadmin::role.index.get')}}">
@@ -103,6 +109,7 @@
                         </a>
                     </div>
                 </div>
+                @endif
                 <div class="col-xs-4 col-sm-4 col-md-4 page-support">
                     <div class="panel">
                         <a href="#">

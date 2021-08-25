@@ -8,7 +8,13 @@
     $keywordRoute = ['wadmin::setting.keyword.get'];
 @endphp
 
-
+@php
+    use Illuminate\Support\Facades\Auth;
+    $userLog = Auth::user();
+    $roles = $userLog->load('roles.perms');
+    $permissions = $roles->roles->first()->perms;
+@endphp
+@if ($permissions->contains('name','setting_index'))
 <li class="nav-parent {{in_array(Route::currentRouteName(), $listRoute) ? 'nav-active active' : '' }}">
     <a href="" ><i class="fa fa-gears"></i> <span>Cấu hình</span></a>
     <ul class="children">
@@ -18,4 +24,4 @@
         <li class="{{in_array(Route::currentRouteName(), $keywordRoute) ? 'active' : '' }}"><a href="{{route('wadmin::setting.keyword.get')}}">Từ ngữ trên trang</a></li>
     </ul>
 </li>
-
+@endif
