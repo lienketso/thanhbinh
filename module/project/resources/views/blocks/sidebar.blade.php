@@ -6,4 +6,4 @@
 @endphp
 
 <li class="{{in_array(Route::currentRouteName(), $listRoute) ? 'active' : '' }}">
-    <a href="{{route('wadmin::project.index.get',['post_type'=>'project'])}}"><i class="fa fa-rocket"></i> <span>Giải pháp</span></a></li>
+    <a href="{{route('wadmin::project.index.get',['post_type'=>'project'])}}"><i class="fa fa-rocket"></i> <span>Tuyển dụng</span></a></li>

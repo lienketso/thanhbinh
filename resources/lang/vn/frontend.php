@@ -42,4 +42,5 @@ return [
     'view_info' => 'Xem thông tin',
     'view_website' => 'Xem website',
     'product' => 'Sản phẩm',
+    'career' => 'Tuyển dụng',
 ];

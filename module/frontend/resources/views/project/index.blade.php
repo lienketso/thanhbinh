@@ -5,10 +5,10 @@
             <div class="fixed-bg2" style="background-image: url('{{ ($setting['banner_project'] != '') ? upload_url($setting['banner_project']) : public_url('frontend/assets/images/page-title.jpg')}}');"></div>
             <div class="container">
                 <div class="pg-tp-wrp">
-                    <h1 itemprop="headline">{{trans('frontend.project')}}</h1>
+                    <h1 itemprop="headline">{{trans('frontend.career')}}</h1>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('frontend::home')}}" title="" itemprop="url">{{trans('frontend.home')}}</a></li>
-                        <li class="breadcrumb-item active">{{trans('frontend.project')}}</li>
+                        <li class="breadcrumb-item active">{{trans('frontend.career')}}</li>
                     </ol>
                 </div>
             </div>

@@ -42,4 +42,5 @@ return [
     'view_info' => 'Overview',
     'view_website' => 'View website',
     'product' => 'Products',
+    'career' => 'Careers',
 ];

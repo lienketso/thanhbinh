@@ -82,7 +82,7 @@
                                    placeholder="Tiêu đề mục sản phẩm nổi bật 2 tại trang chủ">
                         </div>
                         <div class="form-group">
-                            <label>Tiêu đề dự án</label>
+                            <label>Tiêu đề mục tuyển dụng trang chủ</label>
                             <input class="form-control"
                                    name="keyword_6_{{$language}}"
                                    type="text"
