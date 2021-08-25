@@ -13,6 +13,8 @@
 @section('js-init')
     <script type="text/javascript">
         CKEDITOR.replace( 'editor1', {
+            filebrowserBrowseUrl: '{{asset("admin/libs/ckfinder/ckfinder.html")}}',
+            filebrowserImageBrowseUrl: '{{asset("admin/libs/ckfinder/ckfinder.html?type=Images")}}',
             filebrowserUploadUrl: '{{route('ckeditor.upload',['_token' => csrf_token() ])}}', //route dashboard/upload
             filebrowserUploadMethod: 'form'
         });
