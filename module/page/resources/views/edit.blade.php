@@ -124,9 +124,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Ảnh đại diện</label>
+                            <label>Ảnh Banner</label>
                             <div class="input-group col-xs-12" style="display: flex">
-                                <input type="text" name="thumbnail" value="{{$data->thumbnail}}" id="ckfinder-input-2" class="form-control file-upload-info" placeholder="Upload Image">
+                                <input type="text" name="banner" value="{{$data->banner}}" id="ckfinder-input-2" class="form-control file-upload-info" placeholder="Upload Image">
                                 <span class="input-group-append">
 								<button class="file-upload-browse btn btn-primary" id="ckfinder-popup-2"  type="button">Chọn ảnh</button>
 							</span>
