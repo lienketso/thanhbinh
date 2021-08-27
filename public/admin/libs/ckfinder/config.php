@@ -67,7 +67,7 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
     $http = 'https://'.$_SERVER['HTTP_HOST'];
 }
 define("NVCMS_URL",$http);
-$baseUrl = NVCMS_URL.'/upload/';
+$baseUrl = NVCMS_URL.'/public/upload/';
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
