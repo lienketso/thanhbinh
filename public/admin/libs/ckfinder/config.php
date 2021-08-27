@@ -62,7 +62,11 @@ $config['images'] = array(
 
 /*=================================== Backends ========================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_backends
-define("NVCMS_URL", "http://".$_SERVER['HTTP_HOST']."");
+$http = 'http://'.$_SERVER['HTTP_HOST'];
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+    $http = 'https://'.$_SERVER['HTTP_HOST'];
+}
+define("NVCMS_URL",$http);
 $baseUrl = NVCMS_URL.'/upload/';
 $config['backends'][] = array(
     'name'         => 'default',
