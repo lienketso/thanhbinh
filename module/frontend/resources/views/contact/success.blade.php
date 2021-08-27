@@ -3,7 +3,7 @@
     <meta name="description" content="">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success gửi tin</title>
+    <title>Success !</title>
 
     <!-- Favicon Icon -->
     <link rel="shortcut icon" href="{{asset('frontend/assets/img/favicon.png')}}">
@@ -22,14 +22,17 @@
 <div class="wrapper">
     <section>
         <div class="container">
+
             <div class="error-page padd-top-30 padd-bot-30">
+                <div class="text-center">
                 <h1 class="mrg-top-15 mrg-bot-0 cl-danger font-150 font-bold">Success</h1>
                 <h2 class="mrg-top-10 mrg-bot-5 funky-font font-40">{{trans('frontend.send_success')}} !</h2>
                 <p>Xin chào <strong>{{$data['name']}}</strong>, {{trans('frontend.from_message')}}</p>
                 <span>{{trans('frontend.feedback_desc')}}</span>
                 <a href="{{route('frontend::home')}}" class="btn theme-btn-trans mrg-top-20">{{trans('frontend.go_to_home')}}</a>
+                </div>
             </div>
-        </div>
+
     </section>
 </div>
 

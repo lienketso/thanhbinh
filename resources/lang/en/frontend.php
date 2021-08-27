@@ -43,4 +43,8 @@ return [
     'view_website' => 'View website',
     'product' => 'Products',
     'career' => 'Careers',
+    'send_success ' => 'Send messenger successful !',
+    'from_message ' => 'We have received your message and will contact you in the near future',
+    'feedback_desc  ' => 'To return to the homepage, please click',
+    'go_to_home  ' => 'Here',
 ];

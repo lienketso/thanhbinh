@@ -43,4 +43,8 @@ return [
     'view_website' => 'Xem website',
     'product' => 'Sản phẩm',
     'career' => 'Tuyển dụng',
+    'send_success ' => 'Gửi tin nhắn thành công !',
+    'from_message ' => 'Chúng tôi đã nhận được tin nhắn từ bạn và sẽ liên hệ trong thời gian tới',
+    'feedback_desc  ' => 'Để quay lại trang chủ, vui lòng click',
+    'go_to_home  ' => 'Tại đây',
 ];
