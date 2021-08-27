@@ -9,7 +9,7 @@
     $roles = $userLog->load('roles.perms');
     $permissions = $roles->roles->first()->perms;
 @endphp
-@if ($permissions->contains('name','galley_index'))
+@if ($permissions->contains('name','gallery_index'))
 <li class="{{in_array(Route::currentRouteName(), $listRoute) ? 'active' : '' }}">
     <a href="{{route('wadmin::group.index.get')}}"><i class="fa fa-camera-retro"></i> <span>Thư viện ảnh</span></a>
 </li>

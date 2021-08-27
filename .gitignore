@@ -2,6 +2,7 @@
 /public/hot
 /public/libs/ckfinder
 /public/storage
+/public/upload
 /storage/*.key
 /vendor
 .env
