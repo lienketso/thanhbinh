@@ -74,7 +74,7 @@ if (!function_exists('domain_url')) {
 
 if (!function_exists('replace_thumbnail')) {
     function replace_thumbnail($thumbnail){
-        return str_replace(env('APP_URL').'/upload/','',$thumbnail);
+        return str_replace(env('APP_URL').'/public/upload/','',$thumbnail);
     }
 }
 
