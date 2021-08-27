@@ -127,8 +127,14 @@ class HomeController extends BaseController
     public function postContact(ContactCreateRequest $request, ContactRepository $contactRepository){
             $input = $request->except(['_token']);
             $contactRepository->create($input);
+            $details = [
+                'name'=> $input['name'],
+                'email'=> $input['email'],
+                'title'=>$input['title'],
+                'messenger'=>$input['messenger']
+            ];
             Mail::to('thanhan1507@gmail.com')
-                ->send(new SendMail(['name'=>$input['name'],'email'=>$input['email'],'title'=>$input['title'],'messenger'=>$input['messenger']]));
+                ->send(new SendMail($details));
 //            Mail::send('frontend::mail.contact',['name'=>$input['name'],'email'=>$input['email'],'title'=>$input['title'],'messenger'=>$input['messenger']],
 //                function ($message){
 //                    $message->to('thanhan1507@gmail.com', 'Visitor')->subject('Liên hệ từ thanhbinh-bca.vn !');
