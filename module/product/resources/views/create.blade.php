@@ -6,7 +6,7 @@
 
 @section('js')
     <script type="text/javascript" src="{{asset('admin/libs/ckeditor/ckeditor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('admin/libs/ckfinder/ckfinder_v1.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/libs/ckfinder/ckfinder.js')}}"></script>
     <script type="text/javascript" src="{{asset('admin/js/main.js')}}"></script>
     <script src="{{asset('admin/themes/lib/select2/select2.js')}}"></script>
 @endsection
