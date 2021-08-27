@@ -112,28 +112,28 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa fa-check"></i>
                                     <h3>{{$setting['about_section_box_title_1_'.$lang]}}</h3>
                                     <p>{{$setting['about_section_box_content_1_'.$lang]}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa fa-check"></i>
                                     <h3>{{$setting['about_section_box_title_2_'.$lang]}}</h3>
                                     <p>{{$setting['about_section_box_content_2_'.$lang]}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security mb-0 mb-rs-need">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa fa-check"></i>
                                     <h3>{{$setting['about_section_box_title_3_'.$lang]}}</h3>
                                     <p>{{$setting['about_section_box_content_3_'.$lang]}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single-security mb-0">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa fa-check"></i>
                                     <h3>{{$setting['about_section_box_title_4_'.$lang]}}</h3>
                                     <p>{{$setting['about_section_box_content_4_'.$lang]}}</p>
                                 </div>
