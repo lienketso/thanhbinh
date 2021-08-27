@@ -11,6 +11,7 @@ use Contact\Http\Requests\ContactCreateRequest;
 use Contact\Repositories\ContactRepository;
 use Gallery\Repositories\GalleryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Mail;
 use Newsletter\Repositories\NewsletterRepository;
 use Post\Repositories\PostRepository;
@@ -125,10 +126,10 @@ class HomeController extends BaseController
     public function postContact(ContactCreateRequest $request, ContactRepository $contactRepository){
             $input = $request->except(['_token']);
             $contactRepository->create($input);
-            Mail::send('frontend::mail.contact',['name'=>$input['name'],'email'=>$input['email'],'title'=>$input['title'],'messenger'=>$input['messenger']],
-                function ($message){
-                    $message->to('thanhan1507@gmail.com', 'Visitor')->subject('Liên hệ từ thanhbinh-bca.com !');
-                });
+//            Mail::send('frontend::mail.contact',['name'=>$input['name'],'email'=>$input['email'],'title'=>$input['title'],'messenger'=>$input['messenger']],
+//                function ($message){
+//                    $message->to('thanhan1507@gmail.com', 'Visitor')->subject('Liên hệ từ thanhbinh-bca.vn !');
+//                });
             return view('frontend::contact.success',['data'=>$input]);
     }
 
