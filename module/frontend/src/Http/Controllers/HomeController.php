@@ -4,6 +4,7 @@
 namespace Frontend\Http\Controllers;
 
 
+use App\Mail\SendMail;
 use Barryvdh\Debugbar\Controllers\BaseController;
 use Category\Repositories\CategoryRepository;
 use Company\Repositories\CompanyRepository;
@@ -126,6 +127,8 @@ class HomeController extends BaseController
     public function postContact(ContactCreateRequest $request, ContactRepository $contactRepository){
             $input = $request->except(['_token']);
             $contactRepository->create($input);
+            Mail::to('thanhan1507@gmail.com')
+                ->send(new SendMail(['name'=>$input['name'],'email'=>$input['email'],'title'=>$input['title'],'messenger'=>$input['messenger']]));
 //            Mail::send('frontend::mail.contact',['name'=>$input['name'],'email'=>$input['email'],'title'=>$input['title'],'messenger'=>$input['messenger']],
 //                function ($message){
 //                    $message->to('thanhan1507@gmail.com', 'Visitor')->subject('Liên hệ từ thanhbinh-bca.vn !');
