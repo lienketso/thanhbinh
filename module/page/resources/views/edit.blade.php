@@ -2,7 +2,7 @@
 
 @section('js')
     <script type="text/javascript" src="{{asset('admin/libs/ckeditor/ckeditor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('admin/libs/ckfinder/ckfinder_v1.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/libs/ckfinder/ckfinder.js')}}"></script>
 @endsection
 @section('js-init')
     <script type="text/javascript">
