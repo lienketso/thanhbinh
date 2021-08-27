@@ -14,13 +14,15 @@ class ProductEditRequest extends FormRequest
 
     public function rules(){
         return [
-            'name'=> 'required'
+            'name'=> 'required',
+            'cat_id'=>'required'
         ];
     }
 
     public function messages(){
         return [
-            'name.required'=>'Bạn chưa nhập tiêu đề'
+            'name.required'=>'Bạn chưa nhập tiêu đề',
+            'cat_id.required'=>'Danh mục sản phẩm bắt buộc chọn'
         ];
     }
 }

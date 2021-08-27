@@ -113,7 +113,7 @@
                         <div class="form-group">
                             <label>Danh mục sản phẩm</label>
                             <select id="" name="cat_id" class="form-control" style="width: 100%" data-placeholder="Danh mục sản phẩm">
-                                <option value="0">--Chọn danh mục--</option>
+                                <option value="">--Chọn danh mục--</option>
                                 {{$catmodel->optionCat(0,1,4,$data->cat_id,0)}}
                             </select>
                         </div>

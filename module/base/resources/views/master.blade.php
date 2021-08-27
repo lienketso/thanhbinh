@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <!--<link rel="shortcut icon" href="images/favicon.png" type="image/png">-->
 
-    <title>Lienketso CMS</title>
+    <title>Hệ thống quản trị web</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="stylesheet" href="{{asset('admin/themes/lib/Hover/hover.css')}}">
     <link rel="stylesheet" href="{{asset('admin/themes/lib/fontawesome/css/font-awesome.css')}}">
